@@ -4,10 +4,20 @@
   background-color: #96172E;
   color: #fff; }
 
+.bar-bleu {
+  border-color: #b2b2b2;
+  background-color: #397FC5;
+  color: #fff; }
+
 ion-tabs.tabs-color-active-bordeaux .tab-item {
   color: #444; }
   ion-tabs.tabs-color-active-bordeaux .tab-item.tab-item-active, ion-tabs.tabs-color-active-bordeaux .tab-item.active, ion-tabs.tabs-color-active-bordeaux .tab-item.activated {
     color: #96172E; }
+
+ion-tabs.tabs-color-active-bleu .tab-item {
+  color: #444; }
+  ion-tabs.tabs-color-active-bleu .tab-item.tab-item-active, ion-tabs.tabs-color-active-bordeaux .tab-item.active, ion-tabs.tabs-color-active-bordeaux .tab-item.activated {
+    color: #397FC5; }
 
 /* Couleur ECL
 
