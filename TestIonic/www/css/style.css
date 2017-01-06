@@ -11,7 +11,8 @@
 
 .tabs-color-bordeaux .tab-item {
   color: #ACACAC;
-  opacity: 1; }
+  opacity: 1;
+  background-color: #fafafa;}
   .tabs-color-bordeaux .tab-item .badge {
     opacity: 0.4; }
   .tabs-color-bordeaux .tab-item.tab-item-active, .tabs-color-bordeaux .tab-item.active, .tabs-color-bordeaux .tab-item.activated {
@@ -31,6 +32,17 @@
     .tabs-color-bleu .tab-item.tab-item-active .badge, .tabs-color-bleu .tab-item.active .badge, .tabs-color-bleu .tab-item.activated .badge {
       opacity: 1; }
 
+.item-numero-portable {
+  float: right;
+  color: #397FC5;
+  font-size: 20px; }
+
+.test {
+  position:absolute;
+  top: 20px;
+  right: 10px;
+  display: inline-block;
+  vertical-align: middle;}
 /* Couleur ECL
 
 Bordeaux  			#96172E

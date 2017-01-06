@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 /*Cooolin*/
 
-.controller('DashCtrl',function($scope,$http){
+.controller('AnnuaireCtrl',function($scope,$http){
   //monnaies pour la requete "USD","EUR","CNY","HUF","CAD"
   //https://www.omdbapi.com/ pour une autre base de donnée
   $http.get('//missecl.eclair.ec-lyon.fr/PE/Annuaire')

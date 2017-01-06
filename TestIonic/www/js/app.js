@@ -23,12 +23,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','f
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
+  $ionicConfigProvider.tabs.position('bottom');
   $stateProvider
 
   // setup an abstract state for the tabs directive
@@ -40,12 +41,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','f
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
+  .state('tab.annuaire', {
+    url: '/annuaire',
     views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+      'tab-annuaire': {
+        templateUrl: 'templates/tab-annuaire.html',
+        controller: 'AnnuaireCtrl'
       }
     }
   })
@@ -80,6 +81,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','f
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/tab/annuaire');
 
 });
