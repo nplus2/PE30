@@ -11,7 +11,8 @@
 
 .tabs-color-bordeaux .tab-item {
   color: #ACACAC;
-  opacity: 1; }
+  opacity: 1;
+  background-color: #fafafa;}
   .tabs-color-bordeaux .tab-item .badge {
     opacity: 0.4; }
   .tabs-color-bordeaux .tab-item.tab-item-active, .tabs-color-bordeaux .tab-item.active, .tabs-color-bordeaux .tab-item.activated {
