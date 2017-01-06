@@ -3,10 +3,11 @@ angular.module('starter.controllers', [])
 .controller('DashCtrl',function($scope,$http){
   //monnaies pour la requete "USD","EUR","CNY","HUF","CAD"
   //https://www.omdbapi.com/ pour une autre base de donnée
-  $http.get('//query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.xchange where pair in ("CNYEUR","USDCAD")&format=json&env=store://datatables.org/alltableswithkeys')
+  $http.get('//missecl.eclair.ec-lyon.fr/PE/Annuaire')
       .success(function(response){
         //$scope.texte = response.query.results.rate[0].Rate;
-        $scope.rate = response.query.results.rate[0]
+        //$scope.rate = response.query.results.rate[0]
+        $scope.message = response[0]
         
       });
 
