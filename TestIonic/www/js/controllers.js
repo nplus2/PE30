@@ -1,4 +1,5 @@
 angular.module('starter.controllers', [])
+/*Cooolin*/
 
 .controller('DashCtrl',function($scope,$http){
   //monnaies pour la requete "USD","EUR","CNY","HUF","CAD"
