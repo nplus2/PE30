@@ -9,15 +9,27 @@
   background-color: #397FC5;
   color: #fff; }
 
-ion-tabs.tabs-color-active-bordeaux .tab-item {
-  color: #444; }
-  ion-tabs.tabs-color-active-bordeaux .tab-item.tab-item-active, ion-tabs.tabs-color-active-bordeaux .tab-item.active, ion-tabs.tabs-color-active-bordeaux .tab-item.activated {
-    color: #96172E; }
+.tabs-color-bordeaux .tab-item {
+  color: #ACACAC;
+  opacity: 1; }
+  .tabs-color-bordeaux .tab-item .badge {
+    opacity: 0.4; }
+  .tabs-color-bordeaux .tab-item.tab-item-active, .tabs-color-bordeaux .tab-item.active, .tabs-color-bordeaux .tab-item.activated {
+    color: #96172E;
+    border: 0 solid #96172E; }
+    .tabs-color-bordeaux .tab-item.tab-item-active .badge, .tabs-color-bordeaux .tab-item.active .badge, .tabs-color-bordeaux .tab-item.activated .badge {
+      opacity: 1; }
 
-ion-tabs.tabs-color-active-bleu .tab-item {
-  color: #444; }
-  ion-tabs.tabs-color-active-bleu .tab-item.tab-item-active, ion-tabs.tabs-color-active-bordeaux .tab-item.active, ion-tabs.tabs-color-active-bordeaux .tab-item.activated {
-    color: #397FC5; }
+.tabs-color-bleu .tab-item {
+  color: #ACACAC;
+  opacity: 1; }
+  .tabs-color-bleu .tab-item .badge {
+    opacity: 0.4; }
+  .tabs-color-bleu .tab-item.tab-item-active, .tabs-color-bleu .tab-item.active, .tabs-color-bleu .tab-item.activated {
+    color: #397FC5;
+    border: 0 solid #397FC5; }
+    .tabs-color-bleu .tab-item.tab-item-active .badge, .tabs-color-bleu .tab-item.active .badge, .tabs-color-bleu .tab-item.activated .badge {
+      opacity: 1; }
 
 /* Couleur ECL
 
