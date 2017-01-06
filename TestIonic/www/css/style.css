@@ -1,1 +1,22 @@
 /* Empty. Add your own CSS if you like */
+.bar-bordeaux {
+  border-color: #b2b2b2;
+  background-color: #96172E;
+  color: #fff; }
+
+ion-tabs.tabs-color-active-bordeaux .tab-item {
+  color: #444; }
+  ion-tabs.tabs-color-active-bordeaux .tab-item.tab-item-active, ion-tabs.tabs-color-active-bordeaux .tab-item.active, ion-tabs.tabs-color-active-bordeaux .tab-item.activated {
+    color: #96172E; }
+
+/* Couleur ECL
+
+Bordeaux  			#96172E
+Vert 				#96BD44
+Orange 				#D89E19
+Rose 				#BD2165
+Bleu 				#397FC5
+Violet 				#5D1553
+Gris 				#ACACAC
+
+*/
