@@ -12,45 +12,45 @@
 .tabs-color-bordeaux .tab-item {
   color: #ACACAC;
   opacity: 1;
-  background-color: #fafafa;}
+  background-color: #f8f8f8;}
   .tabs-color-bordeaux .tab-item .badge {
     opacity: 0.4; }
   .tabs-color-bordeaux .tab-item.tab-item-active, .tabs-color-bordeaux .tab-item.active, .tabs-color-bordeaux .tab-item.activated {
     color: #96172E;
-    border: 0 solid #96172E; }
+    border-top: 1px solid #96172E; }
     .tabs-color-bordeaux .tab-item.tab-item-active .badge, .tabs-color-bordeaux .tab-item.active .badge, .tabs-color-bordeaux .tab-item.activated .badge {
       opacity: 1; }
 
 .tabs-color-bleu .tab-item {
   color: #ACACAC;
-  opacity: 1; }
+  opacity: 1;
+  border-color: #ACACAC;
+  border-top: 1px solid #ACACAC;}
   .tabs-color-bleu .tab-item .badge {
     opacity: 0.4; }
   .tabs-color-bleu .tab-item.tab-item-active, .tabs-color-bleu .tab-item.active, .tabs-color-bleu .tab-item.activated {
     color: #397FC5;
-    border: 0 solid #397FC5; }
+    border-top: 1px solid #397FC5; }
     .tabs-color-bleu .tab-item.tab-item-active .badge, .tabs-color-bleu .tab-item.active .badge, .tabs-color-bleu .tab-item.activated .badge {
       opacity: 1; }
 
 .item-numero-portable {
-  float: right;
   color: #397FC5;
-  font-size: 20px; }
-
-.test {
+  font-size: 20px;
   position:absolute;
-  top: 20px;
-  right: 10px;
+  top: 24px;
+  right: 15px;
   display: inline-block;
-  vertical-align: middle;}
+  vertical-align: middle; }
+
 /* Couleur ECL
 
 Bordeaux  			#96172E
-Vert 				#96BD44
-Orange 				#D89E19
-Rose 				#BD2165
-Bleu 				#397FC5
-Violet 				#5D1553
-Gris 				#ACACAC
+Vert 			      #96BD44
+Orange 				  #D89E19
+Rose 				    #BD2165
+Bleu            #397FC5
+Violet          #5D1553
+Gris 				    #ACACAC
 
 */
