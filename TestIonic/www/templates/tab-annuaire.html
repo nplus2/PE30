@@ -1,25 +1,18 @@
 <ion-view view-title="Annuaire">
 	<ion-content class="padding">
 	
-	<!--<ion-list>-->
-		<ion-item>
- 			<b>Colin C</b> <b><a href= "tel:01 02 03 04 05"><span class="item-numero-portable test"> 0102030405</span></a></b>
- 			<p>Patron</p>
-		</ion-item>
+	<label class="item item-input">
+		<i class ="icon ion-search placeholder-icon"></i>
+		<input type="search" placeholder="Recherche" ng-model="rechercheContact">
+	</label>
 
-		<ion-item>
-			<div class="row">
-			<div class="col">
-  				<div class="row"><b>Colin C</b></div>
-  				<div class="row"><p>Patron</p></div>
-			</div>
-			<div class="col" >
-  				<span class="test"><b><a href= "tel:01 02 03 04 05"><span class="item-numero-portable test"> 0102030405</span></a></b></span>
-			</div>
-			</div>
-		</ion-item>
 
-	<!--</ion-list>	-->
+	<ion-list>
+		<ion-item ng-repeat="contact in listeDeContacts | filter:rechercheContact">
+ 			<b>{{contact.nom}} {{contact.prenom}}</b> <b><a href= "tel:06 79 22 11 88"><span class="item-numero-portable"> {{contact.numero}}</span></a></b>
+ 			<p>{{contact.role}}</p>
+		</ion-item>
+	</ion-list>
   	
   	</ion-content>
 </ion-view>
