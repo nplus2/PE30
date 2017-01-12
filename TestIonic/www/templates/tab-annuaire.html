@@ -8,11 +8,11 @@
 
 
 	<ion-list>
-		<ion-item ng-repeat="contact in listeDeContacts | filter:rechercheContact">
+		<ion-item ng-repeat="contact in listeDeContacts | filter : filtre">
  			<b>{{contact.nom}} {{contact.prenom}}</b> <b><a href= "tel:06 79 22 11 88"><span class="item-numero-portable"> {{contact.numero}}</span></a></b>
  			<p>{{contact.role}}</p>
 		</ion-item>
 	</ion-list>
-  	
+  
   	</ion-content>
 </ion-view>
