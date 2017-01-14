@@ -3,14 +3,18 @@
 	
 	<label class="item item-input">
 		<i class ="icon ion-search placeholder-icon"></i>
-		<input type="search" placeholder="Recherche" ng-model="rechercheContact">
+		<input type="search" placeholder="Recherche" ng-model="rechercheContact" ng-change="actualiser(rechercheContact)">
 	</label>
 
 
 	<ion-list>
 		<ion-item ng-repeat="contact in listeDeContacts | filter : filtre">
- 			<b>{{contact.nom}} {{contact.prenom}}</b> <b><a href= "tel:06 79 22 11 88"><span class="item-numero-portable"> {{contact.numero}}</span></a></b>
+ 			<b>{{contact.prenom}} {{contact.nom}}</b> <b><a href= "tel:06 79 22 11 88"><span class="item-numero-portable"> {{contact.numero}}</span></a></b>
  			<p>{{contact.role}}</p>
+		</ion-item>
+		<!-- Permet d'afficher "aucun resultat" si il n'y a aucun résultat-->
+		<ion-item ng-repeat="erreur in listeErreur">
+ 			<b>{{erreur}}</b> 
 		</ion-item>
 	</ion-list>
   

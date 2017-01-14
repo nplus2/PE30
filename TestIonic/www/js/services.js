@@ -60,13 +60,26 @@ angular.module('starter.services', [])
     nom:     'Baco',
     role: 'organisateur',
     numero: '07 23 54 94 36'
-  }];
+  },{
+    id:2,
+    prenom: 'Renaud',
+    nom:     'Jester',
+    role: 'VP crumble',
+    numero: '01 32 98 56 83'
+  },{
+    id:3,
+    prenom: 'Christine',
+    nom: 'Louboutin',
+    role: 'guide',
+    numero: '06 73 54 91 23'
+  }
+  ];
 
 
   //fonction qui teste si la chaine chaine A est contenue dans la chaine B
   //renvoi un booleen 
   //il n'y a pas difference si il y a un espace ou une majuscule
-  
+
   function appartient(chaineA,chaineB){
     return (chaineB.replace(" ","").replace(" ","").replace(" ","").replace(" ","").replace(" ","").toUpperCase().indexOf(chaineA.replace(" ","").replace(" ","").replace(" ","").replace(" ","").replace(" ","").toUpperCase()) != -1);
   }
@@ -89,6 +102,8 @@ angular.module('starter.services', [])
       //identifiant des elements rajoutes dans ret
       //permet de ne pas avoir de doublons 
       id = [];
+
+      
 
       n=annuaire.length;
 
