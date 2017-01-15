@@ -1,13 +1,14 @@
 angular.module('starter.controllers', [])
 /*Cooolin*/
 
-.filter('customFilter', function(){
+/*.filter('customFilter', function(){
     return function(x){
       return {'id':1, 'nom':"Cros", 'prenom':"Colin", 'numero':"06 79 22 11 88", 'role':"Patron"};
     };
-})
+})*/
 
-.controller('AnnuaireCtrl',function($scope,$http){
+
+.controller('AnnuaireCtrl',function($scope,$http,Annuaire){
   //monnaies pour la requete "USD","EUR","CNY","HUF","CAD"
   //https://www.omdbapi.com/ pour une autre base de donnée
   $http.get('//missecl.eclair.ec-lyon.fr/PE/Annuaire')
@@ -17,10 +18,23 @@ angular.module('starter.controllers', [])
        $scope.message = response[0]
         
       });
-  $scope.listeDeContacts = [
-      {'id':1, 'nom':"Cros", 'prenom':"Colin", 'numero':"06 79 22 11 88", 'role':"Patron"},
-      {'id':2, 'nom':"Sobkowicz", 'prenom':"Konrad", 'numero':"06 07 09 11 52", 'role':"SG"},
-      {'id':2, 'nom':"Haguenaueur", 'prenom':"Timothée", 'numero':"06 22 36 58 14", 'role':"Suceur"}];
+
+  $scope.filtre=function(value,index,array){
+    return true;
+  };
+
+  $scope.actualiser = function(motCle){
+    $scope.listeDeContacts = Annuaire.recherche(motCle);
+
+    if($scope.listeDeContacts.length == 0){
+      $scope.listeErreur = ["Aucun Resultat trouvé"];
+    }else{
+      $scope.listeErreur = [];
+    }
+
+  }
+
+  $scope.listeDeContacts = Annuaire.all();
 })
 // convertit un objet en chaine JSON 
 //JSON.stringify()
