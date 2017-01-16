@@ -86,6 +86,12 @@ angular.module('starter.services', [])
     nom: 'Bernard',
     role: 'chercheur',
     numero: '06 99 21 96 38'
+  },{
+    id:6,
+    prenom: 'Sylvain',
+    nom: 'Dupond',
+    role:'VP chapeaux'
+    numero: '06 79 22 11 88'
   }
   ];
 
