@@ -47,11 +47,13 @@ angular.module('starter.services', [])
       return null;
     }
   };
-}).factory('Annuaire',function(){
+})
+
+.factory('Annuaire',function(){
   var annuaire = [{
     id: 0,
     prenom: 'Bobby',
-    nom:    'Blanc',
+    nom:    'Bernard',
     role: 'guide',
     numero: '02 43 54 12 93'
   },{
@@ -78,17 +80,14 @@ angular.module('starter.services', [])
     nom: 'Bridou',
     role: 'sponsor saucisson',
     numero: '06 06 06 06 07'
+  },{
+    id:5,
+    prenom: 'Pascal',
+    nom: 'Bernard',
+    role: 'chercheur',
+    numero: '06 99 21 96 38'
   }
   ];
-
-
-  //fonction qui teste si la chaine chaine A est contenue dans la chaine B
-  //renvoi un booleen 
-  //il n'y a pas difference si il y a un espace ou une majuscule
-
-  function appartient(chaineA,chaineB){
-    return (chaineB.replace(" ","").replace(" ","").replace(" ","").replace(" ","").replace(" ","").toUpperCase().indexOf(chaineA.replace(" ","").replace(" ","").replace(" ","").replace(" ","").replace(" ","").toUpperCase()) != -1);
-  }
 
   return {
     all: function() {
@@ -100,61 +99,33 @@ angular.module('starter.services', [])
     //      - le prenom
     //      - le numero de telephone
     recherche: function(motCle){
+      resultat = [];                    // Résultat qui sera renvoyé
+      id = [];                          // Tableau contenant les id des personnes selectionnées (pour éviter les doublons)
+      listeClef = motCle.split(" ");    // Liste des mots recherchés
+      for(var i = 0; i<annuaire.length; i++){
+        ok = true;                      // Variable indiquant si tous les mots recherchez sont présents
+        
+        prenom = annuaire[i].prenom.toUpperCase();
+        nom = annuaire[i].nom.toUpperCase();
+        role = annuaire[i].role.toUpperCase();
+        listeRole = role.split(" ");
+        numero = annuaire[i].numero.replace(" ","").replace(" ","").replace(" ","").replace(" ","");
 
-      //tableau des elements de l'annuaire correspondant au motCle
-      //valeur a retourner
-      ret = [];
-
-      //identifiant des elements rajoutes dans ret
-      //permet de ne pas avoir de doublons 
-      id = [];
-
-      
-
-      n=annuaire.length;
-
-      //recherche par le nom
-      for(var i = 0;i<n;i++){
-        if (appartient(motCle,annuaire[i].nom)){
-          // on teste si l'element n'est pas deja rajoute 
-          if(id.indexOf(annuaire[i].id) == -1 ){
-            id.push(annuaire[i].id)
-            ret.push(annuaire[i])
+        for (var j = 0; j<listeClef.length; j++) {
+          clef = listeClef[j].toUpperCase();
+          if (nom.indexOf(clef)!= 0 && prenom.indexOf(clef)!= 0 && numero.indexOf(clef)!=0) {
+            if (listeRole.length == 2)          // J'ai supposé que la longueur était 1 ou 2 si c'est plus on fera une boucle
+              { ok = (listeRole[0].indexOf(clef)==0 || listeRole[1].indexOf(clef)==0)}
+            else {ok = listeRole[0].indexOf(clef)==0}
           }
         }
-      }
-      //recherche par le prenom
-      for(var i = 0;i<n;i++){
-        if (appartient(motCle,annuaire[i].prenom)){
-          // on teste si l'element n'est pas deja rajoute 
-          if(id.indexOf(annuaire[i].id) == -1 ){
-            id.push(annuaire[i].id)
-            ret.push(annuaire[i])
-          }
-        }
-      }
-      //recherche par le role
-      for(var i = 0;i<n;i++){
-        if (appartient(motCle,annuaire[i].role)){
-          // on teste si l'element n'est pas deja rajoute 
-          if(id.indexOf(annuaire[i].id) == -1 ){
-            id.push(annuaire[i].id)
-            ret.push(annuaire[i])
-          }
-        }
-      }
-      //recherche par le numero de telephone
-      for(var i = 0;i<n;i++){
-        if (appartient(motCle,annuaire[i].numero)){
-          // on teste si l'element n'est pas deja rajoute 
-          if(id.indexOf(annuaire[i].id) == -1 ){
-            id.push(annuaire[i].id)
-            ret.push(annuaire[i])
-          }
+        if (ok && id.indexOf(annuaire[i].id) == -1 ){
+           id.push(annuaire[i].id)
+           resultat.push(annuaire[i])
         }
       }
 
-      return ret;
+      return resultat;
     }
   }
 });
