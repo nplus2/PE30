@@ -47,4 +47,85 @@ angular.module('starter.services', [])
       return null;
     }
   };
+})
+
+.factory('Annuaire',function(){
+  var annuaire = [{
+    id: 0,
+    prenom: 'Bobby',
+    nom:    'Bernard',
+    role: 'guide',
+    numero: '02 43 54 12 93'
+  },{
+    id:1,
+    prenom: 'Teddy',
+    nom:     'Baco',
+    role: 'organisateur',
+    numero: '07 23 54 94 36'
+  },{
+    id:2,
+    prenom: 'Renaud',
+    nom:     'Jester',
+    role: 'VP crumble',
+    numero: '01 32 98 56 83'
+  },{
+    id:3,
+    prenom: 'Christine',
+    nom: 'Louboutin',
+    role: 'guide',
+    numero: '06 73 54 91 23'
+  },{
+    id:4,
+    prenom: 'Justin',
+    nom: 'Bridou',
+    role: 'sponsor saucisson',
+    numero: '06 06 06 06 07'
+  },{
+    id:5,
+    prenom: 'Pascal',
+    nom: 'Bernard',
+    role: 'chercheur',
+    numero: '06 99 21 96 38'
+  }
+  ];
+
+  return {
+    all: function() {
+      return annuaire;
+    },
+    //fonction qui recherche dans annuaire les elements correspondants au mot cle
+    // cherche en priorite une concordance avec :
+    //      - le nom
+    //      - le prenom
+    //      - le numero de telephone
+    recherche: function(motCle){
+      resultat = [];                    // Résultat qui sera renvoyé
+      id = [];                          // Tableau contenant les id des personnes selectionnées (pour éviter les doublons)
+      listeClef = motCle.split(" ");    // Liste des mots recherchés
+      for(var i = 0; i<annuaire.length; i++){
+        ok = true;                      // Variable indiquant si tous les mots recherchez sont présents
+        
+        prenom = annuaire[i].prenom.toUpperCase();
+        nom = annuaire[i].nom.toUpperCase();
+        role = annuaire[i].role.toUpperCase();
+        listeRole = role.split(" ");
+        numero = annuaire[i].numero.replace(" ","").replace(" ","").replace(" ","").replace(" ","");
+
+        for (var j = 0; j<listeClef.length; j++) {
+          clef = listeClef[j].toUpperCase();
+          if (nom.indexOf(clef)!= 0 && prenom.indexOf(clef)!= 0 && numero.indexOf(clef)!=0) {
+            if (listeRole.length == 2)          // J'ai supposé que la longueur était 1 ou 2 si c'est plus on fera une boucle
+              { ok = (listeRole[0].indexOf(clef)==0 || listeRole[1].indexOf(clef)==0)}
+            else {ok = listeRole[0].indexOf(clef)==0}
+          }
+        }
+        if (ok && id.indexOf(annuaire[i].id) == -1 ){
+           id.push(annuaire[i].id)
+           resultat.push(annuaire[i])
+        }
+      }
+
+      return resultat;
+    }
+  }
 });

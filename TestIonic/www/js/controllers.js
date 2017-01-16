@@ -19,10 +19,6 @@ angular.module('starter.controllers', [])
         
       });
 
-  $scope.filtre=function(value,index,array){
-    return true;
-  };
-
   $scope.actualiser = function(motCle){
     $scope.listeDeContacts = Annuaire.recherche(motCle);
 
