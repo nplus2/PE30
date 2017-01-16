@@ -90,8 +90,20 @@ angular.module('starter.services', [])
     id:6,
     prenom: 'Sylvain',
     nom: 'Dupond',
-    role:'VP chapeaux'
+    role:'VP chapeaux',
     numero: '06 79 22 11 88'
+  },{
+    id:7,
+    prenom: 'Jean',
+    nom:'Dupont',
+    role:'VP cannes',
+    numero: '06 86 52 12 48'
+  },{
+    id:8,
+    prenom: 'Simon',
+    nom:'Gopez',
+    role:'chercheur',
+    numero: '01 25 68 55 42'
   }
   ];
 
@@ -121,8 +133,8 @@ angular.module('starter.services', [])
           clef = listeClef[j].toUpperCase();
           if (nom.indexOf(clef)!= 0 && prenom.indexOf(clef)!= 0 && numero.indexOf(clef)!=0) {
             if (listeRole.length == 2)          // J'ai supposé que la longueur était 1 ou 2 si c'est plus on fera une boucle
-              { ok = (listeRole[0].indexOf(clef)==0 || listeRole[1].indexOf(clef)==0)}
-            else {ok = listeRole[0].indexOf(clef)==0}
+              { ok = ok && (listeRole[0].indexOf(clef)==0 || listeRole[1].indexOf(clef)==0)}
+            else {ok = ok && listeRole[0].indexOf(clef)==0}
           }
         }
         if (ok && id.indexOf(annuaire[i].id) == -1 ){
