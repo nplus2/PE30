@@ -1,12 +1,4 @@
 angular.module('starter.controllers', [])
-/*Cooolin*/
-
-/*.filter('customFilter', function(){
-    return function(x){
-      return {'id':1, 'nom':"Cros", 'prenom':"Colin", 'numero':"06 79 22 11 88", 'role':"Patron"};
-    };
-})*/
-
 
 .controller('AnnuaireCtrl',function($scope,$http,Annuaire){
   //monnaies pour la requete "USD","EUR","CNY","HUF","CAD"
