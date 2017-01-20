@@ -102,7 +102,7 @@ angular.module('starter.services', [])
     id:8,
     prenom: 'Simon',
     nom:'Gopez',
-    role:'chercheur',
+    role:'guide',
     numero: '01 25 68 55 42'
   }
   ];
