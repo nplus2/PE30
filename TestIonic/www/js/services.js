@@ -104,6 +104,13 @@ angular.module('starter.services', [])
     nom:'Gomez',
     role:'organisateur',
     numero: '01 25 68 55 42'
+  },
+  {
+    id:9,
+    prenom: 'Paul',
+    nom:'Cerisier',
+    role:'VP mécanique',
+    numero: '06 22 73 26 82'
   }
   ];
 
