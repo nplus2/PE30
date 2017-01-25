@@ -43,8 +43,27 @@
   display: inline-block;
   vertical-align: middle; }
 
-
-
+/*Cards*/
+.item.item-vert {
+  border-color: #6b46e5;
+  background-color: #D1E3AC ; /*40*/
+  color: #fff; }
+.item.item-orange {
+  border-color: #6b46e5;
+  background-color: #FCCA97 ; /*40*/
+  color: #fff; }  
+.item.item-rose {
+  border-color: #6b46e5;
+  background-color: #F6A8B2 ; /*40*/
+  color: #fff; }  
+.item.item-bleu {
+  border-color: #6b46e5;
+  background-color: #A2C2E0 ; /*40*/
+  color: #fff; }  
+.item.item-violet {
+  border-color: #6b46e5;
+  background-color: #B78CA9 ; /*40*/
+  color: #fff; }  
 /* Couleur ECL
 
 Bordeaux  			#96172E
@@ -55,11 +74,12 @@ Bleu            #397FC5
 Violet          #5D1553
 Gris 				    #ACACAC
 
-*/
-/*        100%      75%          40%
-green     8CBE4B    A9CD74    D1E3AC 
-orange    F28D2C    F6A657    FCCA97 
-pink      E62D68    EC6782    F6A8B2
-blue      0080BB    4C99C9    A2C2E0
-purple    6C2457    884C75    B78CA9 
+
+
+          100%       75%        40%
+Vert      #8CBE4B    #A9CD74    #D1E3AC 
+Orange    #F28D2C    #F6A657    #FCCA97 
+Rose      #E62D68    #EC6782    #F6A8B2
+Bleu      #0080BB    #4C99C9    #A2C2E0
+Violet    #6C2457    #884C75    #B78CA9 
 */
