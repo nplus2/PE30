@@ -76,7 +76,7 @@ angular.module('starter.services', [])
     numero: '06 73 54 91 23'
   },{
     id:4,
-    prenom: 'Justin',
+    prenom: 'Jean-Pierre',
     nom: 'Bridou',
     role: 'sponsor saucisson',
     numero: '06 06 06 06 07'
