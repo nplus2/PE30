@@ -47,23 +47,23 @@
 .item.item-vert {
   border-color: #6b46e5;
   background-color: #D1E3AC ; /*40*/
-  color: #fff; }
+  color: #000000; }
 .item.item-orange {
   border-color: #6b46e5;
   background-color: #FCCA97 ; /*40*/
-  color: #fff; }  
+  color: #000000; }  
 .item.item-rose {
   border-color: #6b46e5;
   background-color: #F6A8B2 ; /*40*/
-  color: #fff; }  
+  color: #000000; }  
 .item.item-bleu {
   border-color: #6b46e5;
   background-color: #A2C2E0 ; /*40*/
-  color: #fff; }  
+  color: #000000; }  
 .item.item-violet {
   border-color: #6b46e5;
   background-color: #B78CA9 ; /*40*/
-  color: #fff; }  
+  color: #000000; }  
 /* Couleur ECL
 
 Bordeaux  			#96172E
@@ -83,3 +83,9 @@ Rose      #E62D68    #EC6782    #F6A8B2
 Bleu      #0080BB    #4C99C9    #A2C2E0
 Violet    #6C2457    #884C75    #B78CA9 
 */
+
+/*fonts*/
+  .item blaaack {
+    color: #0080BB;
+    font-size: 14px;
+    margin-bottom: 2px; }
