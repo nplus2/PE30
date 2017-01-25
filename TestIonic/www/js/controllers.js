@@ -51,4 +51,14 @@ angular.module('starter.controllers', [])
   $scope.settings = {
     enableFriends: true
   };
+})
+
+.controller('PublicationCtrl', function($scope) {
+  
+
+})
+
+.controller('FilDActualiteCtrl', function($scope) {
+  
+
 });
