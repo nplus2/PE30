@@ -34,6 +34,17 @@
     .tabs-color-bleu .tab-item.tab-item-active .badge, .tabs-color-bleu .tab-item.active .badge, .tabs-color-bleu .tab-item.activated .badge {
       opacity: 1; }
 
+.button-parametre {
+    border-color: none;
+    background-color: none;
+    color: #fff;
+    border-radius: 100px }
+
+.button-publication {
+  border-color: #397FC5;
+  background-color: #A2C2E0;
+}
+
 .item-numero-portable {
   color: #397FC5;
   font-size: 20px;
