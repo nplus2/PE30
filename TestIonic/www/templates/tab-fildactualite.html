@@ -1,7 +1,14 @@
-<ion-view view-title="Fil d'actualité">
+<ion-view view-title="FilDActualite">
 	<ion-content class="padding">
-	
+  		<div class="card"  ng-repeat="message in listeMessages">
+   			<div class="item item-{{message.couleur}} item-divider item-blaaack">
+    		{{message.tete}}
+    		</div>
+    		<div class="item item-text-wrap">
+    		{{message.corps}}
+    		</div>
+  		</div>
 
-	
+		
   	</ion-content>
 </ion-view>
