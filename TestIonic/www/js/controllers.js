@@ -53,9 +53,16 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PublicationCtrl', function($scope) {
-  
-
+.controller('PublicationCtrl', function($scope,$http) {
+  var choixDestinataire = function (){
+    $http.get('//cette/URL/est/a/modifier')
+    .then(function(response){
+      $scope.listeDestinataire = response.data  //faire un massage en fonction de la reponse (un ng-repeat?)
+    });
+  };
+  var envoisMessage = function () {
+    $http.post()
+  };
 })
 
 .controller('FilDActualiteCtrl', function($scope) {
