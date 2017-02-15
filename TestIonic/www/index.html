@@ -18,6 +18,7 @@
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/animation.css" rel="stylesheet">
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
@@ -36,17 +37,17 @@
     <script src="js/services.js"></script>
 
   </head>
-  <body ng-app="starter">
+  <body ng-app="starter" >
     <!--
       The nav bar that will be updated as we navigate between views.
     -->
-    <ion-nav-bar align-title="left"  class="bar-bleu">
+    <ion-nav-bar align-title="left"  class="bar-bleu" >
 
 
       <ion-nav-back-button>
       </ion-nav-back-button>
     <ion-nav-buttons side="right">
-        <button class="button button-parametre button-icon item-parametre icon-only ion-ios-gear">
+        <button class="button button-parametre button-icon item-parametre icon-only ion-ios-gear" ng-click="loginModal.show()">
         </button>
     </ion-nav-buttons>
    </ion-nav-bar>
