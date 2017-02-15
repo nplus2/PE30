@@ -34,6 +34,17 @@
     .tabs-color-bleu .tab-item.tab-item-active .badge, .tabs-color-bleu .tab-item.active .badge, .tabs-color-bleu .tab-item.activated .badge {
       opacity: 1; }
 
+.button-parametre {
+    border-color: none;
+    background-color: none;
+    color: #fff;
+    border-radius: 100px }
+
+.button-publication {
+  border-color: #397FC5;
+  background-color: #A2C2E0;
+}
+
 .item-numero-portable {
   color: #397FC5;
   font-size: 20px;
@@ -63,7 +74,23 @@
 .item.item-violet {
   border-color: #6b46e5;
   background-color: #B78CA9 ; /*40*/
-  color: #000000; }  
+  color: #000000; } 
+
+.facebook {
+  background-image: url('../img/facebook.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  flex: 1;
+  flex-direction: column;
+}
+
+.twitter {
+  background-image: url('../img/twitter.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  flex: 1;
+  flex-direction: column;
+}
 /* Couleur ECL
 
 Bordeaux  			#96172E
