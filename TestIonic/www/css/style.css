@@ -58,23 +58,23 @@
 .item.item-vert {
   border-color: #6b46e5;
   background-color: #D1E3AC ; /*40*/
-  color: #000000; }
+  color: #000000; font-size:12px;}
 .item.item-orange {
   border-color: #6b46e5;
   background-color: #FCCA97 ; /*40*/
-  color: #000000; }  
+  color: #000000; font-size:12px;}  
 .item.item-rose {
   border-color: #6b46e5;
   background-color: #F6A8B2 ; /*40*/
-  color: #000000; }  
+  color: #000000; font-size:12px;}  
 .item.item-bleu {
   border-color: #6b46e5;
   background-color: #A2C2E0 ; /*40*/
-  color: #000000; }  
+  color: #000000; font-size:12px;}  
 .item.item-violet {
   border-color: #6b46e5;
   background-color: #B78CA9 ; /*40*/
-  color: #000000; } 
+  color: #000000; font-size:12px;}  
 
 .facebook {
   background-image: url('../img/facebook.png');
@@ -91,6 +91,7 @@
   flex: 1;
   flex-direction: column;
 }
+
 /* Couleur ECL
 
 Bordeaux  			#96172E
@@ -111,7 +112,7 @@ Bleu      #0080BB    #4C99C9    #A2C2E0
 Violet    #6C2457    #884C75    #B78CA9 
 */
 
-/*fonts*/
+/*fonts*
   .item blaaack {
     color: #0080BB;
     font-size: 14px;
