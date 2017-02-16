@@ -1,6 +1,7 @@
 angular.module('starter.controllers', [])
 
 .controller('AnnuaireCtrl',function($scope,$http,Annuaire){
+
   //monnaies pour la requete "USD","EUR","CNY","HUF","CAD"
   //https://www.omdbapi.com/ pour une autre base de donnée
   $http.get('//missecl.eclair.ec-lyon.fr/PE/Annuaire')
@@ -70,6 +71,10 @@ angular.module('starter.controllers', [])
 
 .controller('FilDActualiteCtrl', function($scope) {
   
+  $scope.listeMessages = [{tete:"titre1", corps: "texte1", heure:123, couleur:'vert'},
+                          {tete:"titre2", corps: "texte2", heure:123, couleur:'bleu'},
+                          {tete:"titre3", corps: "texte3", heure:123, couleur:'violet'},
+                          {tete:"titre4", corps: "texte4", heure:123, couleur:'rose'}];
 
 });
 
