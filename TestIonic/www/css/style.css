@@ -92,6 +92,40 @@
   flex-direction: column;
 }
 
+  .button.button-bleu {
+    border-color: transparent;
+    background-color: #397FC5;
+    opacity: 0.75;
+    color: #fff; }
+    .button.button-bleu:hover {
+      color: #fff;
+      text-decoration: none; }
+    .button.button-bleu.active, .button.button-bleu.activated {
+      border-color: #397FC5;
+      opacity: 1;
+      background-color: #397FC5;
+      opacity: 1 }
+    .button.button-bleu.button-clear {
+      border-color: transparent;
+      background: none;
+      box-shadow: none;
+      color: #397FC5;
+      opacity: 0.75; }
+    .button.button-bleu.button-icon {
+      border-color: transparent;
+      background: none; }
+    .button.button-bleu.button-outline {
+      border-color: #397FC5;
+      opacity: 0.75;
+      background: transparent;
+      color: #397FC5;
+      opacity: 0.75; }
+      .button.button-bleu.button-outline.active, .button.button-bleu.button-outline.activated {
+        background-color: #397FC5;
+        opacity: 0.75;
+        box-shadow: none;
+        color: #fff; }
+
 /* Couleur ECL
 
 Bordeaux  			#96172E

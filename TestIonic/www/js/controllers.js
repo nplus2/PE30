@@ -28,7 +28,7 @@ angular.module('starter.controllers', [])
 // convertit un objet en chaine JSON 
 //JSON.stringify()
 
-.controller('ChatsCtrl', function($scope, Chats) {
+.controller('ChatsCtrl', function($scope, Chats, $ionicModal) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -36,6 +36,16 @@ angular.module('starter.controllers', [])
   //
   //$scope.$on('$ionicView.enter', function(e) {
   //});
+
+
+    // define create account view
+  $ionicModal.fromTemplateUrl('templates/parametres.html', {
+     scope: $scope,
+     animation: 'slide-in-right'
+  }).then(function(modal) {
+      $scope.loginModal = modal;
+  });
+
 
   $scope.chats = Chats.all();
   $scope.remove = function(chat) {
@@ -67,3 +77,22 @@ angular.module('starter.controllers', [])
                           {tete:"titre4", corps: "texte4", heure:123, couleur:'rose'}];
 
 });
+
+// .controller('MasterCtrl', function($scope, $ionicModal) {
+//   // With the new view caching in Ionic, Controllers are only called
+//   // when they are recreated or on app start, instead of every page change.
+//   // To listen for when this page is active (for example, to refresh data),
+//   // listen for the $ionicView.enter event:
+//   //
+//   //$scope.$on('$ionicView.enter', function(e) {
+//   //});
+
+
+//     // define create account view
+//   $ionicModal.fromTemplateUrl('templates/parametres.html', {
+//      scope: $scope,
+//      animation: 'slide-in-right'
+//   }).then(function(modal) {
+//       $scope.loginModal = modal;
+//   });
+// });
