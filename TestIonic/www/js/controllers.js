@@ -53,16 +53,21 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PublicationCtrl', function($scope,$http) {
+.controller('PublicationCtrl', function($scope,requeteHttp) {
   var choixDestinataire = function (){
-    $http.get('//cette/URL/est/a/modifier')
-    .then(function(response){
-      $scope.listeDestinataire = response.data  //faire un massage en fonction de la reponse (un ng-repeat?)
-    });
+    var listeDestinataire = requeteHttp.requeteLdG();
+    return listeDestinataire;
   };
-  var envoisMessage = function () {
-    $http.post()
+
+    
+  var envoisMessage = function (){
+    
   };
+
+  return {
+    choixDestinataire: choixDestinataire,
+    envoisMessage: envoisMessage
+  }
 })
 
 .controller('FilDActualiteCtrl', function($scope) {
