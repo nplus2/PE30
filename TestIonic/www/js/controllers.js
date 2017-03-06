@@ -64,6 +64,20 @@ angular.module('starter.controllers', [])
   };
 })
 
+.controller('EvenementsCtrl', function($scope) {
+
+  $scope.listeVisites = [{id : 1, couleur : 'vert', nom : 'Labo', depart : 1234},
+                        {id : 2, couleur : 'bleu', nom : 'Assos', depart : 1234},
+                        {id : 3, couleur : 'violet', nom : 'Amphis', depart : 1234},
+                        {id : 4, couleur : 'rose', nom : 'Totale', depart : 1234}];
+
+})
+
+
+.controller('ProchaineCtrl', function($scope) {
+
+})
+
 .controller('PublicationCtrl', function($scope) {
   
 
@@ -71,10 +85,10 @@ angular.module('starter.controllers', [])
 
 .controller('FilDActualiteCtrl', function($scope) {
   
-  $scope.listeMessages = [{tete:"titre1", corps: "texte1", heure:123, couleur:'vert'},
-                          {tete:"titre2", corps: "texte2", heure:123, couleur:'bleu'},
-                          {tete:"titre3", corps: "texte3", heure:123, couleur:'violet'},
-                          {tete:"titre4", corps: "texte4", heure:123, couleur:'rose'}];
+  $scope.listeMessages = [{id : 0, tete:"titre1", corps: "texte1", heure:123, couleur:'vert'},
+                          {id : 1, tete:"titre2", corps: "texte2", heure:123, couleur:'bleu'},
+                          {id : 2, tete:"titre3", corps: "texte3", heure:123, couleur:'violet'},
+                          {id : 3, tete:"titre4", corps: "texte4", heure:123, couleur:'rose'}];
 
 });
 
