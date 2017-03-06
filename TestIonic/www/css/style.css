@@ -54,24 +54,42 @@
   display: inline-block;
   vertical-align: middle; }
 
-/*Cards*/
+/* Item couleur  */
+
 .item.item-vert {
-  border-color: #6b46e5;
+  border-color: #ACACAC;
+  color: #8CBE4B ;}
+.item.item-orange {
+  border-color: #ACACAC;
+  color: #F28D2C ;}  
+.item.item-rose {
+  border-color: #ACACAC;
+  color: #E62D68 ;}  
+.item.item-bleu {
+  border-color: #ACACAC;
+  color: #0080BB ;}  
+.item.item-violet {
+  border-color: #ACACAC;
+  color: #6C2457 ;}  
+
+/*Cards*/
+.item.item-fond-vert {
+  border-color: #ACACAC;
   background-color: #D1E3AC ; /*40*/
   color: #000000; font-size:12px;}
-.item.item-orange {
+.item.item-fond-orange {
   border-color: #6b46e5;
   background-color: #FCCA97 ; /*40*/
   color: #000000; font-size:12px;}  
-.item.item-rose {
+.item.item-fond-rose {
   border-color: #6b46e5;
   background-color: #F6A8B2 ; /*40*/
   color: #000000; font-size:12px;}  
-.item.item-bleu {
+.item.item-fond-bleu {
   border-color: #6b46e5;
   background-color: #A2C2E0 ; /*40*/
   color: #000000; font-size:12px;}  
-.item.item-violet {
+.item.item-fond-violet {
   border-color: #6b46e5;
   background-color: #B78CA9 ; /*40*/
   color: #000000; font-size:12px;}  
