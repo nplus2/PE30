@@ -34,6 +34,17 @@
     .tabs-color-bleu .tab-item.tab-item-active .badge, .tabs-color-bleu .tab-item.active .badge, .tabs-color-bleu .tab-item.activated .badge {
       opacity: 1; }
 
+.button-parametre {
+    border-color: none;
+    background-color: none;
+    color: #fff;
+    border-radius: 100px }
+
+.button-publication {
+  border-color: #397FC5;
+  background-color: #A2C2E0;
+}
+
 .item-numero-portable {
   color: #397FC5;
   font-size: 20px;
@@ -42,6 +53,96 @@
   right: 15px;
   display: inline-block;
   vertical-align: middle; }
+
+/* Item couleur  */
+
+.item.item-vert {
+  border-color: #ACACAC;
+  color: #8CBE4B ;}
+.item.item-orange {
+  border-color: #ACACAC;
+  color: #F28D2C ;}  
+.item.item-rose {
+  border-color: #ACACAC;
+  color: #E62D68 ;}  
+.item.item-bleu {
+  border-color: #ACACAC;
+  color: #0080BB ;}  
+.item.item-violet {
+  border-color: #ACACAC;
+  color: #6C2457 ;}  
+
+/*Cards*/
+.item.item-fond-vert {
+  border-color: #ACACAC;
+  background-color: #D1E3AC ; /*40*/
+  color: #000000; font-size:12px;}
+.item.item-fond-orange {
+  border-color: #6b46e5;
+  background-color: #FCCA97 ; /*40*/
+  color: #000000; font-size:12px;}  
+.item.item-fond-rose {
+  border-color: #6b46e5;
+  background-color: #F6A8B2 ; /*40*/
+  color: #000000; font-size:12px;}  
+.item.item-fond-bleu {
+  border-color: #6b46e5;
+  background-color: #A2C2E0 ; /*40*/
+  color: #000000; font-size:12px;}  
+.item.item-fond-violet {
+  border-color: #6b46e5;
+  background-color: #B78CA9 ; /*40*/
+  color: #000000; font-size:12px;}  
+
+.facebook {
+  background-image: url('../img/facebook.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  flex: 1;
+  flex-direction: column;
+}
+
+.twitter {
+  background-image: url('../img/twitter.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  flex: 1;
+  flex-direction: column;
+}
+
+  .button.button-bleu {
+    border-color: transparent;
+    background-color: #397FC5;
+    opacity: 0.75;
+    color: #fff; }
+    .button.button-bleu:hover {
+      color: #fff;
+      text-decoration: none; }
+    .button.button-bleu.active, .button.button-bleu.activated {
+      border-color: #397FC5;
+      opacity: 1;
+      background-color: #397FC5;
+      opacity: 1 }
+    .button.button-bleu.button-clear {
+      border-color: transparent;
+      background: none;
+      box-shadow: none;
+      color: #397FC5;
+      opacity: 0.75; }
+    .button.button-bleu.button-icon {
+      border-color: transparent;
+      background: none; }
+    .button.button-bleu.button-outline {
+      border-color: #397FC5;
+      opacity: 0.75;
+      background: transparent;
+      color: #397FC5;
+      opacity: 0.75; }
+      .button.button-bleu.button-outline.active, .button.button-bleu.button-outline.activated {
+        background-color: #397FC5;
+        opacity: 0.75;
+        box-shadow: none;
+        color: #fff; }
 
 /* Couleur ECL
 
@@ -53,4 +154,18 @@ Bleu            #397FC5
 Violet          #5D1553
 Gris 				    #ACACAC
 
+
+
+          100%       75%        40%
+Vert      #8CBE4B    #A9CD74    #D1E3AC 
+Orange    #F28D2C    #F6A657    #FCCA97 
+Rose      #E62D68    #EC6782    #F6A8B2
+Bleu      #0080BB    #4C99C9    #A2C2E0
+Violet    #6C2457    #884C75    #B78CA9 
 */
+
+/*fonts*
+  .item blaaack {
+    color: #0080BB;
+    font-size: 14px;
+    margin-bottom: 2px; }

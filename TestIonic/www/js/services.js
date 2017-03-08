@@ -76,7 +76,7 @@ angular.module('starter.services', [])
     numero: '06 73 54 91 23'
   },{
     id:4,
-    prenom: 'Justin',
+    prenom: 'Jean-Pierre',
     nom: 'Bridou',
     role: 'sponsor saucisson',
     numero: '06 06 06 06 07'
@@ -101,9 +101,16 @@ angular.module('starter.services', [])
   },{
     id:8,
     prenom: 'Simon',
-    nom:'Gopez',
-    role:'chercheur',
+    nom:'Gomez',
+    role:'organisateur',
     numero: '01 25 68 55 42'
+  },
+  {
+    id:9,
+    prenom: 'Paul',
+    nom:'Cerisier',
+    role:'VP mécanique',
+    numero: '06 22 73 26 82'
   }
   ];
 
