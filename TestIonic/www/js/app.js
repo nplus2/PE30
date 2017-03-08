@@ -97,6 +97,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'FilDActualiteCtrl'
       }
     }
+  })
+
+  .state('tab.tab-checkpoint',{
+    url:'/checkpoint',
+    views:{
+      'tab-checkpoint': {
+        templateUrl:'templates/tab-checkpoint.html',
+        controller: 'chackpointCtrl'
+      }
+    }
   });
 
   // if none of the above states are matched, use this as the fallback

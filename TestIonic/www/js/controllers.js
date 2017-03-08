@@ -73,4 +73,7 @@ angular.module('starter.controllers', [])
 .controller('FilDActualiteCtrl', function($scope) {
   
 
+})
+.controller('checkpointCtrl',function($scope){
+
 });
