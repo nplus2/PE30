@@ -103,7 +103,7 @@ angular.module('starter.controllers', [])
                           {id : 2, tete:"titre3", corps: "texte3", heure:123, couleur:'violet'},
                           {id : 3, tete:"titre4", corps: "texte4", heure:123, couleur:'rose'}];
 
-});
+})
 
 // .controller('MasterCtrl', function($scope, $ionicModal) {
 //   // With the new view caching in Ionic, Controllers are only called
