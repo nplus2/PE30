@@ -1,14 +1,15 @@
 <ion-view view-title="Prochaines">
- 	<ion-content class="padding">
- 	<ion-list>
-   	  <div class="container" ng-repeat="Prochaines in listeProchaines">
-        <ul class="progressbar">
-            <li class="active">login</li>
-            <li>choose interest</li>
-            <li>add friends</li>
-            <li>View map</li>
-        </ul>
-      </div>
-      </ion-list>
+  <ion-content>
+
+  		<div class="card">
+   			<div class="item item-{{message.couleur}} item-divider">
+    		Horraire des prochaines visites
+    		</div>
+    		<ion-list>
+    		<div class="item item-{{visite.couleur}}" ng-repeat="visite in listeVisites">
+    		{{visite.depart}} : {{visite.nom}}
+    		</div>
+    		</ion-list>
+  		</div>
   </ion-content>
 </ion-view>
