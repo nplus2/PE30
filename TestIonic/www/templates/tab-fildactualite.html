@@ -1,13 +1,71 @@
 <ion-view view-title="Fil d'actualité">
 	<ion-content class="padding">
-  		<div class="card"  ng-repeat="message in listeMessages">
-   			<div class="item item-fond-{{message.couleur}} item-divider">
-    		{{message.tete}}
-    		</div>
-    		<div class="item item-text-wrap">
-    		{{message.corps}}
-    		</div>
-  		</div>
-		
+<ion-item>
+      <div class="row" ng-repeat="trip in listeMessages">
+      <div class="col">
+          <div class="row"><b>Visite {{trip.id+1}}</b></div>
+          
+      </div>
+      <div class="container">
+        <ul class="progressbar">
+            <li if {{trip.step}}>=1 : do class="active">Stand 1</li>
+            <li>Stand 2</li>
+            <li>Stand 3</li>
+            <li>Stand 4</li>
+        </ul>
+    </div>
+      </div>
+    </ion-item>
+<!--<ion-item>
+      <div class="row">
+      <div class="col">
+          <div class="row"><b>Visite 2</b></div>
+          
+      </div>
+      <div class="container">
+        <ul class="progressbar">
+            <li class="active">Stand 1</li>
+            <li>Stand 2</li>
+            <li>Stand 3</li>
+            <li>Stand 4</li>
+        </ul>
+    </div>
+      </div>
+    </ion-item>
+
+<ion-item>
+      <div class="row">
+      <div class="col">
+          <div class="row"><b>Visite 3</b></div>
+          
+      </div>
+      <div class="container">
+        <ul class="progressbar">
+            <li class="active">Stand 1</li>
+            <li>Stand 2</li>
+            <li>Stand 3</li>
+            <li>Stand 4</li>
+        </ul>
+    </div>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <div class="row">
+      <div class="col">
+          <div class="row"><b>Visite 4</b></div>
+          
+      </div>
+      <div class="container">
+        <ul class="progressbar">
+            <li class="active">Stand 1</li>
+            <li>Stand 2</li>
+            <li>Stand 3</li>
+            <li>Stand 4</li>
+        </ul>
+    </div>
+      </div>
+    </ion-item>
+-->
   	</ion-content>
 </ion-view>

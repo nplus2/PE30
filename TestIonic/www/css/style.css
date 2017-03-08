@@ -171,7 +171,7 @@ Violet    #6C2457    #884C75    #B78CA9
     margin-bottom: 2px; }
 
 .container {
-  width: 300px;
+  width: 200px;
   margin: 10px auto; 
 }
 .progressbar {
@@ -185,7 +185,7 @@ Violet    #6C2457    #884C75    #B78CA9
   float: left;
   font-size: 12px;
   position: relative;
-  text-align: center;
+  text-align: right;
   text-transform: uppercase;
   color: #7d7d7d;
 }
@@ -195,11 +195,11 @@ Violet    #6C2457    #884C75    #B78CA9
   content: counter(step);
   counter-increment: step;
   line-height: 30px;
-  border: 2px solid #7d7d7d;
+  border: 2px solid #666666;
   display: block;
   text-align: center;
   margin: 0 auto 10px auto;
-  border-radius: 50%;
+  border-radius: 15%;
   background-color: white;
 }
 .progressbar li:after {

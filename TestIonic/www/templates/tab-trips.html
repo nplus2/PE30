@@ -1,0 +1,21 @@
+<ion-view view-title="chill out">
+	<ion-content class="padding">
+  		<div class="card"  ng-repeat="message in listetrips">
+   			<div class="item item-fond-{{message.couleur}} item-divider">
+    		{{message.tete}}
+    		</div>
+    		<div class="item item-text-wrap">
+    		{{message.corps}}
+         <div class="container">
+        <ul class="progressbar">
+            <li class="active">login</li>
+            <li>choose interest</li>
+            <li>add friends</li>
+            <li>View map</li>
+        </ul>
+    </div>
+    		</div>
+  		</div>
+		
+  	</ion-content>
+</ion-view>
