@@ -49,6 +49,60 @@ angular.module('starter.services', [])
   };
 })
 
+.factory('requeteHttp',function($scope,$http){    
+
+  var requeteFdA = function(idUtilisateur){
+    $http.get('/filActualite/'+idUtilisateur)
+     .then(function(response){
+      return response.data;
+    },function(){$scope.erreur = 'Le serveur n\'a pas renvoye d\'info'});
+  };
+
+  var requeteLdG = function(){
+    $http.get('/listeGroupe')
+     .then(function(response){
+      return response.data;
+     },function(){$scope.erreur = 'Le serveur n\'a pas renvoye d\'info'});
+  };
+
+  var requetePublication = function(data){
+    $http.post('/publication',data)
+    .then(function(){$scope.publicationReussie = 'Message envoyé'},
+      function(){$scope.erreur = 'Le serveur n\'a pas renvoye d\'info'});
+  };
+
+  var requeteLogin = function(idUtilisateur,mdpUtilisateur){
+    $http.get('/login/'+idUtilisateur+'/'+mdpUtilisateur)
+     .then(function(response){
+      return response.data;
+     },function(){$scope.erreur = 'Le serveur n\'a pas renvoye d\'info'});
+  };
+
+  var requeteCheckpoint = function(idUtilisateur,parcour,etat){
+    $http.get('/checkpoint/'+idUtilisateur+'/'+parcour+'/'+etat)
+    .then(function(response){
+      return response.data;
+    },function(){$scope.erreur = 'Le serveur n\'a pas renvoye d\'info'});
+  };
+
+  var requetePGuide = function(idUtilisateur){
+    $http.get('/positionGuide/'+idUtilisateur)
+    .then(function(response){
+      return response.data;
+    },function(){$scope.erreur = 'Le serveur n\'a pas renvoye d\'info'});
+  };
+
+
+  return {
+    requeteFdA: requeteFdA,
+    requeteLdG: requeteLdG,
+    requetePublication: requetePublication,
+    requeteLogin: requeteLogin,
+    requeteCheckpoint: requeteCheckpoint,
+    requetePGuide: requetePGuide
+  };
+})
+
 .factory('Annuaire',function(){
   var annuaire = [{
     id: 0,
