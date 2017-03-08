@@ -74,8 +74,11 @@ angular.module('starter.controllers', [])
 })
 
 
-.controller('ProchaineCtrl', function($scope) {
-
+.controller('ProchainesCtrl', function($scope) {
+  $scope.listeProchaines = [{id : 1, couleur : 'vert', number : 4, depart : 1234},
+                        {id : 2, couleur : 'bleu', number : 4, depart : 1234},
+                        {id : 3, couleur : 'violet', number: 4, depart : 1234},
+                        {id : 4, couleur : 'rose', number : 4, depart : 1234}];
 })
 
 .controller('PublicationCtrl', function($scope) {
