@@ -76,6 +76,11 @@ angular.module('starter.controllers', [])
 
 .controller('ProchaineCtrl', function($scope) {
 
+  $scope.listeVisites = [{id : 1,   arrive : 7},
+                        {id : 2,   arrive : 10},
+                        {id : 3,   arrive : 12},
+                        {id : 4,  arrive : 18}];
+
 })
 
 .controller('PublicationCtrl', function($scope) {
