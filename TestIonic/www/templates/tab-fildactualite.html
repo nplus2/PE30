@@ -2,18 +2,19 @@
 	<ion-content class="padding">
 <ion-item>
       <div class="row" ng-repeat="trip in listeMessages">
-      <div class="col">
+     <!-- <div class="col">
           <div class="row"><b>Visite {{trip.id+1}}</b></div>
           
       </div>
-      <div class="container">
-        <ul class="progressbar">
-            <li class="active">Stand 1</li>
-            <li class="active">Stand 2</li>
-            <li class="active">Stand 3</li>
-            <li class="active">Stand 4</li>
-        </ul>
-    </div>
+        <div class="item item-image-right">
+          <img src="../img/step {{trip.whichstep}}.png" WIDTH=200 HEIGHT=75>
+        </div>
+-->
+        <div class="list">
+          <div class="item item-image-right">Visite {{trip.id+1}}
+            <img src="../img/step {{trip.whichstep}}.png"  width=200 height=70>
+          </div>
+        </div>
       </div>
     </ion-item>
 <!--<ion-item>
