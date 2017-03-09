@@ -88,10 +88,10 @@ angular.module('starter.controllers', [])
 
 .controller('FilDActualiteCtrl', function($scope) {
   
-  $scope.listeMessages = [{id : 0, tete:"titre1", corps: "texte1", heure:123, couleur:'vert'},
-                          {id : 1, tete:"titre2", corps: "texte2", heure:123, couleur:'bleu'},
-                          {id : 2, tete:"titre3", corps: "texte3", heure:123, couleur:'violet'},
-                          {id : 3, tete:"titre4", corps: "texte4", heure:123, couleur:'rose'}];
+  $scope.listeMessages = [{id : 0, tete:"titre1", whichstep:1, corps: "texte1", heure:123, couleur:'vert'},
+                          {id : 1, tete:"titre2", whichstep:2, corps: "texte2", heure:123, couleur:'bleu'},
+                          {id : 2, tete:"titre3", whichstep:3, corps: "texte3", heure:123, couleur:'violet'},
+                          {id : 3, tete:"titre4", whichstep:4, corps: "texte4", heure:123, couleur:'rose'}];
 
 });
 
