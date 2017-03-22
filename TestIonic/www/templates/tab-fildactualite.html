@@ -1,6 +1,6 @@
 <ion-view view-title="Fil d'actualité">
 	<ion-content class="padding">
-<ion-item>
+<!--<ion-item>
       <div class="row" ng-repeat="trip in listeMessages">
         <div class="list">
           <div class="item item-image-right">Visite {{trip.id+1}}
@@ -8,24 +8,24 @@
           </div>
         </div>
       </div>
-    </ion-item>
-<!--<ion-item>
-      <div class="row">
+    </ion-item>-->
+<ion-item>
+      <div class="row" ng-repeat="trip in listeMessages">
       <div class="col">
-          <div class="row"><b>Visite 2</b></div>
+          <div class="row"><b>Visite {{trip.id+1}}</b></div>
           
       </div>
       <div class="container">
         <ul class="progressbar">
-            <li class="active">Stand 1</li>
-            <li>Stand 2</li>
-            <li>Stand 3</li>
-            <li>Stand 4</li>
+            <li ng-class='whatClassIsIt(1,trip.id)'>Stand 1</li>
+            <li ng-class='whatClassIsIt(2,trip.id)'>Stand 2</li>
+            <li ng-class='whatClassIsIt(3,trip.id)'>Stand 3</li>
+            <li ng-class='whatClassIsIt(4,trip.id)'>Stand 4</li>
         </ul>
-    </div>
+      </div>
       </div>
     </ion-item>
-
+<!--
 <ion-item>
       <div class="row">
       <div class="col">
