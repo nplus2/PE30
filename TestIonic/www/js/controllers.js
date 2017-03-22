@@ -83,9 +83,22 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('PublicationCtrl', function($scope) {
-  
 
+.controller('PublicationCtrl', function($scope,requeteHttp) {
+  var choixDestinataire = function (){
+    var listeDestinataire = requeteHttp.requeteLdG();
+    return listeDestinataire;
+  };
+
+    
+  var envoisMessage = function (){
+    
+  };
+
+  return {
+    choixDestinataire: choixDestinataire,
+    envoisMessage: envoisMessage
+  }
 })
 
 .controller('FilDActualiteCtrl', function($scope) {
@@ -112,11 +125,8 @@ angular.module('starter.controllers', [])
 //   //});
 
 
-//     // define create account view
-//   $ionicModal.fromTemplateUrl('templates/parametres.html', {
-//      scope: $scope,
-//      animation: 'slide-in-right'
-//   }).then(function(modal) {
-//       $scope.loginModal = modal;
-//   });
-// });
+
+.controller('checkpointCtrl',function($scope){
+
+});
+

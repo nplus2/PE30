@@ -164,8 +164,8 @@ Bleu      #0080BB    #4C99C9    #A2C2E0
 Violet    #6C2457    #884C75    #B78CA9 
 */
 
-/*fonts*
-  .item blaaack {
-    color: #0080BB;
-    font-size: 14px;
-    margin-bottom: 2px; }
+
+/*fonts*/
+.item.item-font-gris {
+  color:#ACACAC;
+}

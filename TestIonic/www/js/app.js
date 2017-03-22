@@ -22,7 +22,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   });
 })
-
+  
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
   $ionicConfigProvider.tabs.position('bottom');
   // Ionic uses AngularUI Router which uses the concept of states
@@ -117,6 +117,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       'tab-filDActualite': {
         templateUrl: 'templates/tab-filDActualite.html',
         controller: 'FilDActualiteCtrl'
+      }
+    }
+  })
+
+  .state('tab.tab-checkpoint',{
+    url:'/checkpoint',
+    views:{
+      'tab-checkpoint': {
+        templateUrl:'templates/tab-checkpoint.html',
+        controller: 'chackpointCtrl'
       }
     }
   });
