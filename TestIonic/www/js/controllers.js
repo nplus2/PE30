@@ -1,5 +1,18 @@
 angular.module('starter.controllers', [])
 
+ .controller('ParamCtrl',function($scope, $ionicModal) {
+
+  $ionicModal.fromTemplateUrl('templates/parametres.html', {
+     scope: $scope,
+     animation: 'slide-in-right'
+  }).then(function(modal) {
+      $scope.loginModal = modal;
+  });
+
+ })
+
+
+
 .controller('AnnuaireCtrl',function($scope,$http,Annuaire){
 
   //monnaies pour la requete "USD","EUR","CNY","HUF","CAD"
@@ -25,37 +38,9 @@ angular.module('starter.controllers', [])
 
   $scope.listeDeContacts = Annuaire.all();
 })
-// convertit un objet en chaine JSON 
-//JSON.stringify()
-
-.controller('ChatsCtrl', function($scope, Chats, $ionicModal) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
 
 
-    // define create account view
-  $ionicModal.fromTemplateUrl('templates/parametres.html', {
-     scope: $scope,
-     animation: 'slide-in-right'
-  }).then(function(modal) {
-      $scope.loginModal = modal;
-  });
 
-
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
-})
-
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
 
 
 .controller('InformationsCtrl', function($scope) {
@@ -63,6 +48,9 @@ angular.module('starter.controllers', [])
     enableFriends: true
   };
 })
+
+
+
 
 .controller('EvenementsCtrl', function($scope) {
 
@@ -72,6 +60,8 @@ angular.module('starter.controllers', [])
                         {id : 4, couleur : 'rose', nom : 'Totale', depart : 1234}];
 
 })
+
+
 
 
 .controller('ProchaineCtrl', function($scope) {
