@@ -1,5 +1,15 @@
-<ion-view view-title="Chats">
+<ion-view view-title="Prochaines visites">
   <ion-content>
-
+  		  		<div class="card">
+   			<div class="item item-{{message.couleur}} item-divider">
+    		Arrivée des prochaines visites
+    		</div>
+    		<ion-list>
+    		<ion-item class="item-text-wrap" ng-repeat="visite in listeVisites">
+    		<p><b>Visite {{visite.id}} :</b></p>
+    		<p>Cette visite passera par votre stand dans <b> {{visite.arrive}} </b> minutes.</p>
+    		</ion-item>
+    		</ion-list>
+  		</div>
   </ion-content>
 </ion-view>

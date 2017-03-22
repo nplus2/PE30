@@ -76,6 +76,11 @@ angular.module('starter.controllers', [])
 
 .controller('ProchaineCtrl', function($scope) {
 
+  $scope.listeVisites = [{id : 1,   arrive : 7},
+                        {id : 2,   arrive : 10},
+                        {id : 3,   arrive : 12},
+                        {id : 4,  arrive : 18}];
+
 })
 
 
@@ -105,6 +110,11 @@ angular.module('starter.controllers', [])
 
 })
 
+
+.controller('TabsCtrl', function($scope) {
+  $scope.statut='visiteur'
+
+});
 // .controller('MasterCtrl', function($scope, $ionicModal) {
 //   // With the new view caching in Ionic, Controllers are only called
 //   // when they are recreated or on app start, instead of every page change.

@@ -6,40 +6,54 @@ navigation history that also transitions its views in and out.
 <ion-tabs class="tabs-icon-top tabs-color-bleu ">
 
   <!-- Dashboard Tab -->
+<div ng-if = "(statut=='guide') || (statut=='chercheur') || (statut=='organisateur')  ">
  <ion-tab title="Annuaire" icon-off="ion-ios-book-outline" icon-on="ion-ios-book" href="#/tab/annuaire">
     <ion-nav-view name="tab-annuaire"></ion-nav-view>
   </ion-tab>
+  </div>
+
 
   <!-- Chats Tab -->
+  <div ng-if = "statut=='guide'">
   <ion-tab title="Chats" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/tab/chats">
     <ion-nav-view name="tab-chats"></ion-nav-view>
   </ion-tab>
+  </div>
 
   <!-- Account Tab -->
+  <div ng-if = "statut=='visiteur'">
   <ion-tab title="Informations" icon-off="ion-ios-information-outline" icon-on="ion-ios-information" href="#/tab/informations">
     <ion-nav-view name="tab-informations"></ion-nav-view>
   </ion-tab>
+  </div>
 
 
 <!-- Publication Tab -->
+<div ng-if = "statut=='organisateur'">
   <ion-tab title="Publication" icon-off="ion-ios-compose-outline" icon-on="ion-ios-compose" href="#/tab/publication">
     <ion-nav-view name="tab-publication"></ion-nav-view>
   </ion-tab>
+  </div>
 
 <!-- Prochaines visites-->
-  <ion-tab title="Prochines visites" icon-off="ion-ios-time-outline" icon-on="ion-ios-time" href="#/tab/prochaine">
-    <ion-nav-view name="tab-prochaines"></ion-nav-view>
-  </ion-tab>
+  <div ng-if = "statut=='chercheur'">
+    <ion-tab title="Prochaines visites" icon-off="ion-ios-time-outline" icon-on="ion-ios-time" href="#/tab/prochaine">
+      <ion-nav-view name="tab-prochaine"></ion-nav-view>
+    </ion-tab>
+  </div>
 
   <!-- Évenements-->
+  <div ng-if = "statut=='visiteur'">
   <ion-tab title="Evènements" icon-off="ion-ios-list-outline" icon-on="ion-ios-list" href="#/tab/evenements">
     <ion-nav-view name="tab-evenements"></ion-nav-view>
   </ion-tab>
+  </div>
 
   <!-- Fil d'actualité Tab -->
+  <div ng-if = "(statut=='guide') || (statut=='organisateur') || (statut=='chercheur') ">
   <ion-tab title="Fil d'actualité" icon-off="ion-ios-paper-outline" icon-on="ion-ios-paper" href="#/tab/filDActualite">
     <ion-nav-view name="tab-filDActualite"></ion-nav-view>
   </ion-tab>
-
+</div>
 
 </ion-tabs>
