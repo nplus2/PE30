@@ -102,7 +102,7 @@ angular.module('starter.controllers', [])
 
 
 .controller('TabsCtrl', function($scope) {
-  $scope.statut='visiteur'
+  $scope.statut='guide'
 
 })
 // .controller('MasterCtrl', function($scope, $ionicModal) {
@@ -116,7 +116,18 @@ angular.module('starter.controllers', [])
 
 
 
-.controller('checkpointCtrl',function($scope){
 
+
+.controller('CheckpointsCtrl', function($scope) {
+  
+  $scope.listeMessages = [{id : 0, tete:"titre1", whichstep:1,},
+                          {id : 1, tete:"titre2", whichstep:2,},
+                          {id : 2, tete:"titre3", whichstep:3,},
+                          {id : 3, tete:"titre4", whichstep:4,}];
+
+  $scope.whatClassIsIt= function(someValue,i){
+         if(someValue<=$scope.listeMessages[i].whichstep) {return "active";}
+         else {return "non";}              };
+    
 });
 

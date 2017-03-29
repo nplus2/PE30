@@ -1,4 +1,24 @@
 /* Empty. Add your own CSS if you like */
+
+/* Couleur ECL
+
+Bordeaux        #96172E
+Vert            #96BD44
+Orange          #D89E19
+Rose            #BD2165
+Bleu            #397FC5
+Violet          #5D1553
+Gris            #ACACAC
+
+
+
+          100%       75%        40%
+Vert      #8CBE4B    #A9CD74    #D1E3AC 
+Orange    #F28D2C    #F6A657    #FCCA97 
+Rose      #E62D68    #EC6782    #F6A8B2
+Bleu      #0080BB    #4C99C9    #A2C2E0
+Violet    #6C2457    #884C75    #B78CA9 
+*/
 .bar-bordeaux {
   border-color: #b2b2b2;
   background-color: #96172E;
@@ -164,7 +184,63 @@ Bleu      #0080BB    #4C99C9    #A2C2E0
 Violet    #6C2457    #884C75    #B78CA9 
 */
 
-
+.container {
+  width: 200px;
+  margin: 10px auto; 
+}
+.progressbar {
+  margin: 0;
+  padding: 0;
+  counter-reset: step;
+}
+.progressbar li {
+  list-style-type: none;
+  width: 25%;
+  float: left;
+  font-size: 12px;
+  position: relative;
+  text-align: right;
+  text-transform: uppercase;
+  color: #7d7d7d;
+}
+.progressbar li:before {
+  width: 30px;
+  height: 30px;
+  content: counter(step);
+  counter-increment: step;
+  line-height: 30px;
+  border: 2px solid #666666;
+  display: block;
+  text-align: center;
+  margin: 0 auto 10px auto;
+  border-radius: 15%;
+  background-color: white;
+}
+.progressbar li:after {
+  width: 100%;
+  height: 2px;
+  content: '';
+  position: absolute;
+  background-color: #7d7d7d;
+  top: 15px;
+  left: -50%;
+  z-index: -1;
+}
+.progressbar li:first-child:after {
+  content: none;
+}
+.progressbar li.active {
+  color: green;
+}
+.progressbar li.non {
+ 
+}
+.progressbar li.active:before {
+  border-color: #55b776;
+}
+.progressbar li.active + li:after {
+  background-color: #55b776;
+}
 /*fonts*/
 .item.item-font-gris {
   color:#ACACAC;
