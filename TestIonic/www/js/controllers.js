@@ -103,7 +103,6 @@ angular.module('starter.controllers', [])
 
 .controller('TabsCtrl', function($scope) {
   $scope.statut='guide'
-
 })
 // .controller('MasterCtrl', function($scope, $ionicModal) {
 //   // With the new view caching in Ionic, Controllers are only called

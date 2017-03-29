@@ -37,6 +37,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     abstract: true,
     templateUrl: 'templates/tabs.html',
     controller:'TabsCtrl'
+
   })
 
   // Each tab has its own nav history stack:
