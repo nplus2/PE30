@@ -1,7 +1,20 @@
-<ion-view view-title="checkpoint">
+<ion-view view-title="Checkpoints">
 	<ion-content class="padding">
-	<div class="card">
-		test		
-	</div>
-	</ion-content>
+<ion-item>
+      <div class="row" ng-repeat="trip in listeMessages">
+      <div class="col">
+          <div class="row"><b>Visite {{trip.id+1}}</b></div>
+          
+      </div>
+      <div class="container">
+        <ul class="progressbar">
+            <li ng-class='whatClassIsIt(1,trip.id)'>Stand 1</li>
+            <li ng-class='whatClassIsIt(2,trip.id)'>Stand 2</li>
+            <li ng-class='whatClassIsIt(3,trip.id)'>Stand 3</li>
+            <li ng-class='whatClassIsIt(4,trip.id)'>Stand 4</li>
+        </ul>
+      </div>
+      </div>
+    </ion-item>
+  	</ion-content>
 </ion-view>

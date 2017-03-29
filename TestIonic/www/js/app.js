@@ -36,7 +36,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html',
-    controller: 'TabsCtrl'
+    controller:'TabsCtrl'
+
   })
 
   // Each tab has its own nav history stack:
@@ -106,7 +107,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views:{
       'tab-checkpoint': {
         templateUrl:'templates/tab-checkpoint.html',
-        controller: 'checkpointCtrl'
+        controller: 'CheckpointsCtrl'
       }
     }
   });
