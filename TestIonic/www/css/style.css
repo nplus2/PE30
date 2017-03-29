@@ -110,6 +110,13 @@
   flex-direction: column;
 }
 
+.blanc {
+  background-image: url('../img/blanc.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  flex: 1;
+  flex-direction: column;
+}
   .button.button-bleu {
     border-color: transparent;
     background-color: #397FC5;
