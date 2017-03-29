@@ -102,7 +102,7 @@ angular.module('starter.controllers', [])
 
 
 .controller('TabsCtrl', function($scope) {
-  $scope.statut='visiteur'
+  $scope.statut='guide';
 
 })
 // .controller('MasterCtrl', function($scope, $ionicModal) {
