@@ -11,7 +11,9 @@ angular.module('starter.controllers', [])
 
  })
 
-
+.controller('TabsCtrl', function($scope) {
+  $scope.statut='guide'
+})
 
 .controller('AnnuaireCtrl',function($scope,$http,Annuaire){
 
@@ -49,8 +51,11 @@ angular.module('starter.controllers', [])
   };
 })
 
+.controller('CarteCtrl', function($scope) {
+})
 
-
+.controller('QrCodesCtrl', function($scope) {
+})
 
 .controller('EvenementsCtrl', function($scope) {
 
@@ -60,8 +65,6 @@ angular.module('starter.controllers', [])
                         {id : 4, couleur : 'rose', nom : 'Totale', depart : 1234}];
 
 })
-
-
 
 
 .controller('ProchaineCtrl', function($scope) {
@@ -100,22 +103,19 @@ angular.module('starter.controllers', [])
 
 })
 
+.controller('EtatVisitesCtrl', function($scope) {
+  
+  $scope.listeMessages = [{id : 0, tete:"titre1", etape:1,},
+                          {id : 1, tete:"titre2", etape:2,},
+                          {id : 2, tete:"titre3", etape:3,},
+                          {id : 3, tete:"titre4", etape:4,}];
 
-.controller('TabsCtrl', function($scope) {
-  $scope.statut='guide'
+  $scope.testStandPasse= function(numeroStand,idVisite){
+         if(numeroStand<=$scope.listeMessages[idVisite].etape) {return "active";}
+         else {return "non";} 
+       };
+    
 })
-// .controller('MasterCtrl', function($scope, $ionicModal) {
-//   // With the new view caching in Ionic, Controllers are only called
-//   // when they are recreated or on app start, instead of every page change.
-//   // To listen for when this page is active (for example, to refresh data),
-//   // listen for the $ionicView.enter event:
-//   //
-//   //$scope.$on('$ionicView.enter', function(e) {
-//   //});
-
-
-
-
 
 .controller('CheckpointsCtrl', function($scope) {
   

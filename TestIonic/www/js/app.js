@@ -62,6 +62,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
+  .state('tab.qrCodes', {
+    url: '/qrCodes',
+    views: {
+      'tab-qrCodes': {
+        templateUrl: 'templates/tab-qrCodes.html',
+        controller: 'QrCodesCtrl'
+      }
+    }
+  })
+
+  .state('tab.carte', {
+    url: '/carte',
+    views: {
+      'tab-carte': {
+        templateUrl: 'templates/tab-carte.html',
+        controller: 'CarteCtrl'
+      }
+    }
+  })
+
   .state('tab.prochaine', {
     url: '/prochaine',
     views: {
@@ -102,6 +122,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
+  .state('tab.etatVisites', {
+    url: '/etatVisites',
+    views: {
+      'tab-etatVisites': {
+        templateUrl: 'templates/tab-etatVisites.html',
+        controller: 'EtatVisitesCtrl'
+      }
+    }
+  })
+
   .state('tab.checkpoint',{
     url:'/checkpoint',
     views:{
@@ -113,6 +143,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/annuaire');
+  $urlRouterProvider.otherwise('/tab/informations');
 
 });
