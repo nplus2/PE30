@@ -12,7 +12,7 @@ angular.module('starter.controllers', [])
  })
 
 .controller('TabsCtrl', function($scope) {
-  $scope.statut='guide'
+  $scope.statut='organisateur'
 })
 
 .controller('AnnuaireCtrl',function($scope,$http,Annuaire){
@@ -91,7 +91,7 @@ angular.module('starter.controllers', [])
   return {
     choixDestinataire: choixDestinataire,
     envoisMessage: envoisMessage
-  }
+  };
 })
 
 .controller('FilDActualiteCtrl', function($scope) {
