@@ -12,7 +12,7 @@ angular.module('starter.controllers', [])
  })
 
 .controller('TabsCtrl', function($scope) {
-  $scope.statut='organisateur'
+  $scope.statut='visiteur'
 })
 
 .controller('AnnuaireCtrl',function($scope,$http,Annuaire){
@@ -128,5 +128,25 @@ angular.module('starter.controllers', [])
          if(someValue<=$scope.listeMessages[i].whichstep) {return "active";}
          else {return "non";}              };
     
+})
+
+.controller("BarcodeScanner", function($scope, $cordovaBarcodeScanner, $ionicPlatform) {
+    $scope.vm = [];
+    $scope.scanBarcode = function() {
+        $ionicPlatform.ready(function() {
+            $cordovaBarcodeScanner
+                .scan()
+                .then(function(result) {
+                    // Success! Barcode data is here
+                    $scope.vm.scanResults = "Barcode\n" +
+                        "Result: " + result.text + "\n" +
+                        "Format: " + result.format + "\n" +
+                        "Cancelled: " + result.cancelled;
+                }, function(error) {
+                    // An error occurred
+                    $scope.vm.scanResults = 'Error: ' + error;
+                });
+        });
+    }
 });
 
