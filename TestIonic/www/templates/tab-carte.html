@@ -1,5 +1,22 @@
 <ion-view view-title="Carte">
 	<ion-content class="padding">
-	
+        
+        <div class="item item-divider">
+          <i class="ion-map"></i>
+          Plan du Campus
+        </div>
+        
+        <div class="item item-plan">
+            <ion-scroll 
+				zooming="true"
+                direction="xy"
+                delegate-handle="zoom-pane"
+                class="zoom-pane"
+                min-zoom="1"
+                max-zoom="15"
+                overflow-scroll="false">
+            	<img ng-src="img/plan-campus.png">
+   			</ion-scroll>
+   		 </div>    
  	</ion-content>
 </ion-view>
