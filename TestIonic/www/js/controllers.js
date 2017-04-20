@@ -12,7 +12,7 @@ angular.module('starter.controllers', [])
  })
 
 .controller('TabsCtrl', function($scope) {
-  $scope.statut='organisateur'
+  $scope.statut='visiteur'
 })
 
 .controller('AnnuaireCtrl',function($scope,$http,Annuaire){
@@ -51,7 +51,17 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('CarteCtrl', function($scope) {
+.controller('CarteCtrl', function($scope, $ionicBackdrop, $ionicModal, $ionicSlideBoxDelegate, $ionicScrollDelegate) {
+ 
+  $scope.allImages = [{
+    src: 'img/ben.png'
+  }, {
+    src: 'img/perry.png'
+  }, {
+    src: 'img/twitter.png'
+  }];
+ 
+  $scope.zoomMin = 1; 
 })
 
 .controller('QrCodesCtrl', function($scope) {
