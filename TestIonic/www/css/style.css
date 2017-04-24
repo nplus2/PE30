@@ -23,11 +23,17 @@ Violet    #6C2457    #884C75    #B78CA9
   border-color: #b2b2b2;
   background-color: #96172E;
   color: #fff; }
+  .bar.bar-bordeaux .title {
+    color: #f8f8f8; }
+  .bar.bar-bordeaux.bar-footer {
+    background-image: linear-gradient(180deg, #b2b2b2, #b2b2b2 50%, transparent 50%); }
 
 .bar-bleu {
   border-color: #b2b2b2;
   background-color: #397FC5;
   color: #fff; }
+  .bar.bar-bleu .title {
+    color: #f8f8f8; }
 
 .tabs-color-bordeaux .tab-item {
   color: #ACACAC;
@@ -60,10 +66,89 @@ Violet    #6C2457    #884C75    #B78CA9
     color: #fff;
     border-radius: 100px }
 
+.button-right {
+  position: absolute;
+  right : 5px;
+}
+
 .button-publication {
   border-color: #397FC5;
   background-color: #A2C2E0;
 }
+
+  .button.button-bleu {
+    border-color: transparent;
+    background-color: #397FC5;
+    opacity: 0.75;
+    color: #fff; }
+    .button.button-bleu:hover {
+      color: #fff;
+      text-decoration: none; }
+    .button.button-bleu.active, .button.button-bleu.activated {
+      border-color: #397FC5;
+      opacity: 1;
+      background-color: #397FC5;
+      opacity: 1 }
+    .button.button-bleu.button-clear {
+      border-color: transparent;
+      background: none;
+      box-shadow: none;
+      color: #397FC5;
+      opacity: 0.75; }
+    .button.button-bleu.button-icon {
+      border-color: transparent;
+      background: none; }
+    .button.button-bleu.button-outline {
+      border-color: #397FC5;
+      opacity: 0.75;
+      background: transparent;
+      color: #397FC5;
+      opacity: 0.75; }
+      .button.button-bleu.button-outline.active, .button.button-bleu.button-outline.activated {
+        background-color: #397FC5;
+        opacity: 0.75;
+        box-shadow: none;
+        color: #fff; }
+        
+  .button.button-bordeaux {
+    border-color: transparent;
+    background-color: #96172E;
+    opacity: 0.75;
+    color: #fff; }
+    .button.button-bordeaux:hover {
+      color: #fff;
+      text-decoration: none; }
+    .button.button-bordeaux.active, .button.button-bordeaux.activated {
+      border-color: #96172E;
+      opacity: 1;
+      background-color: #96172E;
+      opacity: 1 }
+    .button.button-bordeaux.button-clear {
+      border-color: transparent;
+      background: none;
+      box-shadow: none;
+      color: #96172E;
+      opacity: 0.75; }
+    .button.button-bordeaux.button-icon {
+      border-color: transparent;
+      background: none; }
+    .button.button-bordeaux.button-outline {
+      border-color: #96172E;
+      opacity: 0.75;
+      background: transparent;
+      color: #96172E;
+      opacity: 0.75; }
+      .button.button-bordeaux.button-outline.active, .button.button-bleu.button-outline.activated {
+        background-color: #96172E;
+        opacity: 0.75;
+        box-shadow: none;
+        color: #fff; }     
+    .button.button-bordeaux.button-clear {
+          border-color: transparent;
+          background: none;
+          box-shadow: none;
+          color: #ddd; }
+
 
 .item-numero-portable {
   color: #397FC5;
@@ -95,7 +180,7 @@ Violet    #6C2457    #884C75    #B78CA9
 .item.item-plan {
   padding-top: 0px;
   padding: 0px;
-  height: 60%;
+  height: 70%;
 }
 
 /*Cards*/
@@ -135,41 +220,6 @@ Violet    #6C2457    #884C75    #B78CA9
   flex: 1;
   flex-direction: column;
 }
-
-  .button.button-bleu {
-    border-color: transparent;
-    background-color: #397FC5;
-    opacity: 0.75;
-    color: #fff; }
-    .button.button-bleu:hover {
-      color: #fff;
-      text-decoration: none; }
-    .button.button-bleu.active, .button.button-bleu.activated {
-      border-color: #397FC5;
-      opacity: 1;
-      background-color: #397FC5;
-      opacity: 1 }
-    .button.button-bleu.button-clear {
-      border-color: transparent;
-      background: none;
-      box-shadow: none;
-      color: #397FC5;
-      opacity: 0.75; }
-    .button.button-bleu.button-icon {
-      border-color: transparent;
-      background: none; }
-    .button.button-bleu.button-outline {
-      border-color: #397FC5;
-      opacity: 0.75;
-      background: transparent;
-      color: #397FC5;
-      opacity: 0.75; }
-      .button.button-bleu.button-outline.active, .button.button-bleu.button-outline.activated {
-        background-color: #397FC5;
-        opacity: 0.75;
-        box-shadow: none;
-        color: #fff; }
-
 
 .container {
   width: 200px;

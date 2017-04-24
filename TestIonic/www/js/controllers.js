@@ -55,9 +55,9 @@ angular.module('starter.controllers', [])
  
    
   $scope.zoomMin = 1;
-  $scope.coche={parcours1 : false,
-                parcours2 : false,
-                parcours3 : false};
+  $scope.coche={parcours1 : true,
+                parcours2 : true,
+                parcours3 : true};
   
   
    $scope.showPopup = function() {
@@ -84,10 +84,10 @@ angular.module('starter.controllers', [])
     });
   }
 
- $scope.plan = 'img/plan-campus.png';
+ $scope.plans = ['img/plan-campus.png','img/ben.png','img/ionic.png','img/max.png','img/mike.png','img/twitter.png','img/facebook.png','img/perry.png'];
+ $scope.plan = $scope.plans[7];
  $scope.miseAJourImage = function(i){
-  var plans = ['img/plan-campus.png','img/ben.png','img/ionic.png','img/max.png','img/mike.png','img/twitter.png','img/facebook.png','img/perry.png'];
-  $scope.plan = plans[i];
+  $scope.plan = $scope.plans[i];
  };
 
 

@@ -1,7 +1,7 @@
 <ion-modal-view>
-        <ion-header-bar class="bar bar-header bar-positive">
+        <ion-header-bar class="bar bar-header bar-bordeaux">
           <h1 class="title">Connexion</h1>
-          <button class="button button-clear button-primary" ng-click="loginModal.hide()">Fermer</button>
+          <button class="button button-bordeaux button-clear button-primary" ng-click="loginModal.hide()">Fermer</button>
         </ion-header-bar>
   <ion-content>
 
@@ -9,7 +9,7 @@
 
         <label class="item item-input">
 
-          <span class="input-label">Nom</span>
+          <span class="input-label">Identifiant :</span>
 
           <input type="text" ng-model="loginData.username">
 
@@ -17,12 +17,12 @@
 
         <label class="item item-input">
 
-          <span class="input-label">Mot de passe</span>
+          <span class="input-label">Mot de passe :</span>
 
           <input type="password" ng-model="loginData.password">
 
         </label>
-      <FORM>
+      <!-- <FORM>
       <SELECT name="role" size="1">
       <OPTION>Organisateur
       <OPTION>Bénévole
@@ -30,11 +30,11 @@
       <OPTION>Guide
         
       </SELECT>
-      </FORM>
+      </FORM> -->
 
         <label class="item">
 
-          <button class="button button-block button-bleu" ng-click="loginModal.hide()">Valider</button>
+          <button class="button button-block button-bordeaux" ng-click="loginModal.hide()">Valider</button>
 
         </label>
 
