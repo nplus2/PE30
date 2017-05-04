@@ -250,6 +250,28 @@ angular.module('starter.controllers', [])
   $scope.whatClassIsIt= function(someValue,i){
          if(someValue<=$scope.listeMessages[i].whichstep) {return "active";}
          else {return "non";}              };
-    
+  $scope.Visite1List = [
+    { text: "Stand 1", value: 1 },
+    { text: "Stand 2", value: 2 },
+    { text: "Stand 3", value: 3 },
+    { text: "Stand 4", value: 4}];
+  $scope.Visite2List = [
+    { text: "Stand 1", value: 1 },
+    { text: "Stand 2", value: 2 },
+    { text: "Stand 3", value: 3 },
+    { text: "Stand 4", value: 4}];
+  $scope.Visite3List = [
+    { text: "Stand 1", value: 1 },
+    { text: "Stand 2", value: 2 },
+    { text: "Stand 3", value: 3 },
+    { text: "Stand 4", value: 4}];
+  $scope.Visite4List = [
+    { text: "Stand 1", value: 1 },
+    { text: "Stand 2", value: 2 },
+    { text: "Stand 3", value: 3 },
+    { text: "Stand 4", value: 4}];
+  $scope.data = {
+    Visite1List: '1'};
+  $scope.serverSideChange = function(item) {console.log("Selected Serverside, text:", item.text, "value:", item.value);};
 });
 
