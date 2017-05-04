@@ -180,7 +180,8 @@ Violet    #6C2457    #884C75    #B78CA9
 .item.item-plan {
   padding-top: 0px;
   padding: 0px;
-  height: 70%;
+  height: 100%;
+  width: 100%;
 }
 
 /*Cards*/
@@ -323,4 +324,7 @@ height: 100% !important;
 .zoom-pane img {
     width: 100% !important;
     vertical-align: top !important;
+}
+.scroll-view.scroll-x {
+    overflow-x: hidden;  /* default value is 'scroll' */
 }

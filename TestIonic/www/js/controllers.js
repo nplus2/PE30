@@ -16,7 +16,7 @@ angular.module('starter.controllers', [])
 
 
 .controller('TabsCtrl', function($scope) {
-  $scope.statut='guide'
+  $scope.statut='organisateur'
 })
 
 
@@ -63,43 +63,42 @@ angular.module('starter.controllers', [])
 
 .controller('CarteCtrl', function($scope, $ionicPopup, $ionicBackdrop, $ionicModal, $ionicSlideBoxDelegate, $ionicScrollDelegate) {
  
-   
-  $scope.zoomMin = 1;
-  $scope.coche={parcours1 : true,
-                parcours2 : true,
-                parcours3 : true};
+//    
+//   $scope.zoomMin = 1;
+//   $scope.coche={parcours1 : true,
+//                 parcours2 : true,
+//                 parcours3 : true};
   
   
-   $scope.showPopup = function() {
+//    $scope.showPopup = function() {
 
-    // popup perso
-      var myPopup = $ionicPopup.show({
-      template: '<ul class="list"><li ><ion-checkbox ng-model="coche.parcours1" ng-checked="coche.parcours1">Parcours 1</ion-checkbox></li><li ><ion-checkbox ng-model="coche.parcours2" ng-checked="coche.parcours2">Parcours 2</ion-checkbox></li><li ><ion-checkbox ng-model="coche.parcours3" ng-checked="coche.parcours3">Parcours 3</ion-checkbox></li></ul>',
-      title: 'Affichage Plan',
-      scope: $scope,
-      buttons: [
-        { text: 'Annuler' },
-        {
-          text: '<b>Ok</b>',
-          type: 'button-positive',
-          onTap: function(e) {
-            var i =0;
-            if ($scope.coche.parcours1) {i += 1;}
-            if ($scope.coche.parcours2) {i += 2;}
-            if ($scope.coche.parcours3) {i += 4;}
-            $scope.miseAJourImage(i);
-          }
-        }
-      ]
-    });
-  }
+//     // popup perso
+//       var myPopup = $ionicPopup.show({
+//       template: '<ul class="list"><li ><ion-checkbox ng-model="coche.parcours1" ng-checked="coche.parcours1">Parcours 1</ion-checkbox></li><li ><ion-checkbox ng-model="coche.parcours2" ng-checked="coche.parcours2">Parcours 2</ion-checkbox></li><li ><ion-checkbox ng-model="coche.parcours3" ng-checked="coche.parcours3">Parcours 3</ion-checkbox></li></ul>',
+//       title: 'Affichage Plan',
+//       scope: $scope,
+//       buttons: [
+//         { text: 'Annuler' },
+//         {
+//           text: '<b>Ok</b>',
+//           type: 'button-positive',
+//           onTap: function(e) {
+//             var i =0;
+//             if ($scope.coche.parcours1) {i += 1;}
+//             if ($scope.coche.parcours2) {i += 2;}
+//             if ($scope.coche.parcours3) {i += 4;}
+//             $scope.miseAJourImage(i);
+//           }
+//         }
+//       ]
+//     });
+//   }
 
- $scope.plans = ['img/plan-campus.png','img/ben.png','img/ionic.png','img/max.png','img/mike.png','img/twitter.png','img/facebook.png','img/perry.png'];
- $scope.plan = $scope.plans[7];
- $scope.miseAJourImage = function(i){
-  $scope.plan = $scope.plans[i];
- };
-})
+//  $scope.plans = ['img/plan-campus.png','img/ben.png','img/ionic.png','img/max.png','img/mike.png','img/twitter.png','img/facebook.png','img/perry.png'];
+//  $scope.plan = $scope.plans[7];
+//  $scope.miseAJourImage = function(i){
+//   $scope.plan = $scope.plans[i];
+//  };
 
 
 
@@ -134,24 +133,105 @@ angular.module('starter.controllers', [])
 })
 
 
+.controller('PublicationCtrl', function($scope,$ionicPopup) {
 
-
-
-.controller('PublicationCtrl', function($scope,requeteHttp) {
-  var choixDestinataire = function (){
-    var listeDestinataire = requeteHttp.requeteLdG();
-    return listeDestinataire;
+  // .controller('PublicationCtrl', function($scope,requeteHttp) {
+//   var choixDestinataire = function (){
+//     var listeDestinataire = requeteHttp.requeteLdG();
+//     return listeDestinataire;
+//   };
+  $scope.couleur='bleu';
+  $scope.changeCouleur = function(couleur){
+    if (couleur != 'bleu') {$scope.coche.bleu = false;}
+    if (couleur != 'vert') {$scope.coche.vert = false;}
+    if (couleur != 'violet') {$scope.coche.violet = false;}
+    $scope.couleur = couleur;
   };
 
-    
-  var envoisMessage = function (){
-    
-  };
+  $scope.envoisMessage = function (){};
 
-  return {
-    choixDestinataire: choixDestinataire,
-    envoisMessage: envoisMessage
-  };
+  $scope.coche={Organisateurs : false,
+                Guides : false,
+                Chercheurs : false,
+                Visiteurs : false,
+                bleu : true,
+                vert : false,
+                violet : false};
+
+  $scope.destinataires = [];
+  $scope.texteDestinataires = 'Aucun destinataire';
+  
+    $scope.showPopupDestinataires = function() {
+
+    // popup perso
+      var myPopup = $ionicPopup.show({
+      template: '<ul class="list"><li ><ion-checkbox ng-model="coche.Organisateurs" ng-checked="coche.Organisateurs">Organisateurs</ion-checkbox></li><li ><ion-checkbox ng-model="coche.Guides" ng-checked="coche.Guides">Guides</ion-checkbox></li><li ><ion-checkbox ng-model="coche.Chercheurs" ng-checked="coche.Chercheurs">Chercheurs</ion-checkbox></li><li ><ion-checkbox ng-model="coche.Visiteurs" ng-checked="coche.Visiteurs">Visiteurs</ion-checkbox></li></ul>',
+      title: 'Affichage Plan',
+      scope: $scope,
+      buttons: [
+        { text: 'Annuler' },
+        {
+          text: '<b>Ok</b>',
+          type: 'button-positive',
+          onTap: function(e) {
+            $scope.miseAJourDestinataires();
+          }
+        }
+      ]
+    });
+    };
+
+    $scope.showConfirmerEnvoi = function() {
+     var confirmPopup = $ionicPopup.confirm({
+       title: 'Confirmation',
+       template: 'Etes-vous sûr de vouloir envoyer ce message'
+     });
+
+     confirmPopup.then(function(res) {
+       if(res) {
+         console.log('Envoi du message');
+         $scope.envoisMessage();
+       }
+     });
+   };
+
+   $scope.showPasDeDestinataire = function() {
+     var alertPopup = $ionicPopup.alert({
+       title: 'Erreur',
+       template: 'Veuillez choisir au moins un destinataires.'
+     });
+   }
+
+   $scope.clicEnvoyer = function(){
+    if ($scope.destinataires.length == 0) {
+      $scope.showPasDeDestinataire();
+    }
+    else {$scope.showConfirmerEnvoi();}
+   }
+
+ $scope.miseAJourDestinataires = function(){
+  $scope.destinataires =[];
+  i = false;
+  if ($scope.coche.Organisateurs) {
+    $scope.destinataires.push('Organisateurs');
+  }
+  if ($scope.coche.Guides) {
+    $scope.destinataires.push('Guides');
+  }
+  if ($scope.coche.Chercheurs) {
+    $scope.destinataires.push('Chercheurs');
+  }
+  if ($scope.coche.Visiteurs) {
+    $scope.destinataires.push('Visiteurs');
+  }
+  if ($scope.destinataires.length > 0) {
+    $scope.texteDestinataires = $scope.destinataires.join(', ');
+  }
+  else {
+    $scope.texteDestinataires ='Aucun destinataire';
+  }
+ };
+
 })
 
 
@@ -207,9 +287,32 @@ angular.module('starter.controllers', [])
                           {id : 2, tete:"titre3", whichstep:3,},
                           {id : 3, tete:"titre4", whichstep:4,}];
 
+
   $scope.whatClassIsIt= function(someValue,i){
          if(someValue<=$scope.listeMessages[i].whichstep) {return "active";}
          else {return "non";}              };
-    
+  $scope.Visite1List = [
+    { text: "Stand 1", value: 1 },
+    { text: "Stand 2", value: 2 },
+    { text: "Stand 3", value: 3 },
+    { text: "Stand 4", value: 4}];
+  $scope.Visite2List = [
+    { text: "Stand 1", value: 1 },
+    { text: "Stand 2", value: 2 },
+    { text: "Stand 3", value: 3 },
+    { text: "Stand 4", value: 4}];
+  $scope.Visite3List = [
+    { text: "Stand 1", value: 1 },
+    { text: "Stand 2", value: 2 },
+    { text: "Stand 3", value: 3 },
+    { text: "Stand 4", value: 4}];
+  $scope.Visite4List = [
+    { text: "Stand 1", value: 1 },
+    { text: "Stand 2", value: 2 },
+    { text: "Stand 3", value: 3 },
+    { text: "Stand 4", value: 4}];
+  $scope.data = {
+    Visite1List: '1'};
+  $scope.serverSideChange = function(item) {console.log("Selected Serverside, text:", item.text, "value:", item.value);};
 });
 
