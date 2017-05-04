@@ -12,7 +12,7 @@ angular.module('starter.controllers', [])
  })
 
 .controller('TabsCtrl', function($scope) {
-  $scope.statut='guide'
+  $scope.statut='visiteur'
 })
 
 .controller('AnnuaireCtrl',function($scope,$http,Annuaire){
