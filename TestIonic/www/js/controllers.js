@@ -99,7 +99,7 @@ angular.module('starter.controllers', [])
 //  $scope.miseAJourImage = function(i){
 //   $scope.plan = $scope.plans[i];
 //  };
-
+})
 
 
 
