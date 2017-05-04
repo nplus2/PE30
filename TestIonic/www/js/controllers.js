@@ -11,9 +11,16 @@ angular.module('starter.controllers', [])
 
  })
 
+
+
+
+
 .controller('TabsCtrl', function($scope) {
   $scope.statut='guide'
 })
+
+
+
 
 .controller('AnnuaireCtrl',function($scope,$http,Annuaire){
 
@@ -50,6 +57,9 @@ angular.module('starter.controllers', [])
     enableFriends: true
   };
 })
+
+
+
 
 .controller('CarteCtrl', function($scope, $ionicPopup, $ionicBackdrop, $ionicModal, $ionicSlideBoxDelegate, $ionicScrollDelegate) {
  
@@ -89,12 +99,17 @@ angular.module('starter.controllers', [])
  $scope.miseAJourImage = function(i){
   $scope.plan = $scope.plans[i];
  };
-
-
 })
+
+
+
 
 .controller('QrCodesCtrl', function($scope) {
 })
+
+
+
+
 
 .controller('EvenementsCtrl', function($scope) {
 
@@ -106,6 +121,9 @@ angular.module('starter.controllers', [])
 })
 
 
+
+
+
 .controller('ProchaineCtrl', function($scope) {
 
   $scope.listeVisites = [{id : 1,   arrive : 7},
@@ -114,6 +132,9 @@ angular.module('starter.controllers', [])
                         {id : 4,  arrive : 18}];
 
 })
+
+
+
 
 
 .controller('PublicationCtrl', function($scope,requeteHttp) {
@@ -133,14 +154,32 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('FilDActualiteCtrl', function($scope) {
+
+
+
+
+.controller('FilDActualiteCtrl', function($scope,requeteHttp) {
   
-  $scope.listeMessages = [{id : 0, tete:"titre1", corps: "texte1", heure:123, couleur:'vert'},
+  /*$scope.listeMessages = [{id : 0, tete:"titre1", corps: "texte1", heure:123, couleur:'vert'},
                           {id : 1, tete:"titre2", corps: "texte2", heure:123, couleur:'bleu'},
                           {id : 2, tete:"titre3", corps: "texte3", heure:123, couleur:'violet'},
-                          {id : 3, tete:"titre4", corps: "texte4", heure:123, couleur:'rose'}];
+                          {id : 3, tete:"titre4", corps: "texte4", heure:123, couleur:'rose'}];*/
 
+
+ //requeteHttp.requetePublication([{'idGroupe':[1,2,3],'corp':'test1test2','couleur':'rouge'}])
+
+ var callback = function(response){
+  $scope.listeMessages = response.data
+  alert(JSON.stringify(response.data))
+ };
+ 
+//$scope.actualiser = function(){requeteHttp.requeteFdA(callback);};
+ requeteHttp.requeteFdA(callback,1);
 })
+
+
+
+
 
 .controller('EtatVisitesCtrl', function($scope) {
   
@@ -155,6 +194,11 @@ angular.module('starter.controllers', [])
        };
     
 })
+
+
+
+
+
 
 .controller('CheckpointsCtrl', function($scope) {
   
