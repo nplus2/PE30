@@ -1,10 +1,7 @@
 <ion-view view-title="Carte">
 	<ion-content class="padding">
         
-        <div class="item item-divider">
-          <i class="ion-map"></i>
-          Plan du Campus
-        </div>
+       
         
         <div class="item item-plan">
             <ion-scroll 
@@ -15,11 +12,9 @@
                 min-zoom="1"
                 max-zoom="15"
                 overflow-scroll="false">
-            	<img ng-src={{plan}}>
+            	<img ng-src="img/plan.png">
    			</ion-scroll>
    		 </div> 
-   		 <div class="button button-bordeaux ion-map button-right" ng-click="showPopup()">
-   			Légende		
-		 </div>
+   		 
  	</ion-content>
 </ion-view>
