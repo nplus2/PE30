@@ -115,22 +115,105 @@ angular.module('starter.controllers', [])
 
 })
 
+.controller('PublicationCtrl', function($scope,$ionicPopup) {
 
-.controller('PublicationCtrl', function($scope,requeteHttp) {
-  var choixDestinataire = function (){
-    var listeDestinataire = requeteHttp.requeteLdG();
-    return listeDestinataire;
+  // .controller('PublicationCtrl', function($scope,requeteHttp) {
+//   var choixDestinataire = function (){
+//     var listeDestinataire = requeteHttp.requeteLdG();
+//     return listeDestinataire;
+//   };
+  $scope.couleur='bleu';
+  $scope.changeCouleur = function(couleur){
+    if (couleur != 'bleu') {$scope.coche.bleu = false;}
+    if (couleur != 'vert') {$scope.coche.vert = false;}
+    if (couleur != 'violet') {$scope.coche.violet = false;}
+    $scope.couleur = couleur;
   };
 
-    
-  var envoisMessage = function (){
-    
-  };
+  $scope.envoisMessage = function (){};
 
-  return {
-    choixDestinataire: choixDestinataire,
-    envoisMessage: envoisMessage
-  };
+  $scope.coche={Organisateurs : false,
+                Guides : false,
+                Chercheurs : false,
+                Visiteurs : false,
+                bleu : true,
+                vert : false,
+                violet : false};
+
+  $scope.destinataires = [];
+  $scope.texteDestinataires = 'Aucun destinataire';
+  
+    $scope.showPopupDestinataires = function() {
+
+    // popup perso
+      var myPopup = $ionicPopup.show({
+      template: '<ul class="list"><li ><ion-checkbox ng-model="coche.Organisateurs" ng-checked="coche.Organisateurs">Organisateurs</ion-checkbox></li><li ><ion-checkbox ng-model="coche.Guides" ng-checked="coche.Guides">Guides</ion-checkbox></li><li ><ion-checkbox ng-model="coche.Chercheurs" ng-checked="coche.Chercheurs">Chercheurs</ion-checkbox></li><li ><ion-checkbox ng-model="coche.Visiteurs" ng-checked="coche.Visiteurs">Visiteurs</ion-checkbox></li></ul>',
+      title: 'Affichage Plan',
+      scope: $scope,
+      buttons: [
+        { text: 'Annuler' },
+        {
+          text: '<b>Ok</b>',
+          type: 'button-positive',
+          onTap: function(e) {
+            $scope.miseAJourDestinataires();
+          }
+        }
+      ]
+    });
+    };
+
+    $scope.showConfirmerEnvoi = function() {
+     var confirmPopup = $ionicPopup.confirm({
+       title: 'Confirmation',
+       template: 'Etes-vous sûr de vouloir envoyer ce message'
+     });
+
+     confirmPopup.then(function(res) {
+       if(res) {
+         console.log('Envoi du message');
+         $scope.envoisMessage();
+       }
+     });
+   };
+
+   $scope.showPasDeDestinataire = function() {
+     var alertPopup = $ionicPopup.alert({
+       title: 'Erreur',
+       template: 'Veuillez choisir au moins un destinataires.'
+     });
+   }
+
+   $scope.clicEnvoyer = function(){
+    if ($scope.destinataires.length == 0) {
+      $scope.showPasDeDestinataire();
+    }
+    else {$scope.showConfirmerEnvoi();}
+   }
+
+ $scope.miseAJourDestinataires = function(){
+  $scope.destinataires =[];
+  i = false;
+  if ($scope.coche.Organisateurs) {
+    $scope.destinataires.push('Organisateurs');
+  }
+  if ($scope.coche.Guides) {
+    $scope.destinataires.push('Guides');
+  }
+  if ($scope.coche.Chercheurs) {
+    $scope.destinataires.push('Chercheurs');
+  }
+  if ($scope.coche.Visiteurs) {
+    $scope.destinataires.push('Visiteurs');
+  }
+  if ($scope.destinataires.length > 0) {
+    $scope.texteDestinataires = $scope.destinataires.join(', ');
+  }
+  else {
+    $scope.texteDestinataires ='Aucun destinataire';
+  }
+ };
+
 })
 
 .controller('FilDActualiteCtrl', function($scope) {
@@ -162,6 +245,7 @@ angular.module('starter.controllers', [])
                           {id : 1, tete:"titre2", whichstep:2,},
                           {id : 2, tete:"titre3", whichstep:3,},
                           {id : 3, tete:"titre4", whichstep:4,}];
+
 
   $scope.whatClassIsIt= function(someValue,i){
          if(someValue<=$scope.listeMessages[i].whichstep) {return "active";}
