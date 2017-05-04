@@ -53,9 +53,9 @@ angular.module('starter.controllers', [])
 
 
 .controller('InformationsCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
+  $scope.goToLink = function(url){
+    window.open(url,'_system');
+  }
 })
 
 
@@ -103,16 +103,23 @@ angular.module('starter.controllers', [])
 
 
 
-.controller('QrCodesCtrl', function($scope, $cordovaBarcodeScanner) {
+.controller('QrCodesCtrl', function($scope, $cordovaBarcodeScanner, $ionicPopup) {
+$scope.goToLink = function(url){
+    window.open(url,'_system');
+  }
 $scope.scanBarcode = function() {
     $cordovaBarcodeScanner.scan().then(function(imageData) {
-        alert(imageData.text);
+        if (imageData.text != 'index.html'){
+          $scope.goToLink(imageData.text);
+        }
+        $scope.goToLink(imageData.text);
         console.log("Barcode Format -> " + imageData.format);
         console.log("Cancelled -> " + imageData.cancelled);
     }, function(error) {
         console.log("An error happened -> " + error);
     });
 };
+
 })
 
 
