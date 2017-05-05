@@ -9,6 +9,16 @@ angular.module('starter.controllers', [])
       $scope.loginModal = modal;
   });
 
+  $scope.coche = {chercheur : false, guide : false, organisateur : false, visiteur : true};
+  $scope.statut='visiteur';
+  $scope.changeStatut = function(couleur){
+    if (couleur != 'visiteur') {$scope.coche.visiteur = false;}
+    if (couleur != 'guide') {$scope.coche.guide = false;}
+    if (couleur != 'chercheur') {$scope.coche.chercheur = false;}
+    if (couleur != 'organisateur') {$scope.coche.organisateur = false;}
+    $scope.statut = couleur;
+  };
+
  })
 
 
@@ -62,43 +72,6 @@ angular.module('starter.controllers', [])
 
 
 .controller('CarteCtrl', function($scope, $ionicPopup, $ionicBackdrop, $ionicModal, $ionicSlideBoxDelegate, $ionicScrollDelegate) {
- 
-//    
-//   $scope.zoomMin = 1;
-//   $scope.coche={parcours1 : true,
-//                 parcours2 : true,
-//                 parcours3 : true};
-  
-  
-//    $scope.showPopup = function() {
-
-//     // popup perso
-//       var myPopup = $ionicPopup.show({
-//       template: '<ul class="list"><li ><ion-checkbox ng-model="coche.parcours1" ng-checked="coche.parcours1">Parcours 1</ion-checkbox></li><li ><ion-checkbox ng-model="coche.parcours2" ng-checked="coche.parcours2">Parcours 2</ion-checkbox></li><li ><ion-checkbox ng-model="coche.parcours3" ng-checked="coche.parcours3">Parcours 3</ion-checkbox></li></ul>',
-//       title: 'Affichage Plan',
-//       scope: $scope,
-//       buttons: [
-//         { text: 'Annuler' },
-//         {
-//           text: '<b>Ok</b>',
-//           type: 'button-positive',
-//           onTap: function(e) {
-//             var i =0;
-//             if ($scope.coche.parcours1) {i += 1;}
-//             if ($scope.coche.parcours2) {i += 2;}
-//             if ($scope.coche.parcours3) {i += 4;}
-//             $scope.miseAJourImage(i);
-//           }
-//         }
-//       ]
-//     });
-//   }
-
-//  $scope.plans = ['img/plan-campus.png','img/ben.png','img/ionic.png','img/max.png','img/mike.png','img/twitter.png','img/facebook.png','img/perry.png'];
-//  $scope.plan = $scope.plans[7];
-//  $scope.miseAJourImage = function(i){
-//   $scope.plan = $scope.plans[i];
-//  };
 })
 
 

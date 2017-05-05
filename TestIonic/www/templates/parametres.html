@@ -26,16 +26,6 @@
           <input type="password" ng-model="loginData.password">
 
         </label>
-      <!-- <FORM>
-      <SELECT name="role" size="1">
-      <OPTION>Organisateur
-      <OPTION>Bénévole
-      <OPTION>Chercheur
-      <OPTION>Guide
-        
-      </SELECT>
-      </FORM> -->
-
         <label class="item">
 
           <button class="button button-block button-bordeaux" ng-click="loginModal.hide()">Valider</button>
@@ -46,7 +36,20 @@
       <div>
 
       </div>
-
+      <ul class="list">
+      <li>
+        <ion-checkbox ng-model="coche.visiteur" ng-checked="coche.visiteur" ng-change="changeStatut('visiteur')">Visiteur</ion-checkbox>
+      </li>
+      <li>
+        <ion-checkbox ng-model="coche.organisateur" ng-checked="coche.organisateur" ng-change="changeStatut('organisateur')">Organisateur</ion-checkbox>
+      </li>
+      <li>
+        <ion-checkbox ng-model="coche.guide" ng-checked="coche.guide" ng-change="changeStatut('guide')">Guide</ion-checkbox>
+      </li>
+      <li>
+        <ion-checkbox ng-model="coche.chercheur" ng-checked="coche.chercheur" ng-change="changeStatut('chercheur')">Chercheur</ion-checkbox>
+      </li>
+    </ul>
   </ion-content>
 
 </ion-modal-view>
