@@ -328,3 +328,7 @@ height: 100% !important;
 .scroll-view.scroll-x {
     overflow-x: hidden;  /* default value is 'scroll' */
 }
+
+.qrcode img{
+  max-width: 100%
+}

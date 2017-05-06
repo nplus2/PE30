@@ -1,6 +1,17 @@
 <ion-view view-title="Lecteur QR Codes">
 	<ion-content class="padding">
-  <button class="button" ng-click="scanBarcode()">Scan</button>
-  <a href="{{lien}}">{{lien}}</a>
+  
+
+    
+      <div class="card">
+            <div class="item">
+                <button class="button button-block button-positive" ng-click="scanBarcode()">Lire un QR code</button>
+                    
+            </div>
+            </div>
+            <div class="qrcode">
+           <img srcset='img/qrcode_exemple.png'>
+   </div>
+            
  	</ion-content>
 </ion-view> 
