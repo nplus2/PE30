@@ -9,6 +9,16 @@ angular.module('starter.controllers', [])
       $scope.loginModal = modal;
   });
 
+  $scope.coche = {chercheur : false, guide : false, organisateur : false, visiteur : true};
+  $scope.statut='visiteur';
+  $scope.changeStatut = function(couleur){
+    if (couleur != 'visiteur') {$scope.coche.visiteur = false;}
+    if (couleur != 'guide') {$scope.coche.guide = false;}
+    if (couleur != 'chercheur') {$scope.coche.chercheur = false;}
+    if (couleur != 'organisateur') {$scope.coche.organisateur = false;}
+    $scope.statut = couleur;
+  };
+
  })
 
 
@@ -53,58 +63,36 @@ angular.module('starter.controllers', [])
 
 
 .controller('InformationsCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
+  $scope.goToLink = function(url){
+    window.open(url,'_system');
+  }
 })
 
 
 
 
 .controller('CarteCtrl', function($scope, $ionicPopup, $ionicBackdrop, $ionicModal, $ionicSlideBoxDelegate, $ionicScrollDelegate) {
- 
-//    
-//   $scope.zoomMin = 1;
-//   $scope.coche={parcours1 : true,
-//                 parcours2 : true,
-//                 parcours3 : true};
-  
-  
-//    $scope.showPopup = function() {
-
-//     // popup perso
-//       var myPopup = $ionicPopup.show({
-//       template: '<ul class="list"><li ><ion-checkbox ng-model="coche.parcours1" ng-checked="coche.parcours1">Parcours 1</ion-checkbox></li><li ><ion-checkbox ng-model="coche.parcours2" ng-checked="coche.parcours2">Parcours 2</ion-checkbox></li><li ><ion-checkbox ng-model="coche.parcours3" ng-checked="coche.parcours3">Parcours 3</ion-checkbox></li></ul>',
-//       title: 'Affichage Plan',
-//       scope: $scope,
-//       buttons: [
-//         { text: 'Annuler' },
-//         {
-//           text: '<b>Ok</b>',
-//           type: 'button-positive',
-//           onTap: function(e) {
-//             var i =0;
-//             if ($scope.coche.parcours1) {i += 1;}
-//             if ($scope.coche.parcours2) {i += 2;}
-//             if ($scope.coche.parcours3) {i += 4;}
-//             $scope.miseAJourImage(i);
-//           }
-//         }
-//       ]
-//     });
-//   }
-
-//  $scope.plans = ['img/plan-campus.png','img/ben.png','img/ionic.png','img/max.png','img/mike.png','img/twitter.png','img/facebook.png','img/perry.png'];
-//  $scope.plan = $scope.plans[7];
-//  $scope.miseAJourImage = function(i){
-//   $scope.plan = $scope.plans[i];
-  })
-
-
-
-
-.controller('QrCodesCtrl', function($scope) {
 })
+
+
+.controller('QrCodesCtrl', function($scope, $cordovaBarcodeScanner, $ionicPopup) {
+$scope.goToLink = function(url){
+    window.open(url,'_system');
+  }
+$scope.scanBarcode = function() {
+    $cordovaBarcodeScanner.scan().then(function(imageData) {
+        if (imageData.text != 'index.html'){
+          $scope.goToLink(imageData.text);
+        }
+        $scope.goToLink(imageData.text);
+        console.log("Barcode Format -> " + imageData.format);
+        console.log("Cancelled -> " + imageData.cancelled);
+    }, function(error) {
+        console.log("An error happened -> " + error);
+    });
+};
+})
+
 
 
 
@@ -272,16 +260,17 @@ angular.module('starter.controllers', [])
 
 .controller('EtatVisitesCtrl', function($scope) {
   
-  $scope.listeMessages = [{id : 0, tete:"titre1", etape:1,},
-                          {id : 1, tete:"titre2", etape:2,},
-                          {id : 2, tete:"titre3", etape:3,},
-                          {id : 3, tete:"titre4", etape:4,}];
+  data = '[{"id_visite" : "12", "etat" : "2", "nom" : "Labo"},{"id_visite" : "13", "etat" : "1", "nom" : "Barbecue"},{"id_visite" : "22", "etat" : "3", "nom" : "Learning Lab"}]';
 
-  $scope.testStandPasse= function(numeroStand,idVisite){
-         if(numeroStand<=$scope.listeMessages[idVisite].etape) {return "active";}
+  //!\\ data est un fichier JSON 
+  
+  $scope.listeVisites = JSON.parse(data);
+
+  $scope.testStandPasse= function(numeroStand,etat){
+         if(numeroStand<=etat) {return "active";}
          else {return "non";} 
        };
-    
+  
 })
 
 
