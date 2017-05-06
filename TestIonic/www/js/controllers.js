@@ -12,10 +12,10 @@ angular.module('starter.controllers', [])
   $scope.coche = {chercheur : false, guide : false, organisateur : false, visiteur : true};
   $scope.statut='visiteur';
   $scope.changeStatut = function(couleur){
-    if (couleur != 'visiteur') {$scope.coche.visiteur = false;}
-    if (couleur != 'guide') {$scope.coche.guide = false;}
-    if (couleur != 'chercheur') {$scope.coche.chercheur = false;}
-    if (couleur != 'organisateur') {$scope.coche.organisateur = false;}
+    $scope.coche.visiteur = (couleur == 'visiteur')
+    $scope.coche.guide = (couleur == 'guide')
+    $scope.coche.chercheur = (couleur == 'chercheur')
+    $scope.coche.organisateur = (couleur == 'organisateur')
     $scope.statut = couleur;
   };
 
@@ -130,9 +130,11 @@ $scope.scanBarcode = function() {
 //   };
   $scope.couleur='bleu';
   $scope.changeCouleur = function(couleur){
-    if (couleur != 'bleu') {$scope.coche.bleu = false;}
-    if (couleur != 'vert') {$scope.coche.vert = false;}
-    if (couleur != 'violet') {$scope.coche.violet = false;}
+    $scope.coche.bleu = (couleur == 'bleu');
+    $scope.coche.vert = (couleur == 'vert');
+    $scope.coche.violet = (couleur == 'violet');
+    $scope.coche.rose = (couleur == 'rose');
+    $scope.coche.orange = (couleur == 'orange');
     $scope.couleur = couleur;
   };
 
@@ -146,10 +148,13 @@ $scope.scanBarcode = function() {
                 Visiteurs : false,
                 bleu : true,
                 vert : false,
-                violet : false};
+                violet : false,
+                rose : false,
+                orange : false};
 
   $scope.destinataires = [];
   $scope.texteDestinataires = 'Aucun destinataire';
+  $scope.corps = '';
   
     $scope.showPopupDestinataires = function() {
 
@@ -279,16 +284,7 @@ $scope.scanBarcode = function() {
 
 
 .controller('CheckpointsCtrl', function($scope) {
-  
-  $scope.listeMessages = [{id : 0, tete:"titre1", whichstep:1,},
-                          {id : 1, tete:"titre2", whichstep:2,},
-                          {id : 2, tete:"titre3", whichstep:3,},
-                          {id : 3, tete:"titre4", whichstep:4,}];
 
-
-  $scope.whatClassIsIt= function(someValue,i){
-         if(someValue<=$scope.listeMessages[i].whichstep) {return "active";}
-         else {return "non";}              };
   $scope.Visite1List = [
     { text: "Stand 1", value: 1 },
     { text: "Stand 2", value: 2 },
