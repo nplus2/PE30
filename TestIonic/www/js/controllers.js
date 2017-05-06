@@ -253,17 +253,17 @@ $scope.scanBarcode = function() {
 
 .controller('EtatVisitesCtrl', function($scope) {
   
-  data = [{id_visite : 12, etat : 2, nom : 'Labo'},
-          {id_visite : 52, etat : 4, nom : 'Learning Lab'},
-          {id_visite : 92, etat : 1, nom : 'Campus'}]
+  data = '[{"id_visite" : "12", "etat" : "2", "nom" : "Labo"},{"id_visite" : "13", "etat" : "1", "nom" : "Barbecue"},{"id_visite" : "22", "etat" : "3", "nom" : "Learning Lab"}]';
 
-  $scope.listeVisites = data;
+  //!\\ data est un fichier JSON 
+  
+  $scope.listeVisites = JSON.parse(data);
 
   $scope.testStandPasse= function(numeroStand,etat){
          if(numeroStand<=etat) {return "active";}
          else {return "non";} 
        };
-    
+  
 })
 
 
