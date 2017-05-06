@@ -75,7 +75,6 @@ angular.module('starter.controllers', [])
 })
 
 
-
 .controller('QrCodesCtrl', function($scope, $cordovaBarcodeScanner, $ionicPopup) {
 $scope.goToLink = function(url){
     window.open(url,'_system');
@@ -92,7 +91,6 @@ $scope.scanBarcode = function() {
         console.log("An error happened -> " + error);
     });
 };
-
 })
 
 
@@ -138,7 +136,9 @@ $scope.scanBarcode = function() {
     $scope.couleur = couleur;
   };
 
-  $scope.envoisMessage = function (){};
+  var envoisMessage = function (){
+    //var data = [{}]
+  };
 
   $scope.coche={Organisateurs : false,
                 Guides : false,
@@ -180,7 +180,7 @@ $scope.scanBarcode = function() {
      confirmPopup.then(function(res) {
        if(res) {
          console.log('Envoi du message');
-         $scope.envoisMessage();
+         envoisMessage();
        }
      });
    };
@@ -188,7 +188,7 @@ $scope.scanBarcode = function() {
    $scope.showPasDeDestinataire = function() {
      var alertPopup = $ionicPopup.alert({
        title: 'Erreur',
-       template: 'Veuillez choisir au moins un destinataires.'
+       template: 'Veuillez choisir au moins un destinataire.'
      });
    }
 
@@ -235,12 +235,19 @@ $scope.scanBarcode = function() {
                           {id : 2, tete:"titre3", corps: "texte3", heure:123, couleur:'violet'},
                           {id : 3, tete:"titre4", corps: "texte4", heure:123, couleur:'rose'}];*/
 
+ var callback2 = function(response){
+  alert(JSON.stringify(response.data));
+ };
+  var callback3 = function(response){
+  alert(JSON.stringify(response));
+ };
+ myJSON = JSON.stringify({"idGroupe":[1,2,3],"corp":"test1test2","couleur":"rouge"});
+ requeteHttp.requetePublication(callback2,{"data":"abcd"},callback3);
 
- //requeteHttp.requetePublication([{'idGroupe':[1,2,3],'corp':'test1test2','couleur':'rouge'}])
+
 
  var callback = function(response){
-  $scope.listeMessages = response.data
-  alert(JSON.stringify(response.data))
+  $scope.listeMessages = response.data;
  };
  
 //$scope.actualiser = function(){requeteHttp.requeteFdA(callback);};
