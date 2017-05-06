@@ -26,7 +26,7 @@ angular.module('starter.controllers', [])
 
 
 .controller('TabsCtrl', function($scope) {
-  $scope.statut='visiteur'
+  $scope.statut='organisateur'
 })
 
 
@@ -253,13 +253,14 @@ $scope.scanBarcode = function() {
 
 .controller('EtatVisitesCtrl', function($scope) {
   
-  $scope.listeMessages = [{id : 0, tete:"titre1", etape:1,},
-                          {id : 1, tete:"titre2", etape:2,},
-                          {id : 2, tete:"titre3", etape:3,},
-                          {id : 3, tete:"titre4", etape:4,}];
+  data = [{id_visite : 12, etat : 2, nom : 'Labo'},
+          {id_visite : 52, etat : 4, nom : 'Learning Lab'},
+          {id_visite : 92, etat : 1, nom : 'Campus'}]
 
-  $scope.testStandPasse= function(numeroStand,idVisite){
-         if(numeroStand<=$scope.listeMessages[idVisite].etape) {return "active";}
+  $scope.listeVisites = data;
+
+  $scope.testStandPasse= function(numeroStand,etat){
+         if(numeroStand<=etat) {return "active";}
          else {return "non";} 
        };
     

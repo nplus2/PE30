@@ -1,17 +1,18 @@
 <ion-view view-title="État des visites">
 	<ion-content class="padding">
 <ion-item>
-      <div class="row" ng-repeat="trip in listeMessages">
+      <div class="row" ng-repeat="visite in listeVisites">
       <div class="col">
-          <div class="row"><b>Visite {{trip.id+1}}</b></div>
+          <div class="row"><b>Visite {{visite.id_visite}}</b></div>
+          <div class="row">{{visite.nom}}</div>
           
       </div>
       <div class="container">
         <ul class="progressbar">
-            <li ng-class='testStandPasse(1,trip.id)'>Stand 1</li>
-            <li ng-class='testStandPasse(2,trip.id)'>Stand 2</li>
-            <li ng-class='testStandPasse(3,trip.id)'>Stand 3</li>
-            <li ng-class='testStandPasse(4,trip.id)'>Stand 4</li>
+            <li ng-class='testStandPasse(1,visite.etat)'>Stand 1</li>
+            <li ng-class='testStandPasse(2,visite.etat)'>Stand 2</li>
+            <li ng-class='testStandPasse(3,visite.etat)'>Stand 3</li>
+            <li ng-class='testStandPasse(4,visite.etat)'>Stand 4</li>
         </ul>
       </div>
       </div>
