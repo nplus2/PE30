@@ -26,7 +26,7 @@ angular.module('starter.controllers', [])
 
 
 .controller('TabsCtrl', function($scope) {
-  $scope.statut='organisateur'
+  $scope.statut='guide'
 })
 
 
@@ -100,11 +100,8 @@ $scope.scanBarcode = function() {
 
 .controller('EvenementsCtrl', function($scope) {
 
-  $scope.listeVisites = [{id : 1, couleur : 'vert', nom : 'Labo', depart : 1234},
-                        {id : 2, couleur : 'bleu', nom : 'Assos', depart : 1234},
-                        {id : 3, couleur : 'violet', nom : 'Amphis', depart : 1234},
-                        {id : 4, couleur : 'rose', nom : 'Totale', depart : 1234}];
-
+data = '[{"id_visite" : "1", "heure_depart" : "1235", "nom" : "Labo", "couleur" : "vert"},{"id_visite" : "1", "heure_depart" : "1245", "nom" : "Learning Lab", "couleur" : "bleu"},{"id_visite" : "1", "heure_depart" : "1315", "nom" : "Vie de Campus", "couleur" : "rose"}]';
+$scope.listeVisites = JSON.parse(data);
 })
 
 
@@ -113,10 +110,31 @@ $scope.scanBarcode = function() {
 
 .controller('ProchaineCtrl', function($scope) {
 
-  $scope.listeVisites = [{id : 1,   arrive : 7},
-                        {id : 2,   arrive : 10},
-                        {id : 3,   arrive : 12},
-                        {id : 4,  arrive : 18}];
+  heureActuelle = 1403;
+  data = '[{"id_visite" : "3", "id_stand1" : "5", "id_stand2" : "7", "id_stand3" : "4", "id_stand4" : "1", "numero_stand_chercheur" : "3", "heure": "1400", "etat" : "2"},{"id_visite" : "5", "duree_stand1" : "5", "duree_stand2" : "7", "duree_stand3" : "4", "duree_stand4" : "1", "numero_stand_chercheur" : "4", "heure": "1400", "etat" : "1"},{"id_visite" : "23", "duree_stand1" : "5", "duree_stand2" : "7", "duree_stand3" : "4", "duree_stand4" : "1", "numero_stand_chercheur" : "2", "heure": "1400", "etat" : "0"}]'
+  data2 = JSON.parse(data);
+  $scope.listeVisites = [];
+  for (i = 0 ; i < data2.length ; i++) {
+    var visite = data2[i];
+    // j'ai pas trouvé mieux
+    visite.id_visite = parseInt(visite.id_visite);
+    visite.duree_stand1 = 5; // ICI \\
+    visite.duree_stand2 = 6; // ICI \\
+    visite.duree_stand3 = 7; // ICI \\
+    visite.duree_stand4 = 8; // ICI \\
+    visite.numero_stand_chercheur = parseInt(visite.numero_stand_chercheur);
+    visite.heure = parseInt(visite.heure);
+    visite.etat = parseInt(visite.etat);
+    //
+    var maVisite = {id : visite.id_visite, heure : visite.heure-heureActuelle};
+    if (visite.etat <= 3 && visite.numero_stand_chercheur ==4) {maVisite.heure += (visite.duree_stand3);}
+    if (visite.etat <= 2 && visite.numero_stand_chercheur >=3) {maVisite.heure += (visite.duree_stand2);}
+    if (visite.etat <= 1 && visite.numero_stand_chercheur >=2) {maVisite.heure += (visite.duree_stand1);}
+    if (visite.etat == 0) {maVisite.heure += 5;}
+    if (maVisite.heure <= 2) {maVisite.heure = 'moins de 2';}
+    $scope.listeVisites.push(maVisite);
+  }
+  $scope.listeVisites.sort(function(a,b){return a.heure-b.heure;})
 
 })
 
@@ -284,23 +302,10 @@ $scope.scanBarcode = function() {
 
 
 .controller('CheckpointsCtrl', function($scope) {
-
-  $scope.Visite1List = [
-    { text: "Stand 1", value: 1 },
-    { text: "Stand 2", value: 2 },
-    { text: "Stand 3", value: 3 },
-    { text: "Stand 4", value: 4}];
-  $scope.Visite2List = [
-    { text: "Stand 1", value: 1 },
-    { text: "Stand 2", value: 2 },
-    { text: "Stand 3", value: 3 },
-    { text: "Stand 4", value: 4}];
-  $scope.Visite3List = [
-    { text: "Stand 1", value: 1 },
-    { text: "Stand 2", value: 2 },
-    { text: "Stand 3", value: 3 },
-    { text: "Stand 4", value: 4}];
-  $scope.Visite4List = [
+  data_envoyee = {id_guide : 12};
+  data = '{"id" : "125", "nom_stand1" : "Labo mécaflu", "nom_stand2" : "FabLab <3", "nom_stand3" : "Labo H10", "nom_stand4" : "Chambre Acoustique", "etat" : "1"}';
+  $scope.visite = JSON.parse(data);
+  $scope.visite = [
     { text: "Stand 1", value: 1 },
     { text: "Stand 2", value: 2 },
     { text: "Stand 3", value: 3 },

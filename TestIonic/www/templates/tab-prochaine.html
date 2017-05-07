@@ -1,13 +1,13 @@
 <ion-view view-title="Prochaines visites">
   <ion-content>
   		  		<div class="card">
-   			<div class="item item-rose item-divider">
-    		Arrivée des prochaines visites
+   			<div class="item item-fond-bleu item-divider">
+    		<b>Arrivée des prochaines visites</b>
     		</div>
     		<ion-list>
     		<ion-item class="item-text-wrap" ng-repeat="visite in listeVisites">
     		<p><b>Visite {{visite.id}} :</b></p>
-    		<p>Cette visite passera par votre stand dans <b> {{visite.arrive}} </b> minutes.</p>
+    		<p>Cette visite passera par votre stand dans <b> {{visite.heure}} </b> minutes.</p>
     		</ion-item>
     		</ion-list>
   		</div>

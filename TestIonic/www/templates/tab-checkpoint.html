@@ -13,44 +13,7 @@
                ng-change="serverSideChange(item)"
                name="Visite1">
       {{ item.text }}
-    </ion-radio>
-    
-    <div class="item item-divider">
-    VISITE 2   Stand sélectionné: {{ data.visite2 }}
-    </div>
-    
-    <ion-radio ng-repeat="item in Visite2List"
-               ng-value="item.value"
-               ng-model="data.visite2"
-               ng-change="serverSideChange(item)"
-               name="Visite2">
-      {{ item.text }}
-    </ion-radio>
-
-    <div class="item item-divider">
-    VISITE 3   Stand sélectionné: {{ data.visite3 }}
-    </div>
-    
-    <ion-radio ng-repeat="item in Visite3List"
-               ng-value="item.value"
-               ng-model="data.visite3"
-               ng-change="serverSideChange(item)"
-               name="Visite3">
-      {{ item.text }}
-    </ion-radio>
-
-    <div class="item item-divider">
-    VISITE 4   Stand sélectionné: {{ data.visite4 }}
-    </div>
-    
-    <ion-radio ng-repeat="item in Visite2List"
-               ng-value="item.value"
-               ng-model="data.visite4"
-               ng-change="serverSideChange(item)"
-               name="Visite4">
-      {{ item.text }}
-    </ion-radio>
-    
+    </ion-radio>    
   </div>
   </ion-content>
 </ion-view>
