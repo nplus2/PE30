@@ -5,10 +5,12 @@
 		    <div class="item item-fond-{{couleur}} item-divider">
 		    	Message à publier 
 		    </div>
+
  			<ion-item>
- 			<label class="item-input-wrapper">
-      		<input type="text" placeholder="aslkdfjalsf;jlkasjdf" ng-model="inputs.city">
-    		</label>
+ 			<div class="item item-input">
+			<input type="text" placeholder="Partagez un message" ng-model="message.corps">
+			</div>
+
   			</ion-item>
 			<div class="item item-fond-{{couleur}} item-divider">
 			    {{texteDestinataires}}
@@ -33,6 +35,12 @@
 			</li>
 			<li>
 				<ion-checkbox ng-model="coche.violet" ng-checked="coche.violet" ng-change="changeCouleur('violet')">Violet</ion-checkbox>
+			</li>
+			<li>
+				<ion-checkbox ng-model="coche.orange" ng-checked="coche.orange" ng-change="changeCouleur('orange')">Orange</ion-checkbox>
+			</li>
+			<li>
+				<ion-checkbox ng-model="coche.rose" ng-checked="coche.rose" ng-change="changeCouleur('rose')">Rose</ion-checkbox>
 			</li>
 		</ul>
 	</ion-content>

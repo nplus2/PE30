@@ -4,35 +4,43 @@ angular.module('starter.services', [])
 
   var requeteFdA = function(callback, idGroupe){
     $http.get('https://pe30.eclair.ec-lyon.fr/actualite.php?groupe=' + idGroupe)
-     .then(callback)
+     .then(callback);
   };
 
   var requeteCheckpoint = function(callback){
     $http.get('https://pe30.eclair.ec-lyon.fr/checkpoint.php')
-     .then(callback)
+     .then(callback);
   };
 
   var requeteLdG = function(callback){
     $http.get('https://pe30.eclair.ec-lyon.fr/listegroupe.php')
-    .then(callback)
+    .then(callback);
   };
 
   var requetePosition = function(callback, idUtilisateur){
     $http.get('https://pe30.eclair.ec-lyon.fr/position.php')
-     .then(callback)
+     .then(callback);
   };
 
-  var requetePublication = function(callback,data){
-    $http.post('https://pe30.eclair.ec-lyon.fr/publication.php',data)
-    .then(callback)
+  var requetePublication = function(callback,data,erreur){
+     requete = {
+      method : "POST",
+      url : "https://pe30.eclair.ec-lyon.fr/publication.php",
+      data : data,
+      headers: {
+        "Content-Type": "application/json"
+      }
+     };
+ 
+    $http(requete).then(callback,erreur);
   };
 
   var requeteLogin = function(callback,idUtilisateur,mdpUtilisateur){
-    $http.get('').then(callback)
+    $http.get('').then(callback,erreur);
   };
 
   var requeteAnnuaire = function(callback){
-    $http.get('').then(callback)
+    $http.get('').then(callback);
   };
 
   return {

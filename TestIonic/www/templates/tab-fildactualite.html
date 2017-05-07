@@ -2,7 +2,7 @@
 	<ion-content class="padding">
   		<div class="card"  ng-repeat="message in listeMessages">
    			<div class="item item-fond-{{message.couleur}} item-divider">
-    		Message publier à : {{message.heure}}
+    		Message publié à : {{message.heure.substring(0,2)}}h{{message.heure.substring(2,4)}}
     		</div>
     		<div class="item item-text-wrap">
     		{{message.corps}}
