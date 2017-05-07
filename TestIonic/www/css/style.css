@@ -19,6 +19,7 @@ Rose      #E62D68    #EC6782    #F6A8B2
 Bleu      #0080BB    #4C99C9    #A2C2E0
 Violet    #6C2457    #884C75    #B78CA9 
 */
+
 .bar-bordeaux {
   border-color: #b2b2b2;
   background-color: #96172E;
@@ -329,6 +330,15 @@ height: 100% !important;
     overflow-x: hidden;  /* default value is 'scroll' */
 }
 
-.qrcode img{
-  max-width: 100%
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.item-bottom {
+  align-self: flex-end;
 }
