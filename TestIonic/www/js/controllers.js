@@ -305,13 +305,7 @@ $scope.listeVisites = JSON.parse(data);
   data_envoyee = {id_guide : 12};
   data = '{"id" : "125", "nom_stand1" : "Labo mécaflu", "nom_stand2" : "FabLab <3", "nom_stand3" : "Labo H10", "nom_stand4" : "Chambre Acoustique", "etat" : "1"}';
   $scope.visite = JSON.parse(data);
-  $scope.visite = [
-    { text: "Stand 1", value: 1 },
-    { text: "Stand 2", value: 2 },
-    { text: "Stand 3", value: 3 },
-    { text: "Stand 4", value: 4}];
-  $scope.data = {
-    Visite1List: '1'};
+  etat = parseInt(visit.etat);
   $scope.serverSideChange = function(item) {console.log("Selected Serverside, text:", item.text, "value:", item.value);};
 });
 
