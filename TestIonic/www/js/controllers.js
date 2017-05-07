@@ -335,11 +335,42 @@ $scope.listeVisites = JSON.parse(data);
 
 
 
-.controller('CheckpointsCtrl', function($scope) {
+.controller('CheckpointsCtrl', function($scope, $ionicPopup) {
   data_envoyee = {id_guide : 12};
-  data = '{"id" : "125", "nom_stand1" : "Labo mécaflu", "nom_stand2" : "FabLab <3", "nom_stand3" : "Labo H10", "nom_stand4" : "Chambre Acoustique", "etat" : "1"}';
+  data = '{"id" : "125", "nom_stand1" : "Labo mécaflu", "nom_stand2" : "FabLab <3", "nom_stand3" : "Labo H10", "nom_stand4" : "Chambre Acoustique", "etat" : "2"}';
   $scope.visite = JSON.parse(data);
-  etat = parseInt(visit.etat);
-  $scope.serverSideChange = function(item) {console.log("Selected Serverside, text:", item.text, "value:", item.value);};
+  $scope.visite.etat = parseInt($scope.visite.etat);
+  $scope.coche = {depart : ($scope.visite.etat == 0), stand1 : ($scope.visite.etat == 1), stand2 : ($scope.visite.etat == 2), stand3 : ($scope.visite.etat == 3), stand4 : ($scope.visite.etat == 4), arrivee : ($scope.visite.etat == 5)};
+  $scope.changeEtat = function(etat){
+    $scope.coche.depart = (etat == 0);
+    $scope.coche.stand1 = (etat == 1);
+    $scope.coche.stand2 = (etat == 2);
+    $scope.coche.stand3 = (etat == 3);
+    $scope.coche.stand4 = (etat == 4);
+    $scope.coche.arrivee = (etat == 5);
+  };
+  $scope.showConfirmerEtat = function(etat) {
+     var confirmPopup = $ionicPopup.confirm({
+       title: 'Confirmation',
+       template: 'Etes-vous sûr de vouloir valider le checkpoint ?',
+       buttons: [
+        { text: 'Annuler',
+          onTap: function(e){
+            $scope.changeEtat($scope.visite.etat);
+          } 
+        },
+        {
+          text: '<b>Ok</b>',
+          type: 'button-positive',
+          onTap: function(e) {
+            $scope.changeEtat(etat);
+            $scope.visite.etat = etat;
+            $scope.envoiEtat(etat,parseInt($scope.visite.id));
+          }
+        }
+      ]  
+     });
+   }
+  $scope.envoiEtat = function (etat,id){}
 });
 

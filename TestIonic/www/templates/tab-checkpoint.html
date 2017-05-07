@@ -3,17 +3,48 @@
   
   <div class="list">
     
-    <div class="item item-divider">
-    Visite {{visite.id}}:
+    <div class="item item-bleu item-divider">
+    Visite {{visite.id}} :
     </div>
-    
-    <ion-radio ng-repeat="item in Visite1List"
-               ng-value="item.value"
-               ng-model="data.visite1"
-               ng-change="serverSideChange(item)"
-               name="Visite1">
-      {{ item.text }}
-    </ion-radio>    
+
+    <ul class="list">
+      <li>
+        <ion-checkbox ng-model="coche.depart" ng-checked="coche.depart" ng-change="showConfirmerEtat(0)">Depart</ion-checkbox>
+      </li>
+      <li>
+        <ion-checkbox ng-model="coche.stand1" ng-checked="coche.stand1" ng-change="showConfirmerEtat(1)">Stand 1</ion-checkbox>
+      </li>
+      <li>
+        <ion-checkbox ng-model="coche.stand2" ng-checked="coche.stand2" ng-change="showConfirmerEtat(2)">Stand 2</ion-checkbox>
+      </li>
+      <li>
+        <ion-checkbox ng-model="coche.stand3" ng-checked="coche.stand3" ng-change="showConfirmerEtat(3)">Stand 3</ion-checkbox>
+      </li>
+      <li>
+        <ion-checkbox ng-model="coche.stand4" ng-checked="coche.stand4" ng-change="showConfirmerEtat(4)">Stand 4</ion-checkbox>
+      </li>
+      <li>
+        <ion-checkbox ng-model="coche.arrivee" ng-checked="coche.arrivee" ng-change="showConfirmerEtat(5)">Arrivee</ion-checkbox>
+      </li>
+    </ul>
+  </div>
+
+  <div class ="card">
+    <div class="item item-bleu item-divider">
+      Les stands de votre visite sont :
+    </div>
+    <div class="item item-text-wrap">
+      Stand 1 : {{visite.nom_stand1}}
+    </div>
+    <div class="item item-text-wrap">
+      Stand 2 : {{visite.nom_stand2}}
+    </div>
+    <div class="item item-text-wrap">
+      Stand 3 : {{visite.nom_stand3}}
+    </div>
+    <div class="item item-text-wrap">
+      Stand 4 : {{visite.nom_stand4}}
+    </div>
   </div>
   </ion-content>
 </ion-view>
