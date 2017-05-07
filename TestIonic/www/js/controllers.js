@@ -19,6 +19,10 @@ angular.module('starter.controllers', [])
     $scope.statut = couleur;
   };
 
+  datae={'identifiant':'$scope.loginData.username','mdp':'$scope.loginData.password'}
+  datar={'role':'guide','id':4}
+  $scope.datar = JSON.parse(datar)
+
  })
 
 
@@ -227,6 +231,9 @@ $scope.scanBarcode = function() {
   }
  };
 
+ datae={'corps':'nsjklffnksdnflks','heure':2345,'couleur':bleu,'guide':true,'organisateur':true,'chercheur':false}
+
+
 })
 
 
@@ -234,6 +241,20 @@ $scope.scanBarcode = function() {
 
 
 .controller('FilDActualiteCtrl', function($scope,requeteHttp) {
+
+  datae={'role':'guide'}
+  datar=[{'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':1230,'couleur':'bleu'},
+  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':1231,'couleur':'bleu'},
+  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':1232,'couleur':'bleu'},
+  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':1233,'couleur':'bleu'},
+  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':1234,'couleur':'bleu'},
+  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':1235,'couleur':'bleu'},
+  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':1236,'couleur':'bleu'},
+  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':1237,'couleur':'bleu'},
+  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':1238,'couleur':'bleu'},
+  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':1239,'couleur':'bleu'}]
+
+  $scope.listeMessages = JSON.parse(datar);
   
   /*$scope.listeMessages = [{id : 0, tete:"titre1", corps: "texte1", heure:123, couleur:'vert'},
                           {id : 1, tete:"titre2", corps: "texte2", heure:123, couleur:'bleu'},
