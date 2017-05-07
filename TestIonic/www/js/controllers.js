@@ -139,10 +139,6 @@ $scope.scanBarcode = function() {
     $scope.couleur = couleur;
   };
 
-  var envoisMessage = function (){
-    //var data = [{}]
-  };
-
   $scope.coche={Organisateurs : false,
                 Guides : false,
                 Chercheurs : false,
@@ -155,54 +151,70 @@ $scope.scanBarcode = function() {
 
   $scope.destinataires = [];
   $scope.texteDestinataires = 'Aucun destinataire';
-  $scope.corps = '';
+  $scope.message = {corps :''};
   
-    $scope.showPopupDestinataires = function() {
+  $scope.showPopupDestinataires = function() {
 
-    // popup perso
-      var myPopup = $ionicPopup.show({
-      template: '<ul class="list"><li ><ion-checkbox ng-model="coche.Organisateurs" ng-checked="coche.Organisateurs">Organisateurs</ion-checkbox></li><li ><ion-checkbox ng-model="coche.Guides" ng-checked="coche.Guides">Guides</ion-checkbox></li><li ><ion-checkbox ng-model="coche.Chercheurs" ng-checked="coche.Chercheurs">Chercheurs</ion-checkbox></li><li ><ion-checkbox ng-model="coche.Visiteurs" ng-checked="coche.Visiteurs">Visiteurs</ion-checkbox></li></ul>',
-      title: 'Affichage Plan',
-      scope: $scope,
-      buttons: [
+   // popup perso
+    var myPopup = $ionicPopup.show({
+    template: '<ul class="list"><li ><ion-checkbox ng-model="coche.Organisateurs" ng-checked="coche.Organisateurs">Organisateurs</ion-checkbox></li><li ><ion-checkbox ng-model="coche.Guides" ng-checked="coche.Guides">Guides</ion-checkbox></li><li ><ion-checkbox ng-model="coche.Chercheurs" ng-checked="coche.Chercheurs">Chercheurs</ion-checkbox></li><li ><ion-checkbox ng-model="coche.Visiteurs" ng-checked="coche.Visiteurs">Visiteurs</ion-checkbox></li></ul>',
+    title: 'Affichage Plan',
+    scope: $scope,
+    buttons: [
+      { text: 'Annuler' },
+      {
+        text: '<b>Ok</b>',
+        type: 'button-positive',
+        onTap: function(e) {
+          $scope.miseAJourDestinataires();
+        }
+      }
+    ]
+    });
+  };
+
+    $scope.showConfirmerEnvoi = function() {
+     var confirmPopup = $ionicPopup.confirm({
+       title: 'Confirmation',
+       template: 'Etes-vous sûr de vouloir envoyer ce message ?',
+       buttons: [
         { text: 'Annuler' },
         {
           text: '<b>Ok</b>',
           type: 'button-positive',
           onTap: function(e) {
-            $scope.miseAJourDestinataires();
+            envoisMessage();
           }
         }
-      ]
-    });
-    };
-
-    $scope.showConfirmerEnvoi = function() {
-     var confirmPopup = $ionicPopup.confirm({
-       title: 'Confirmation',
-       template: 'Etes-vous sûr de vouloir envoyer ce message'
+      ]  
      });
-
-     confirmPopup.then(function(res) {
-       if(res) {
-         console.log('Envoi du message');
-         envoisMessage();
-       }
-     });
-   };
+   }
 
    $scope.showPasDeDestinataire = function() {
      var alertPopup = $ionicPopup.alert({
-       title: 'Erreur',
+       title: 'Aucun destinataire',
        template: 'Veuillez choisir au moins un destinataire.'
      });
    }
 
+   $scope.showPasDeMessage = function() {
+     var alertPopup = $ionicPopup.alert({
+       title: 'Aucun message',
+       template: 'Veuillez saisir un message.'
+     });
+   }
+
    $scope.clicEnvoyer = function(){
-    if ($scope.destinataires.length == 0) {
-      $scope.showPasDeDestinataire();
+    if ($scope.message.corps.length == 0) {
+      $scope.showPasDeMessage();
     }
-    else {$scope.showConfirmerEnvoi();}
+    else {
+      if ($scope.destinataires.length == 0) {
+        $scope.showPasDeDestinataire();
+      }
+      else {$scope.showConfirmerEnvoi();
+      }
+    }
    }
 
  $scope.miseAJourDestinataires = function(){
@@ -227,15 +239,23 @@ $scope.scanBarcode = function() {
     $scope.texteDestinataires ='Aucun destinataire';
   }
  };
- var ladate= new Date()
- var h=ladate.getHours();
- if (h<10) {h = "0" + h}
- var m=ladate.getMinutes();
- if (m<10) {m = "0" + m}
- var heure=(h+"h"+m)
- datae={'corps':'nsjklffnksdnflks','heure':heure,'couleur':bleu,'guide':true,'organisateur':true,'chercheur':false}
 
+ var contient = function(x, l) {
+  for (i = 0 ; i < l.length ; i++) {
+    if (l[i] == x) {return true;}
+  }
+  return false;
+ }
 
+ var envoisMessage = function(){
+   var ladate= new Date()
+   var h=ladate.getHours();
+   if (h<10) {h = "0" + h}
+   var m=ladate.getMinutes();
+   if (m<10) {m = "0" + m}
+   var heure=(h+"h"+m)
+   datae={corps: $scope.message.corps, heure : h, couleur : $scope.couleur, guide : (contient('Guides',$scope.destinataires)),organisateur: (contient('Organisateurs',$scope.destinataires)) ,chercheur : (contient('Chercheurs',$scope.destinataires)), visiteur : (contient('Visiteurs',$scope.destinataires))};
+ }
 })
 
 
@@ -244,17 +264,8 @@ $scope.scanBarcode = function() {
 
 .controller('FilDActualiteCtrl', function($scope,requeteHttp) {
 
-  datae={'role':'guide'}
-  datar=[{'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':'1230','couleur':'bleu'},
-  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':'1231','couleur':'bleu'},
-  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':'1232','couleur':'bleu'},
-  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':'1233','couleur':'bleu'},
-  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':'1234','couleur':'bleu'},
-  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':'1235','couleur':'bleu'},
-  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':'1236','couleur':'bleu'},
-  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':'1237','couleur':'bleu'},
-  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':'1238','couleur':'bleu'},
-  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':'1239','couleur':'bleu'}]
+  datae={"role": "guide"};
+  datar='[{"corps" : "Bienvenue à la journée portes ouvertes de l\'École Centrale de Lyon.", "heure" : "1403", "couleur" : "vert"},{"corps" : "Bienvenu à la journée portes ouvertes de l\'École Centrale de Lyon.", "heure" : "1556", "couleur" : "rose"}]'
 
   $scope.listeMessages = JSON.parse(datar);
   
@@ -263,23 +274,23 @@ $scope.scanBarcode = function() {
                           {id : 2, tete:"titre3", corps: "texte3", heure:123, couleur:'violet'},
                           {id : 3, tete:"titre4", corps: "texte4", heure:123, couleur:'rose'}];*/
 
- var callback2 = function(response){
-  alert(JSON.stringify(response.data));
- };
-  var callback3 = function(response){
-  alert(JSON.stringify(response));
- };
- myJSON = JSON.stringify({"idGroupe":[1,2,3],"corp":"test1test2","couleur":"rouge"});
- requeteHttp.requetePublication(callback2,{"data":"abcd"},callback3);
+//  var callback2 = function(response){
+//   alert(JSON.stringify(response.data));
+//  };
+//   var callback3 = function(response){
+//   alert(JSON.stringify(response));
+//  };
+//  myJSON = JSON.stringify({"idGroupe":[1,2,3],"corp":"test1test2","couleur":"rouge"});
+//  requeteHttp.requetePublication(callback2,{"data":"abcd"},callback3);
 
 
 
- var callback = function(response){
-  $scope.listeMessages = response.data;
- };
+//  var callback = function(response){
+//   $scope.listeMessages = response.data;
+//  };
  
-//$scope.actualiser = function(){requeteHttp.requeteFdA(callback);};
- requeteHttp.requeteFdA(callback,1);
+// //$scope.actualiser = function(){requeteHttp.requeteFdA(callback);};
+//  requeteHttp.requeteFdA(callback,1);
 })
 
 
