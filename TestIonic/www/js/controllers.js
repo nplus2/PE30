@@ -19,9 +19,6 @@ angular.module('starter.controllers', [])
     $scope.statut = couleur;
   };
 
-  datae={'identifiant':'$scope.loginData.username','mdp':'$scope.loginData.password'}
-  datar={'role':'guide','id':4}
-  $scope.datar = JSON.parse(datar)
 
  })
 
@@ -230,8 +227,13 @@ $scope.scanBarcode = function() {
     $scope.texteDestinataires ='Aucun destinataire';
   }
  };
-
- datae={'corps':'nsjklffnksdnflks','heure':2345,'couleur':bleu,'guide':true,'organisateur':true,'chercheur':false}
+ var ladate= new Date()
+ var h=ladate.getHours();
+ if (h<10) {h = "0" + h}
+ var m=ladate.getMinutes();
+ if (m<10) {m = "0" + m}
+ var heure=(h+"h"+m)
+ datae={'corps':'nsjklffnksdnflks','heure':heure,'couleur':bleu,'guide':true,'organisateur':true,'chercheur':false}
 
 
 })
@@ -243,16 +245,16 @@ $scope.scanBarcode = function() {
 .controller('FilDActualiteCtrl', function($scope,requeteHttp) {
 
   datae={'role':'guide'}
-  datar=[{'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':1230,'couleur':'bleu'},
-  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':1231,'couleur':'bleu'},
-  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':1232,'couleur':'bleu'},
-  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':1233,'couleur':'bleu'},
-  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':1234,'couleur':'bleu'},
-  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':1235,'couleur':'bleu'},
-  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':1236,'couleur':'bleu'},
-  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':1237,'couleur':'bleu'},
-  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':1238,'couleur':'bleu'},
-  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':1239,'couleur':'bleu'}]
+  datar=[{'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':'1230','couleur':'bleu'},
+  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':'1231','couleur':'bleu'},
+  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':'1232','couleur':'bleu'},
+  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':'1233','couleur':'bleu'},
+  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':'1234','couleur':'bleu'},
+  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':'1235','couleur':'bleu'},
+  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':'1236','couleur':'bleu'},
+  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':'1237','couleur':'bleu'},
+  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':'1238','couleur':'bleu'},
+  {'corps':'blajhjjkshqdkgdhkjbbdjhqgdjbsgdjbkqsjljxhkbqkbdjqskn;djkjqsgb,dnjqshvdjqshdk','heure':'1239','couleur':'bleu'}]
 
   $scope.listeMessages = JSON.parse(datar);
   
