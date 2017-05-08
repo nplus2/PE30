@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
- .controller('ParamCtrl',function($scope,$rootScope, $ionicModal,requeteHttp,identification) {
+ .controller('ParamCtrl',function($scope,$rootScope, $ionicModal,requeteHttp,identification,$ionicPopup) {
   $scope.role = identification.role;
   $ionicModal.fromTemplateUrl('templates/parametres.html', {
      scope: $scope,
@@ -18,25 +18,37 @@ angular.module('starter.controllers', [])
     identification.role = response.data.role;
     identification.identifiant = response.data.id;
     if (identification.role != "0") {
-       $rootScope.$emit("ChangeStatutMethod",{});
-       $scope.role = identification.role;
+      $scope.showConnexionOk();
+      $rootScope.$emit("ChangeStatutMethod",{});
+      $scope.role = identification.role;
     }
+    else {$scope.showErreurConnexion();}
   };
 
   $scope.login = function(){
     requeteHttp.requeteLogin(callback,$scope.loginData.username,$scope.loginData.password);
   };
 
-  $scope.coche = {chercheur : false, guide : false, organisateur : false, visiteur : true};
-  $scope.statut='visiteur';
-  $scope.changeStatut = function(couleur){
-    $scope.coche.visiteur = (couleur == 'visiteur')
-    $scope.coche.guide = (couleur == 'guide')
-    $scope.coche.chercheur = (couleur == 'chercheur')
-    $scope.coche.organisateur = (couleur == 'organisateur')
-    $scope.statut = couleur;
+  $scope.showErreurConnexion = function() {
+    var alertPopup = $ionicPopup.alert({
+      title: 'Echec de la connexion',
+      template: 'Identifiant ou mot de passe incorrect.'
+    });
   };
 
+  $scope.showConnexionOk = function() {
+    var alertPopup = $ionicPopup.alert({
+      title: 'Connexion réussie',
+      template: 'Vous êtes connecté(e).'
+    });
+  };
+
+  $scope.showDeconnexion = function() {
+    var alertPopup = $ionicPopup.alert({
+      title: 'Deconnexion réussie',
+      template: 'Vous êtes déconnecté(e).'
+    });
+  };
 
  })
 
