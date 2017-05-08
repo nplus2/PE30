@@ -197,43 +197,6 @@ $scope.scanBarcode = function() {
 
 .controller('PublicationCtrl', function($scope,$ionicPopup,requeteHttp) {
 
-  var envoisMessage = function (){
-    var CorpsMessage = 'test';  //ng-model
-    var Heure = 'Null';  // horloge interne à trouver
-    var Couleur = 'Null';
-    var Guide = 0;
-    var Organisateur = 0;
-    var Chercheur = 0;
-
-    //alert($scope.coche.violet)
-
-    if ($scope.coche.bleu){
-      couleur = 'bleu';     // a verifier avec le css
-    }
-    if ($scope.coche.vert){
-      couleur = 'vert';
-    }
-    if($scope.coche.violet){
-      couleur = 'violet';
-      alert('test')
-    }
-    if ($scope.coche.Organisateurs){
-      organisateur = 1;
-    }
-    if ($scope.coche.Guides){
-      guide = 1;
-    }
-    if ($scope.coche.Chercheurs){
-      chercheur = 1;
-    }
-
-
-    var data = [{'heure': Heure, 'couleur': Couleur, 'guide': Guide, 'chercheur': Chercheur, 'organisateur': Organisateur, 'corps': CorpsMessage}];
-    alert(JSON.stringify(data));
-  };
-
-  $scope.couleur='bleu';
-
   $scope.changeCouleur = function(couleur){
     $scope.coche.bleu = (couleur == 'bleu');
     $scope.coche.vert = (couleur == 'vert');
@@ -277,38 +240,30 @@ $scope.scanBarcode = function() {
     });
   };
 
-    $scope.showConfirmerEnvoi = function() {
-     var confirmPopup = $ionicPopup.confirm({
-       title: 'Confirmation',
-       template: 'Etes-vous sûr de vouloir envoyer ce message ?',
-       buttons: [
-        { text: 'Annuler' },
-        {
-          text: '<b>Ok</b>',
-          type: 'button-positive',
-          onTap: function(e) {
-            envoisMessage();
-          }
-        }
-      ]  
-     });
-   }
+  $scope.miseAJourDestinataires = function(){
+    $scope.destinataires =[];
+    i = false;
+    if ($scope.coche.Organisateurs) {
+      $scope.destinataires.push('Organisateurs');
+    }
+    if ($scope.coche.Guides) {
+      $scope.destinataires.push('Guides');
+    }
+    if ($scope.coche.Chercheurs) {
+      $scope.destinataires.push('Chercheurs');
+    }
+    if ($scope.coche.Visiteurs) {
+      $scope.destinataires.push('Visiteurs');
+    }
+    if ($scope.destinataires.length > 0) {
+      $scope.texteDestinataires = $scope.destinataires.join(', ');
+    }
+    else {
+      $scope.texteDestinataires ='Aucun destinataire';
+    }
+   };
 
-   $scope.showPasDeDestinataire = function() {
-     var alertPopup = $ionicPopup.alert({
-       title: 'Aucun destinataire',
-       template: 'Veuillez choisir au moins un destinataire.'
-     });
-   }
-
-   $scope.showPasDeMessage = function() {
-     var alertPopup = $ionicPopup.alert({
-       title: 'Aucun message',
-       template: 'Veuillez saisir un message.'
-     });
-   }
-
-   $scope.clicEnvoyer = function(){
+  $scope.clicEnvoyer = function(){
     if ($scope.message.corps.length == 0) {
       $scope.showPasDeMessage();
     }
@@ -319,48 +274,67 @@ $scope.scanBarcode = function() {
       else {$scope.showConfirmerEnvoi();
       }
     }
-   }
+   };
 
- $scope.miseAJourDestinataires = function(){
-  $scope.destinataires =[];
-  i = false;
-  if ($scope.coche.Organisateurs) {
-    $scope.destinataires.push('Organisateurs');
-  }
-  if ($scope.coche.Guides) {
-    $scope.destinataires.push('Guides');
-  }
-  if ($scope.coche.Chercheurs) {
-    $scope.destinataires.push('Chercheurs');
-  }
-  if ($scope.coche.Visiteurs) {
-    $scope.destinataires.push('Visiteurs');
-  }
-  if ($scope.destinataires.length > 0) {
-    $scope.texteDestinataires = $scope.destinataires.join(', ');
-  }
-  else {
-    $scope.texteDestinataires ='Aucun destinataire';
-  }
+  $scope.showConfirmerEnvoi = function() {
+   var confirmPopup = $ionicPopup.confirm({
+     title: 'Confirmation',
+     template: 'Etes-vous sûr de vouloir envoyer ce message ?',
+     buttons: [
+      { text: 'Annuler' },
+      {
+        text: '<b>Ok</b>',
+        type: 'button-positive',
+        onTap: function(e) {
+          envoisMessage();
+        }
+      }
+    ]  
+   });
  };
 
+   $scope.showPasDeDestinataire = function() {
+     var alertPopup = $ionicPopup.alert({
+       title: 'Aucun destinataire',
+       template: 'Veuillez choisir au moins un destinataire.'
+     });
+   };
+
+   $scope.showPasDeMessage = function() {
+     var alertPopup = $ionicPopup.alert({
+       title: 'Aucun message',
+       template: 'Veuillez saisir un message.'
+     });
+   };
 
  var contient = function(x, l) {
   for (i = 0 ; i < l.length ; i++) {
-    if (l[i] == x) {return true;}
+    if (l[i] == x) {
+      return 1;
+    }
   }
-  return false;
- }
+  return 0;
+ };
 
  var envoisMessage = function(){
-   var ladate= new Date()
-   var h=ladate.getHours();
-   if (h<10) {h = "0" + h}
-   var m=ladate.getMinutes();
-   if (m<10) {m = "0" + m}
-   var heure=(h+"h"+m)
-   datae={corps: $scope.message.corps, heure : h, couleur : $scope.couleur, guide : (contient('Guides',$scope.destinataires)),organisateur: (contient('Organisateurs',$scope.destinataires)) ,chercheur : (contient('Chercheurs',$scope.destinataires)), visiteur : (contient('Visiteurs',$scope.destinataires))};
- }
+  var ladate = new Date();
+  var h = ladate.getHours();
+  if (h<10) {
+  h = "0" + h;
+  }
+  var m=ladate.getMinutes();
+  if (m<10) {
+   m = "0" + m;
+  }
+  var heure1= parseInt(String(h)+String(m));
+  var callback = function(response){
+    var MessageEnvoyer = $ionicPopup.alert({
+      title: 'Statut',
+      template: response.data
+    });
+  };
+  requeteHttp.requetePublication(callback, heure1, $scope.couleur, contient('Guides',$scope.destinataires), contient('Chercheurs',$scope.destinataires), contient('Organisateurs',$scope.destinataires), contient('Visiteurs',$scope.destinataires), $scope.message.corps);  //data
+ };
 })
 
 
