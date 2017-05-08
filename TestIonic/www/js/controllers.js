@@ -123,16 +123,22 @@ $scope.scanBarcode = function() {
 
 
 
-
-
-.controller('EvenementsCtrl', function($scope) {
-
-  data = '[{"id_visite" : "1", "heure_depart" : "1235", "nom" : "Labo", "couleur" : "vert"},{"id_visite" : "1", "heure_depart" : "1245", "nom" : "Learning Lab", "couleur" : "bleu"},{"id_visite" : "1", "heure_depart" : "1315", "nom" : "Vie de Campus", "couleur" : "rose"}]';
+.controller('EvenementsCtrl', function($scope,requeteHttp,identification) {
+  $scope.listeMessages = [];
+  $scope.listeVisites = [];
   $scope.listeVisites = JSON.parse(data);
-  datae={"role": "guide"};
-  datar='[{"corps" : "Bienvenue à la journée portes ouvertes de l\'École Centrale de Lyon.", "heure" : "1403", "couleur" : "vert"},{"corps" : "Bienvenu à la journée portes ouvertes de l\'École Centrale de Lyon.", "heure" : "1556", "couleur" : "rose"}]'
 
-  $scope.listeMessages = JSON.parse(datar);
+  callbackMessages = function(response){
+    $scope.listeMessages = response.data;
+  }
+  callbackVisites = function(response){
+    $scope.listeVisites = response.data;;
+  }
+  $scope.actualiser = function(){
+    requeteHttp.requeteVisite(callbackVisites);
+    requeteHttp.requeteFdA(callbackMessages,'guide');
+  }
+  $scope.actualiser();
 })
 
 
