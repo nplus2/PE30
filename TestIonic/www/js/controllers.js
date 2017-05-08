@@ -386,7 +386,7 @@ $scope.scanBarcode = function() {
 
 
 .controller('CheckpointsCtrl', function($scope, $ionicPopup,identification,requeteHttp) {
-  data_envoyee = {id_guide : 12};
+  
 
 
 
@@ -436,7 +436,7 @@ $scope.scanBarcode = function() {
     nom_stand4 : "",
     etat : 0
   };
-  requeteHttp.lastCheckpoint(callback,2);
+  requeteHttp.lastCheckpoint(callback,identification.identifiant);
 
   $scope.visite.etat = parseInt($scope.visite.etat);
   $scope.coche = {depart : ($scope.visite.etat == 0), stand1 : ($scope.visite.etat == 1), stand2 : ($scope.visite.etat == 2), stand3 : ($scope.visite.etat == 3), stand4 : ($scope.visite.etat == 4), arrivee : ($scope.visite.etat == 5)};
@@ -471,7 +471,20 @@ $scope.scanBarcode = function() {
      });
    }
   $scope.envoiEtat = function (etat,id){
-    return 0;
+
+    var ladate = new Date();
+    var h = ladate.getHours();
+    if (h<10) {
+      h = "0" + h;
+    }
+    var m=ladate.getMinutes();
+    if (m<10) {
+      m = "0" + m;
+    }
+    var heure= parseInt(String(h)+String(m));
+    requeteHttp.envoiCheckpoint(etat,id,heure);
+
+    
   }
 });
 
