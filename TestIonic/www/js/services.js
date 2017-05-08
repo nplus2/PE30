@@ -39,8 +39,8 @@ angular.module('starter.services', [])
      .then(callback);
   };
 
-  var requetePublication = function(callback,data,heure,couleur,destinataire,corp){
-    $http.get('https://pe30.eclair.ec-lyon.fr/publication.php?heure='+heure+'&couleur='+couleur+'&guide='+destinataire[0]+'&chercheur='+destinataire[1]+'&organisateur='+destinataire[2]+'&corps='+corp)
+  var requetePublication = function(callback, heure, couleur, guide, chercheur, organisateur, visiteur, corps){     //data
+    $http.get('https://pe30.eclair.ec-lyon.fr/publication.php?heure='+ heure +'&couleur='+ couleur +'&guide='+ guide +'&chercheur='+ chercheur +'&organisateur='+ organisateur +'&visiteur=' + visiteur + '&corps='+ corps)
      .then(callback);
   };
 
