@@ -135,7 +135,7 @@ $scope.scanBarcode = function() {
   }
   $scope.actualiser = function(){
     requeteHttp.requeteVisite(callbackVisites);
-    requeteHttp.requeteFdA(callbackMessages,'guide');
+    requeteHttp.requeteFdA(callbackMessages,identification.role);
   }
   $scope.actualiser();
 })
@@ -347,26 +347,19 @@ $scope.scanBarcode = function() {
 
 
 
-.controller('FilDActualiteCtrl', function($scope,requeteHttp) {
+.controller('FilDActualiteCtrl', function($scope,requeteHttp,identification) {
 
-  datae={"role": "guide"};
-  datar='[{"corps" : "Bienvenue à la journée portes ouvertes de l\'École Centrale de Lyon.", "heure" : "1403", "couleur" : "vert"},{"corps" : "Bienvenu à la journée portes ouvertes de l\'École Centrale de Lyon.", "heure" : "1556", "couleur" : "rose"}]'
-
-  $scope.listeMessages = JSON.parse(datar);
   
-  /*$scope.listeMessages = [{id : 0, tete:"titre1", corps: "texte1", heure:123, couleur:'vert'},
-                          {id : 1, tete:"titre2", corps: "texte2", heure:123, couleur:'bleu'},
-                          {id : 2, tete:"titre3", corps: "texte3", heure:123, couleur:'violet'},
-                          {id : 3, tete:"titre4", corps: "texte4", heure:123, couleur:'rose'}];*/
-
 
  var callback = function(response){
   $scope.listeMessages = response.data;
  };
+  $scope.listeMessages = [];
+  $scope.actualiser = function(){
+    requeteHttp.requeteFdA(callback,identification.role);
+  }
+  $scope.actualiser();
  
- $scope.actualiser = function(idGroupe){
-  requeteHttp.requeteFdA(callback,idGroupe);
- };
 })
 
 
