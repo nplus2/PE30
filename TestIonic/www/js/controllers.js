@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
- .controller('ParamCtrl',function($scope, $ionicModal,requeteHttp,identification) {
-  $scope.role = 'visiteur'
+ .controller('ParamCtrl',function($scope,$rootScope, $ionicModal,requeteHttp,identification) {
+  $scope.role = identification.role;
   $ionicModal.fromTemplateUrl('templates/parametres.html', {
      scope: $scope,
      animation: 'slide-in-right'
@@ -17,6 +17,10 @@ angular.module('starter.controllers', [])
   var callback = function(response){
     identification.role = response.data.role;
     identification.identifiant = response.data.id;
+    if (identification.role != "0") {
+       $rootScope.$emit("ChangeStatutMethod",{});
+       $scope.role = identification.role;
+    }
   };
 
   $scope.login = function(){
@@ -40,8 +44,12 @@ angular.module('starter.controllers', [])
 
 
 
-.controller('TabsCtrl', function($scope) {
-  $scope.statut='visiteur'
+.controller('TabsCtrl', function($scope,$rootScope,identification) {
+  $scope.statut= identification.role;
+  $rootScope.$on("ChangeStatutMethod", function(){
+    $scope.actualiser();
+  })
+  $scope.actualiser = function() {$scope.statut = identification.role;}
 })
 
 
