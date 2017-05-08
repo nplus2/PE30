@@ -72,9 +72,9 @@ angular.module('starter.services', [])
     $http.get('https://pe30.eclair.ec-lyon.fr/nom_stand.php?id='+idStand)
      .then(callback);
   };
-  var envoiCheckpoint = function(etat,id,heure){
+  var envoiCheckpoint = function(callback,etat,id,heure){
     $http.get('https://pe30.eclair.ec-lyon.fr/checkpoint.php?id=1&heure='+heure+'&etat='+etat+'&id='+id)
-     .then(function(response){return 0;});
+     .then(callback);
   };
   return {
     etatVisite : etatVisite,
