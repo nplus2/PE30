@@ -1,4 +1,14 @@
 angular.module('starter.services', [])
+.factory('identification',function(){
+  var identifiant = '',
+  role = '';
+
+  return{
+    identifiant:identifiant,
+    role:role
+  };
+  
+})
 
 .factory('identification',function(){
   var identifiant = '',
@@ -37,7 +47,7 @@ angular.module('starter.services', [])
   var requetePosition = function(callback, idUtilisateur){
     $http.get('https://pe30.eclair.ec-lyon.fr/position.php')
      .then(callback);
-  };
+  }
 
   var requetePublication = function(callback,data,heure,couleur,destinataire,corp){
     $http.get('https://pe30.eclair.ec-lyon.fr/publication.php?heure='+heure+'&couleur='+couleur+'&guide='+destinataire[0]+'&chercheur='+destinataire[1]+'&organisateur='+destinataire[2]+'&corps='+corp)

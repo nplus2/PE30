@@ -63,6 +63,7 @@ angular.module('starter.controllers', [])
 
 
 
+
 .controller('TabsCtrl', function($scope,$rootScope,identification) {
   $scope.statut= identification.role;
   $rootScope.$on("ChangeStatutMethod", function(){
