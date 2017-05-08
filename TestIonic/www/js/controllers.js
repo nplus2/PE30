@@ -391,10 +391,59 @@ $scope.scanBarcode = function() {
 
 
 
-.controller('CheckpointsCtrl', function($scope, $ionicPopup) {
+.controller('CheckpointsCtrl', function($scope, $ionicPopup,identification,requeteHttp) {
   data_envoyee = {id_guide : 12};
+
+
+
+  callbackStand1 = function(response){
+      $scope.visite.nom_stand1 = response.data.nom;
+  }
+  callbackStand2 = function(response){
+      $scope.visite.nom_stand2 = response.data.nom;
+  }
+  callbackStand3 = function(response){
+      $scope.visite.nom_stand3 = response.data.nom;
+  }
+  callbackStand4 = function(response){
+      $scope.visite.nom_stand4 = response.data.nom;
+  }
+
+
+  callback = function(response){
+    if(response.data != []){
+      $scope.visite = response.data[0];
+      $scope.visite.nom_stand1 = "";
+      $scope.visite.nom_stand2 = "";
+      $scope.visite.nom_stand3 = "";
+      $scope.visite.nom_stand4 = "";
+      
+      requeteHttp.nomStand(callbackStand1,$scope.visite.id_stand1);
+      requeteHttp.nomStand(callbackStand2,$scope.visite.id_stand2);
+      requeteHttp.nomStand(callbackStand3,$scope.visite.id_stand3);
+      requeteHttp.nomStand(callbackStand4,$scope.visite.id_stand4);
+    }
+  };
+  
+
+
   data = '{"id" : "125", "nom_stand1" : "Labo mécaflu", "nom_stand2" : "FabLab <3", "nom_stand3" : "Labo H10", "nom_stand4" : "Chambre Acoustique", "etat" : "2"}';
   $scope.visite = JSON.parse(data);
+
+  $scope.visite = {
+    id : 0,
+    id_stand1 : 0,
+    nom_stand1 : "",
+    id_stand2 : 0,
+    nom_stand2 : "",
+    id_stand3 : 0,
+    nom_stand3 : "",
+    id_stand4 : 0,
+    nom_stand4 : "",
+    etat : 0
+  };
+  requeteHttp.lastCheckpoint(callback,2);
+
   $scope.visite.etat = parseInt($scope.visite.etat);
   $scope.coche = {depart : ($scope.visite.etat == 0), stand1 : ($scope.visite.etat == 1), stand2 : ($scope.visite.etat == 2), stand3 : ($scope.visite.etat == 3), stand4 : ($scope.visite.etat == 4), arrivee : ($scope.visite.etat == 5)};
   $scope.changeEtat = function(etat){
@@ -427,6 +476,8 @@ $scope.scanBarcode = function() {
       ]  
      });
    }
-  $scope.envoiEtat = function (etat,id){}
+  $scope.envoiEtat = function (etat,id){
+    return 0;
+  }
 });
 
