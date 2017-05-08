@@ -10,6 +10,11 @@ angular.module('starter.services', [])
 })
 
 .factory('requeteHttp',function($http){
+
+   var etatVisite = function(callback){
+     $http.get('https://pe30.eclair.ec-lyon.fr/etat_visite.php')
+     .then(callback);
+   };
    var requeteVisite = function(callback){
     $http.get('https://pe30.eclair.ec-lyon.fr/evenement.php')
      .then(callback);
@@ -50,6 +55,7 @@ angular.module('starter.services', [])
   };
 
   return {
+    etatVisite : etatVisite,
     requeteFdA : requeteFdA,
     requeteCheckpoint : requeteCheckpoint,
     requeteLdG : requeteLdG,
