@@ -33,20 +33,24 @@ angular.module('starter.controllers', [])
 
 
 
-.controller('AnnuaireCtrl',function($scope,$http,Annuaire){
+.controller('AnnuaireCtrl',function($scope,requeteHttp,Annuaire){   // RETRAVAILLER
 
-  //monnaies pour la requete "USD","EUR","CNY","HUF","CAD"
-  //https://www.omdbapi.com/ pour une autre base de donnée
-  $http.get('//missecl.eclair.ec-lyon.fr/PE/Annuaire')
+  var callback = function(response){
+    $scope.listeDeContacts = response.data;    // nouvelle variable annuaire
+  };
+
+  requeteHttp.requeteAnnuaire(callback);
+
+/*  $http.get('//missecl.eclair.ec-lyon.fr/PE/Annuaire')
       .success(function(response){
         //$scope.texte = response.query.results.rate[0].Rate;
         //$scope.rate = response.query.results.rate[0]
        $scope.message = response[0]
         
-      });
+      });*/
 
-  $scope.actualiser = function(motCle){
-    $scope.listeDeContacts = Annuaire.recherche(motCle);
+  $scope.actualiser = function(annuaire, motCle){
+    $scope.listeDeContacts = Annuaire.recherche(motCle);  //annuaire à rajouter
 
     if($scope.listeDeContacts.length == 0){
       $scope.listeErreur = ["Aucun Resultat trouvé"];
@@ -56,7 +60,7 @@ angular.module('starter.controllers', [])
 
   }
 
-  $scope.listeDeContacts = Annuaire.all();
+  //$scope.listeDeContacts = $scope.annuaire;
 })
 
 
@@ -144,14 +148,45 @@ $scope.scanBarcode = function() {
 })
 
 
-.controller('PublicationCtrl', function($scope,$ionicPopup) {
+.controller('PublicationCtrl', function($scope,$ionicPopup,requeteHttp) {
 
-  // .controller('PublicationCtrl', function($scope,requeteHttp) {
-//   var choixDestinataire = function (){
-//     var listeDestinataire = requeteHttp.requeteLdG();
-//     return listeDestinataire;
-//   };
+  var envoisMessage = function (){
+    var CorpsMessage = 'test';  //ng-model
+    var Heure = 'Null';  // horloge interne à trouver
+    var Couleur = 'Null';
+    var Guide = 0;
+    var Organisateur = 0;
+    var Chercheur = 0;
+
+    //alert($scope.coche.violet)
+
+    if ($scope.coche.bleu){
+      couleur = 'bleu';     // a verifier avec le css
+    }
+    if ($scope.coche.vert){
+      couleur = 'vert';
+    }
+    if($scope.coche.violet){
+      couleur = 'violet';
+      alert('test')
+    }
+    if ($scope.coche.Organisateurs){
+      organisateur = 1;
+    }
+    if ($scope.coche.Guides){
+      guide = 1;
+    }
+    if ($scope.coche.Chercheurs){
+      chercheur = 1;
+    }
+
+
+    var data = [{'heure': Heure, 'couleur': Couleur, 'guide': Guide, 'chercheur': Chercheur, 'organisateur': Organisateur, 'corps': CorpsMessage}];
+    alert(JSON.stringify(data));
+  };
+
   $scope.couleur='bleu';
+
   $scope.changeCouleur = function(couleur){
     $scope.coche.bleu = (couleur == 'bleu');
     $scope.coche.vert = (couleur == 'vert');
@@ -172,12 +207,12 @@ $scope.scanBarcode = function() {
                 orange : false};
 
   $scope.destinataires = [];
+
   $scope.texteDestinataires = 'Aucun destinataire';
   $scope.message = {corps :''};
   
   $scope.showPopupDestinataires = function() {
 
-   // popup perso
     var myPopup = $ionicPopup.show({
     template: '<ul class="list"><li ><ion-checkbox ng-model="coche.Organisateurs" ng-checked="coche.Organisateurs">Organisateurs</ion-checkbox></li><li ><ion-checkbox ng-model="coche.Guides" ng-checked="coche.Guides">Guides</ion-checkbox></li><li ><ion-checkbox ng-model="coche.Chercheurs" ng-checked="coche.Chercheurs">Chercheurs</ion-checkbox></li><li ><ion-checkbox ng-model="coche.Visiteurs" ng-checked="coche.Visiteurs">Visiteurs</ion-checkbox></li></ul>',
     title: 'Affichage Plan',
@@ -262,6 +297,7 @@ $scope.scanBarcode = function() {
   }
  };
 
+
  var contient = function(x, l) {
   for (i = 0 ; i < l.length ; i++) {
     if (l[i] == x) {return true;}
@@ -296,23 +332,14 @@ $scope.scanBarcode = function() {
                           {id : 2, tete:"titre3", corps: "texte3", heure:123, couleur:'violet'},
                           {id : 3, tete:"titre4", corps: "texte4", heure:123, couleur:'rose'}];*/
 
-//  var callback2 = function(response){
-//   alert(JSON.stringify(response.data));
-//  };
-//   var callback3 = function(response){
-//   alert(JSON.stringify(response));
-//  };
-//  myJSON = JSON.stringify({"idGroupe":[1,2,3],"corp":"test1test2","couleur":"rouge"});
-//  requeteHttp.requetePublication(callback2,{"data":"abcd"},callback3);
 
-
-
-//  var callback = function(response){
-//   $scope.listeMessages = response.data;
-//  };
+ var callback = function(response){
+  $scope.listeMessages = response.data;
+ };
  
-// //$scope.actualiser = function(){requeteHttp.requeteFdA(callback);};
-//  requeteHttp.requeteFdA(callback,1);
+ $scope.actualiser = function(idGroupe){
+  requeteHttp.requeteFdA(callback,idGroupe);
+ };
 })
 
 
