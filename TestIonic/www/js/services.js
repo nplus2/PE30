@@ -10,7 +10,10 @@ angular.module('starter.services', [])
 })
 
 .factory('requeteHttp',function($http){
-
+   var requeteVisite = function(callback){
+    $http.get('https://pe30.eclair.ec-lyon.fr/evenement.php')
+     .then(callback);
+  };
   var requeteFdA = function(callback, idGroupe){
     $http.get('https://pe30.eclair.ec-lyon.fr/actualite.php?groupe=' + idGroupe)
      .then(callback);
@@ -53,7 +56,8 @@ angular.module('starter.services', [])
     requetePosition : requetePosition,
     requetePublication : requetePublication,
     requeteLogin : requeteLogin,
-    requeteAnnuaire : requeteAnnuaire
+    requeteAnnuaire : requeteAnnuaire,
+    requeteVisite : requeteVisite
   };
 
 })
