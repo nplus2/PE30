@@ -1,12 +1,12 @@
 <ion-view view-title="Évènements">
-  <ion-content>
-
+  <ion-content class ="padding">
+      <button class="button button-bordeaux button-block" ng-click="actualiser()">Actualiser</button>
   		<div class="card">
    			<div class="item item-fond item-divider">
     		  Horaires des prochaines visites
     		</div>
     		<ion-list>
-    		  <div class="item item-{{visite.couleur}}" ng-repeat="visite in listeVisites"> {{visite.heure_depart.substring(0,2)}}h{{visite.heure_depart.substring(2,4)}} : {{visite.nom}} </div>
+    		  <div class="item item-{{visite.couleur}}" ng-repeat="visite in listeVisites"> {{visite.heure.substring(0,2)}}h{{visite.heure.substring(2,4)}} : {{visite.nom}} </div>
     		</ion-list>
   		</div>
 

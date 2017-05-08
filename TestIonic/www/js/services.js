@@ -1,7 +1,24 @@
 angular.module('starter.services', [])
 
+.factory('identification',function(){
+  var identifiant = '',
+  role = 'visiteur';
+  return {
+    identifiant: identifiant,
+    role: role
+  };
+})
+
 .factory('requeteHttp',function($http){
 
+   var etatVisite = function(callback){
+     $http.get('https://pe30.eclair.ec-lyon.fr/etat_visite.php')
+     .then(callback);
+   };
+   var requeteVisite = function(callback){
+    $http.get('https://pe30.eclair.ec-lyon.fr/evenement.php')
+     .then(callback);
+  };
   var requeteFdA = function(callback, idGroupe){
     $http.get('https://pe30.eclair.ec-lyon.fr/actualite.php?groupe=' + idGroupe)
      .then(callback);
@@ -22,35 +39,41 @@ angular.module('starter.services', [])
      .then(callback);
   };
 
-  var requetePublication = function(callback,data,erreur){
-     requete = {
-      method : "POST",
-      url : "https://pe30.eclair.ec-lyon.fr/publication.php",
-      data : data,
-      headers: {
-        "Content-Type": "application/json"
-      }
-     };
- 
-    $http(requete).then(callback,erreur);
+  var requetePublication = function(callback,data,heure,couleur,destinataire,corp){
+    $http.get('https://pe30.eclair.ec-lyon.fr/publication.php?heure='+heure+'&couleur='+couleur+'&guide='+destinataire[0]+'&chercheur='+destinataire[1]+'&organisateur='+destinataire[2]+'&corps='+corp)
+     .then(callback);
   };
 
   var requeteLogin = function(callback,idUtilisateur,mdpUtilisateur){
-    $http.get('').then(callback,erreur);
+    $http.get('https://pe30.eclair.ec-lyon.fr/connexion.php?identifiant='+idUtilisateur+'&mdp='+mdpUtilisateur)
+     .then(callback);
   };
 
   var requeteAnnuaire = function(callback){
-    $http.get('').then(callback);
+    $http.get('https://pe30.eclair.ec-lyon.fr/annuaire.php')
+     .then(callback);
   };
 
+  var lastCheckpoint =   function(callback,idGuide){
+    $http.get('https://pe30.eclair.ec-lyon.fr/last_checkpoint.php?guide='+idGuide)
+     .then(callback);
+  };
+  var nomStand = function(callback,idStand){
+    $http.get('https://pe30.eclair.ec-lyon.fr/nom_stand.php?id='+idStand)
+     .then(callback);
+  }
   return {
+    etatVisite : etatVisite,
     requeteFdA : requeteFdA,
     requeteCheckpoint : requeteCheckpoint,
     requeteLdG : requeteLdG,
     requetePosition : requetePosition,
     requetePublication : requetePublication,
     requeteLogin : requeteLogin,
-    requeteAnnuaire : requeteAnnuaire
+    requeteAnnuaire : requeteAnnuaire,
+    requeteVisite : requeteVisite,
+    lastCheckpoint : lastCheckpoint,
+    nomStand : nomStand
   };
 
 })
@@ -110,7 +133,7 @@ angular.module('starter.services', [])
 // })
 
 .factory('Annuaire',function(){
-  var annuaire = [{
+/*  var annuaire = [{
     id: 0,
     prenom: 'Bobby',
     nom:    'Bernard',
@@ -172,10 +195,10 @@ angular.module('starter.services', [])
     role:'VP mécanique',
     numero: '06 22 73 26 82'
   }
-  ];
+  ];*/
 
   return {
-    all: function() {
+    all: function(annuaire) {
       return annuaire;
     },
     //fonction qui recherche dans annuaire les elements correspondants au mot cle
@@ -183,7 +206,7 @@ angular.module('starter.services', [])
     //      - le nom
     //      - le prenom
     //      - le numero de telephone
-    recherche: function(motCle){
+    recherche: function(annuaire,motCle){
       resultat = [];                    // Résultat qui sera renvoyé
       id = [];                          // Tableau contenant les id des personnes selectionnées (pour éviter les doublons)
       listeClef = motCle.split(" ");    // Liste des mots recherchés

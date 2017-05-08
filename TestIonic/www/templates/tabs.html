@@ -3,10 +3,9 @@ Create tabs with an icon and label, using the tabs-positive style.
 Each tab's child <ion-nav-view> directive will have its own
 navigation history that also transitions its views in and out.
 -->
-<ion-tabs class="tabs-icon-top tabs-color-bleu ">
-
-
 <div ng-if = "statut == 'visiteur'">
+<ion-tabs class="tabs-icon-top tabs-color-bordeaux ">
+
 
   <ion-tab title="Carte" icon-off="ion-ios-home-outline" icon-on="ion-ios-home" href="#/tab/carte">
       <ion-nav-view name="tab-carte"></ion-nav-view>
@@ -24,10 +23,13 @@ navigation history that also transitions its views in and out.
     <ion-nav-view name="tab-informations"></ion-nav-view>
   </ion-tab>
 
+</ion-tabs>
 </div>
 
 
 <div ng-if = "statut == 'organisateur'">
+
+<ion-tabs class="tabs-icon-top tabs-color-bleu ">
 
   <ion-tab title="Fil d'actualité" icon-off="ion-ios-paper-outline" icon-on="ion-ios-paper" href="#/tab/filDActualite">
       <ion-nav-view name="tab-filDActualite"></ion-nav-view>
@@ -45,10 +47,14 @@ navigation history that also transitions its views in and out.
       <ion-nav-view name="tab-annuaire"></ion-nav-view>
   </ion-tab>
 
+</ion-tabs>
+
 </div>
 
 
 <div ng-if = "statut == 'guide'">
+
+<ion-tabs class="tabs-icon-top tabs-color-bleu ">
 
   <ion-tab title="Fil d'actualité" icon-off="ion-ios-paper-outline" icon-on="ion-ios-paper" href="#/tab/filDActualite">
       <ion-nav-view name="tab-filDActualite"></ion-nav-view>
@@ -66,10 +72,14 @@ navigation history that also transitions its views in and out.
       <ion-nav-view name="tab-annuaire"></ion-nav-view>
   </ion-tab>
 
+</ion-tabs>
+
 </div>
 
 
 <div ng-if = "statut == 'chercheur'">
+
+<ion-tabs class="tabs-icon-top tabs-color-bleu ">
 
   <ion-tab title="Fil d'actualité" icon-off="ion-ios-paper-outline" icon-on="ion-ios-paper" href="#/tab/filDActualite">
       <ion-nav-view name="tab-filDActualite"></ion-nav-view>
@@ -87,7 +97,7 @@ navigation history that also transitions its views in and out.
       <ion-nav-view name="tab-annuaire"></ion-nav-view>
   </ion-tab>
 
+</ion-tabs>
+
 </div>
 
-
-</ion-tabs>

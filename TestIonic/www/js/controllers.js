@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
- .controller('ParamCtrl',function($scope, $ionicModal) {
-
+ .controller('ParamCtrl',function($scope,$rootScope, $ionicModal,requeteHttp,identification,$ionicPopup) {
+  $scope.role = identification.role;
   $ionicModal.fromTemplateUrl('templates/parametres.html', {
      scope: $scope,
      animation: 'slide-in-right'
@@ -9,44 +9,81 @@ angular.module('starter.controllers', [])
       $scope.loginModal = modal;
   });
 
-  $scope.coche = {chercheur : false, guide : false, organisateur : false, visiteur : true};
-  $scope.statut='visiteur';
-  $scope.changeStatut = function(couleur){
-    $scope.coche.visiteur = (couleur == 'visiteur')
-    $scope.coche.guide = (couleur == 'guide')
-    $scope.coche.chercheur = (couleur == 'chercheur')
-    $scope.coche.organisateur = (couleur == 'organisateur')
-    $scope.statut = couleur;
+  $scope.loginData = {
+    username : '',
+    password : ''
   };
 
+  var callback = function(response){
+    identification.role = response.data.role;
+    identification.identifiant = response.data.id;
+    if (identification.role != "0") {
+      $scope.showConnexionOk();
+      $rootScope.$emit("ChangeStatutMethod",{});
+      $scope.role = identification.role;
+    }
+    else {$scope.showErreurConnexion();}
+  };
 
- })
+  $scope.login = function(){
+    requeteHttp.requeteLogin(callback,$scope.loginData.username,$scope.loginData.password);
+  };
 
+  $scope.showErreurConnexion = function() {
+    var alertPopup = $ionicPopup.alert({
+      title: 'Echec de la connexion',
+      template: 'Identifiant ou mot de passe incorrect.'
+    });
+  };
 
+  $scope.showConnexionOk = function() {
+    var alertPopup = $ionicPopup.alert({
+      title: 'Connexion réussie',
+      template: 'Vous êtes connecté(e).'
+    });
+  };
 
-
-
-.controller('TabsCtrl', function($scope) {
-  $scope.statut='visiteur'
+  $scope.showDeconnexion = function() {
+    var alertPopup = $ionicPopup.alert({
+      title: 'Deconnexion réussie',
+      template: 'Vous êtes déconnecté(e).'
+    });
+  };
 })
 
 
 
 
-.controller('AnnuaireCtrl',function($scope,$http,Annuaire){
 
-  //monnaies pour la requete "USD","EUR","CNY","HUF","CAD"
-  //https://www.omdbapi.com/ pour une autre base de donnée
-  $http.get('//missecl.eclair.ec-lyon.fr/PE/Annuaire')
+.controller('TabsCtrl', function($scope,$rootScope,identification) {
+  $scope.statut= identification.role;
+  $rootScope.$on("ChangeStatutMethod", function(){
+    $scope.actualiser();
+  })
+  $scope.actualiser = function() {$scope.statut = identification.role;}
+})
+
+
+
+
+.controller('AnnuaireCtrl',function($scope,requeteHttp,Annuaire){   // RETRAVAILLER
+
+  var callback = function(response){
+    $scope.listeDeContacts = response.data;    // nouvelle variable annuaire
+  };
+
+  requeteHttp.requeteAnnuaire(callback);
+
+/*  $http.get('//missecl.eclair.ec-lyon.fr/PE/Annuaire')
       .success(function(response){
         //$scope.texte = response.query.results.rate[0].Rate;
         //$scope.rate = response.query.results.rate[0]
        $scope.message = response[0]
         
-      });
+      });*/
 
-  $scope.actualiser = function(motCle){
-    $scope.listeDeContacts = Annuaire.recherche(motCle);
+  $scope.actualiser = function(annuaire, motCle){
+    $scope.listeDeContacts = Annuaire.recherche(motCle);  //annuaire à rajouter
 
     if($scope.listeDeContacts.length == 0){
       $scope.listeErreur = ["Aucun Resultat trouvé"];
@@ -56,7 +93,7 @@ angular.module('starter.controllers', [])
 
   }
 
-  $scope.listeDeContacts = Annuaire.all();
+  //$scope.listeDeContacts = $scope.annuaire;
 })
 
 
@@ -97,16 +134,21 @@ $scope.scanBarcode = function() {
 
 
 
+.controller('EvenementsCtrl', function($scope,requeteHttp,identification) {
+  $scope.listeMessages = [];
+  $scope.listeVisites = [];
 
-
-.controller('EvenementsCtrl', function($scope) {
-
-  data = '[{"id_visite" : "1", "heure_depart" : "1235", "nom" : "Labo", "couleur" : "vert"},{"id_visite" : "1", "heure_depart" : "1245", "nom" : "Learning Lab", "couleur" : "bleu"},{"id_visite" : "1", "heure_depart" : "1315", "nom" : "Vie de Campus", "couleur" : "rose"}]';
-  $scope.listeVisites = JSON.parse(data);
-  datae={"role": "guide"};
-  datar='[{"corps" : "Bienvenue à la journée portes ouvertes de l\'École Centrale de Lyon.", "heure" : "1403", "couleur" : "vert"},{"corps" : "Bienvenu à la journée portes ouvertes de l\'École Centrale de Lyon.", "heure" : "1556", "couleur" : "rose"}]'
-
-  $scope.listeMessages = JSON.parse(datar);
+  callbackMessages = function(response){
+    $scope.listeMessages = response.data;
+  }
+  callbackVisites = function(response){
+    $scope.listeVisites = response.data;;
+  }
+  $scope.actualiser = function(){
+    requeteHttp.requeteVisite(callbackVisites);
+    requeteHttp.requeteFdA(callbackMessages,identification.role);
+  }
+  $scope.actualiser();
 })
 
 
@@ -144,14 +186,45 @@ $scope.scanBarcode = function() {
 })
 
 
-.controller('PublicationCtrl', function($scope,$ionicPopup) {
+.controller('PublicationCtrl', function($scope,$ionicPopup,requeteHttp) {
 
-  // .controller('PublicationCtrl', function($scope,requeteHttp) {
-//   var choixDestinataire = function (){
-//     var listeDestinataire = requeteHttp.requeteLdG();
-//     return listeDestinataire;
-//   };
+  var envoisMessage = function (){
+    var CorpsMessage = 'test';  //ng-model
+    var Heure = 'Null';  // horloge interne à trouver
+    var Couleur = 'Null';
+    var Guide = 0;
+    var Organisateur = 0;
+    var Chercheur = 0;
+
+    //alert($scope.coche.violet)
+
+    if ($scope.coche.bleu){
+      couleur = 'bleu';     // a verifier avec le css
+    }
+    if ($scope.coche.vert){
+      couleur = 'vert';
+    }
+    if($scope.coche.violet){
+      couleur = 'violet';
+      alert('test')
+    }
+    if ($scope.coche.Organisateurs){
+      organisateur = 1;
+    }
+    if ($scope.coche.Guides){
+      guide = 1;
+    }
+    if ($scope.coche.Chercheurs){
+      chercheur = 1;
+    }
+
+
+    var data = [{'heure': Heure, 'couleur': Couleur, 'guide': Guide, 'chercheur': Chercheur, 'organisateur': Organisateur, 'corps': CorpsMessage}];
+    alert(JSON.stringify(data));
+  };
+
   $scope.couleur='bleu';
+
   $scope.changeCouleur = function(couleur){
     $scope.coche.bleu = (couleur == 'bleu');
     $scope.coche.vert = (couleur == 'vert');
@@ -172,12 +245,12 @@ $scope.scanBarcode = function() {
                 orange : false};
 
   $scope.destinataires = [];
+
   $scope.texteDestinataires = 'Aucun destinataire';
   $scope.message = {corps :''};
   
   $scope.showPopupDestinataires = function() {
 
-   // popup perso
     var myPopup = $ionicPopup.show({
     template: '<ul class="list"><li ><ion-checkbox ng-model="coche.Organisateurs" ng-checked="coche.Organisateurs">Organisateurs</ion-checkbox></li><li ><ion-checkbox ng-model="coche.Guides" ng-checked="coche.Guides">Guides</ion-checkbox></li><li ><ion-checkbox ng-model="coche.Chercheurs" ng-checked="coche.Chercheurs">Chercheurs</ion-checkbox></li><li ><ion-checkbox ng-model="coche.Visiteurs" ng-checked="coche.Visiteurs">Visiteurs</ion-checkbox></li></ul>',
     title: 'Affichage Plan',
@@ -262,6 +335,7 @@ $scope.scanBarcode = function() {
   }
  };
 
+
  var contient = function(x, l) {
   for (i = 0 ; i < l.length ; i++) {
     if (l[i] == x) {return true;}
@@ -284,49 +358,38 @@ $scope.scanBarcode = function() {
 
 
 
-.controller('FilDActualiteCtrl', function($scope,requeteHttp) {
+.controller('FilDActualiteCtrl', function($scope,requeteHttp,identification) {
 
-  datae={"role": "guide"};
-  datar='[{"corps" : "Bienvenue à la journée portes ouvertes de l\'École Centrale de Lyon.", "heure" : "1403", "couleur" : "vert"},{"corps" : "Bienvenu à la journée portes ouvertes de l\'École Centrale de Lyon.", "heure" : "1556", "couleur" : "rose"}]'
-
-  $scope.listeMessages = JSON.parse(datar);
   
-  /*$scope.listeMessages = [{id : 0, tete:"titre1", corps: "texte1", heure:123, couleur:'vert'},
-                          {id : 1, tete:"titre2", corps: "texte2", heure:123, couleur:'bleu'},
-                          {id : 2, tete:"titre3", corps: "texte3", heure:123, couleur:'violet'},
-                          {id : 3, tete:"titre4", corps: "texte4", heure:123, couleur:'rose'}];*/
 
-//  var callback2 = function(response){
-//   alert(JSON.stringify(response.data));
-//  };
-//   var callback3 = function(response){
-//   alert(JSON.stringify(response));
-//  };
-//  myJSON = JSON.stringify({"idGroupe":[1,2,3],"corp":"test1test2","couleur":"rouge"});
-//  requeteHttp.requetePublication(callback2,{"data":"abcd"},callback3);
-
-
-
-//  var callback = function(response){
-//   $scope.listeMessages = response.data;
-//  };
+ var callback = function(response){
+  $scope.listeMessages = response.data;
+ };
+  $scope.listeMessages = [];
+  $scope.actualiser = function(){
+    requeteHttp.requeteFdA(callback,identification.role);
+  }
+  $scope.actualiser();
  
-// //$scope.actualiser = function(){requeteHttp.requeteFdA(callback);};
-//  requeteHttp.requeteFdA(callback,1);
 })
 
 
 
 
 
-.controller('EtatVisitesCtrl', function($scope) {
+.controller('EtatVisitesCtrl', function($scope,requeteHttp) {
   
-  data = '[{"id_visite" : "12", "etat" : "2", "nom" : "Labo"},{"id_visite" : "13", "etat" : "1", "nom" : "Barbecue"},{"id_visite" : "22", "etat" : "3", "nom" : "Learning Lab"}]';
-
-  //!\\ data est un fichier JSON 
+  $scope.listeVisite = [];
   
-  $scope.listeVisites = JSON.parse(data);
+  var callback = function(response){
 
+    $scope.listeVisite = response.data;
+ };
+  
+  $scope.actualiser = function(){
+    requeteHttp.etatVisite(callback);
+  };
+  //$scope.actualiser();
   $scope.testStandPasse= function(numeroStand,etat){
          if(numeroStand<=etat) {return "active";}
          else {return "non";} 
@@ -339,10 +402,59 @@ $scope.scanBarcode = function() {
 
 
 
-.controller('CheckpointsCtrl', function($scope, $ionicPopup) {
+.controller('CheckpointsCtrl', function($scope, $ionicPopup,identification,requeteHttp) {
   data_envoyee = {id_guide : 12};
+
+
+
+  callbackStand1 = function(response){
+      $scope.visite.nom_stand1 = response.data.nom;
+  }
+  callbackStand2 = function(response){
+      $scope.visite.nom_stand2 = response.data.nom;
+  }
+  callbackStand3 = function(response){
+      $scope.visite.nom_stand3 = response.data.nom;
+  }
+  callbackStand4 = function(response){
+      $scope.visite.nom_stand4 = response.data.nom;
+  }
+
+
+  callback = function(response){
+    if(response.data != []){
+      $scope.visite = response.data[0];
+      $scope.visite.nom_stand1 = "";
+      $scope.visite.nom_stand2 = "";
+      $scope.visite.nom_stand3 = "";
+      $scope.visite.nom_stand4 = "";
+      
+      requeteHttp.nomStand(callbackStand1,$scope.visite.id_stand1);
+      requeteHttp.nomStand(callbackStand2,$scope.visite.id_stand2);
+      requeteHttp.nomStand(callbackStand3,$scope.visite.id_stand3);
+      requeteHttp.nomStand(callbackStand4,$scope.visite.id_stand4);
+    }
+  };
+  
+
+
   data = '{"id" : "125", "nom_stand1" : "Labo mécaflu", "nom_stand2" : "FabLab <3", "nom_stand3" : "Labo H10", "nom_stand4" : "Chambre Acoustique", "etat" : "2"}';
   $scope.visite = JSON.parse(data);
+
+  $scope.visite = {
+    id : 0,
+    id_stand1 : 0,
+    nom_stand1 : "",
+    id_stand2 : 0,
+    nom_stand2 : "",
+    id_stand3 : 0,
+    nom_stand3 : "",
+    id_stand4 : 0,
+    nom_stand4 : "",
+    etat : 0
+  };
+  requeteHttp.lastCheckpoint(callback,2);
+
   $scope.visite.etat = parseInt($scope.visite.etat);
   $scope.coche = {depart : ($scope.visite.etat == 0), stand1 : ($scope.visite.etat == 1), stand2 : ($scope.visite.etat == 2), stand3 : ($scope.visite.etat == 3), stand4 : ($scope.visite.etat == 4), arrivee : ($scope.visite.etat == 5)};
   $scope.changeEtat = function(etat){
@@ -375,6 +487,8 @@ $scope.scanBarcode = function() {
       ]  
      });
    }
-  $scope.envoiEtat = function (etat,id){}
+  $scope.envoiEtat = function (etat,id){
+    return 0;
+  }
 });
 
