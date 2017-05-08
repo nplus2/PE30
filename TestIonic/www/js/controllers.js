@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
- .controller('ParamCtrl',function($scope, $ionicModal) {
+ .controller('ParamCtrl',function($scope, $ionicModal,requeteHttp,identification) {
 
   $ionicModal.fromTemplateUrl('templates/parametres.html', {
      scope: $scope,
@@ -9,13 +9,31 @@ angular.module('starter.controllers', [])
       $scope.loginModal = modal;
   });
 
+  $scope.loginData = {
+    username : "",
+    password : "" 
+  };
+
+  var callback = function(response){
+    identification.role = response.data.rôle;
+    identification.identifiant = response.data.id;
+    alert(JSON.stringify(response.data.rôle));
+  };
+  
+  
+  $scope.login = function(){
+    alert(JSON.stringify($scope.loginData));
+    requeteHttp.requeteLogin(callback, $scope.loginData.username, $scope.loginData.password);
+  };
+
+
   $scope.coche = {chercheur : false, guide : false, organisateur : false, visiteur : true};
   $scope.statut='visiteur';
   $scope.changeStatut = function(couleur){
-    $scope.coche.visiteur = (couleur == 'visiteur')
-    $scope.coche.guide = (couleur == 'guide')
-    $scope.coche.chercheur = (couleur == 'chercheur')
-    $scope.coche.organisateur = (couleur == 'organisateur')
+    $scope.coche.visiteur = (couleur == 'visiteur');
+    $scope.coche.guide = (couleur == 'guide');
+    $scope.coche.chercheur = (couleur == 'chercheur');
+    $scope.coche.organisateur = (couleur == 'organisateur');
     $scope.statut = couleur;
   };
 
@@ -27,7 +45,7 @@ angular.module('starter.controllers', [])
 
 
 .controller('TabsCtrl', function($scope) {
-  $scope.statut='visiteur'
+  $scope.statut='visiteur';
 })
 
 
