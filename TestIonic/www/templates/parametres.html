@@ -1,5 +1,5 @@
 <ion-modal-view>
-
+<div ng-if="role == 'visiteur'">
         <ion-header-bar class="bar bar-header bar-bordeaux">
           <div side="left">
             <img ng-src="img/Logo-ECL-carre.png" width="32" height="32">
@@ -28,7 +28,7 @@
         </label>
         <label class="item">
 
-          <button class="button button-block button-bordeaux" ng-click="loginModal.hide()">Valider</button>
+          <button class="button button-block button-bordeaux" ng-click="loginModal.hide()">Connexion</button>
 
         </label>
 
@@ -51,5 +51,49 @@
       </li>
     </ul>
   </ion-content>
+</div>
 
+<div ng-if="role != 'visiteur'">
+        <ion-header-bar class="bar bar-header bar-bleu">
+          <div side="left">
+            <img ng-src="img/Logo-ECL-carre.png" width="32" height="32">
+          </div>
+          <h1 class="title">Deconnexion</h1>
+          <button class="button button-bleu button-clear button-primary" ng-click="loginModal.hide()">Fermer</button>
+        </ion-header-bar>
+  <ion-content>
+
+      <div class="list">
+
+        <div class = "item item-text-wrap">
+        <h2>Vous êtes connecté(e).</h2>
+        <p> Votre statut est {{role}}.</p>
+        </div>
+
+        <label class="item">
+
+          <button class="button button-block button-bleu" ng-click="loginModal.hide()">Deconnexion</button>
+
+        </label>
+
+      </div>
+      <div>
+
+      </div>
+      <ul class="list">
+      <li>
+        <ion-checkbox ng-model="coche.visiteur" ng-checked="coche.visiteur" ng-change="changeStatut('visiteur')">Visiteur</ion-checkbox>
+      </li>
+      <li>
+        <ion-checkbox ng-model="coche.organisateur" ng-checked="coche.organisateur" ng-change="changeStatut('organisateur')">Organisateur</ion-checkbox>
+      </li>
+      <li>
+        <ion-checkbox ng-model="coche.guide" ng-checked="coche.guide" ng-change="changeStatut('guide')">Guide</ion-checkbox>
+      </li>
+      <li>
+        <ion-checkbox ng-model="coche.chercheur" ng-checked="coche.chercheur" ng-change="changeStatut('chercheur')">Chercheur</ion-checkbox>
+      </li>
+    </ul>
+  </ion-content>
+</div>
 </ion-modal-view>

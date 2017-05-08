@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
  .controller('ParamCtrl',function($scope, $ionicModal) {
-
+  $scope.role = 'guide'
   $ionicModal.fromTemplateUrl('templates/parametres.html', {
      scope: $scope,
      animation: 'slide-in-right'
