@@ -49,8 +49,7 @@ angular.module('starter.controllers', [])
       template: 'Vous êtes déconnecté(e).'
     });
   };
-
- })
+})
 
 
 
