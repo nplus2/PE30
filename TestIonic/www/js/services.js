@@ -54,6 +54,14 @@ angular.module('starter.services', [])
      .then(callback);
   };
 
+  var lastCheckpoint =   function(callback,idGuide){
+    $http.get('https://pe30.eclair.ec-lyon.fr/last_checkpoint.php?guide='+idGuide)
+     .then(callback);
+  };
+  var nomStand = function(callback,idStand){
+    $http.get('https://pe30.eclair.ec-lyon.fr/nom_stand.php?id='+idStand)
+     .then(callback);
+  }
   return {
     etatVisite : etatVisite,
     requeteFdA : requeteFdA,
@@ -63,7 +71,9 @@ angular.module('starter.services', [])
     requetePublication : requetePublication,
     requeteLogin : requeteLogin,
     requeteAnnuaire : requeteAnnuaire,
-    requeteVisite : requeteVisite
+    requeteVisite : requeteVisite,
+    lastCheckpoint : lastCheckpoint,
+    nomStand : nomStand
   };
 
 })
