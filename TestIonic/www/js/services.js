@@ -10,8 +10,25 @@ angular.module('starter.services', [])
   
 })
 
+.factory('identification',function(){
+  var identifiant = '',
+  role = 'visiteur';
+  return {
+    identifiant: identifiant,
+    role: role
+  };
+})
+
 .factory('requeteHttp',function($http){
 
+   var etatVisite = function(callback){
+     $http.get('https://pe30.eclair.ec-lyon.fr/etat_visite.php')
+     .then(callback);
+   };
+   var requeteVisite = function(callback){
+    $http.get('https://pe30.eclair.ec-lyon.fr/evenement.php')
+     .then(callback);
+  };
   var requeteFdA = function(callback, idGroupe){
     $http.get('https://pe30.eclair.ec-lyon.fr/actualite.php?groupe=' + idGroupe)
      .then(callback);
@@ -47,14 +64,26 @@ angular.module('starter.services', [])
      .then(callback);
   };
 
+  var lastCheckpoint =   function(callback,idGuide){
+    $http.get('https://pe30.eclair.ec-lyon.fr/last_checkpoint.php?guide='+idGuide)
+     .then(callback);
+  };
+  var nomStand = function(callback,idStand){
+    $http.get('https://pe30.eclair.ec-lyon.fr/nom_stand.php?id='+idStand)
+     .then(callback);
+  }
   return {
+    etatVisite : etatVisite,
     requeteFdA : requeteFdA,
     requeteCheckpoint : requeteCheckpoint,
     requeteLdG : requeteLdG,
     requetePosition : requetePosition,
     requetePublication : requetePublication,
     requeteLogin : requeteLogin,
-    requeteAnnuaire : requeteAnnuaire
+    requeteAnnuaire : requeteAnnuaire,
+    requeteVisite : requeteVisite,
+    lastCheckpoint : lastCheckpoint,
+    nomStand : nomStand
   };
 
 })

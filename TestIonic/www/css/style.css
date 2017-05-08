@@ -94,8 +94,8 @@ Violet    #6C2457    #884C75    #B78CA9
       border-color: transparent;
       background: none;
       box-shadow: none;
-      color: #397FC5;
-      opacity: 0.75; }
+      color: #fff;
+      opacity: 1; }
     .button.button-bleu.button-icon {
       border-color: transparent;
       background: none; }
@@ -128,8 +128,8 @@ Violet    #6C2457    #884C75    #B78CA9
       border-color: transparent;
       background: none;
       box-shadow: none;
-      color: #96172E;
-      opacity: 0.75; }
+      color: #fff;
+      opacity: 1; }
     .button.button-bordeaux.button-icon {
       border-color: transparent;
       background: none; }
