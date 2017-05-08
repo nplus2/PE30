@@ -1,8 +1,9 @@
 <ion-view view-title="Fil d'actualité">
 	<ion-content class="padding">
+      <button class="button button-block button-positive item-bleu" ng-click="actualiser(idGroupe)">Actualiser</button>
   		<div class="card"  ng-repeat="message in listeMessages">
    			<div class="item item-fond-{{message.couleur}} item-divider">
-    		Message publier à : {{message.heure}}
+    		Message publié à : {{message.heure}}
     		</div>
     		<div class="item item-text-wrap">
     		{{message.corps}}
