@@ -126,7 +126,6 @@ $scope.scanBarcode = function() {
 .controller('EvenementsCtrl', function($scope,requeteHttp,identification) {
   $scope.listeMessages = [];
   $scope.listeVisites = [];
-  $scope.listeVisites = JSON.parse(data);
 
   callbackMessages = function(response){
     $scope.listeMessages = response.data;
