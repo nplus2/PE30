@@ -29,6 +29,14 @@ angular.module('starter.controllers', [])
     requeteHttp.requeteLogin(callback,$scope.loginData.username,$scope.loginData.password);
   };
 
+  $scope.logout = function(){
+    identification.role = 'visiteur';
+    identification.identifiant = 0;
+    $scope.showDeconnexion();
+    $rootScope.$emit("ChangeStatutMethod",{});
+    $scope.role = identification.role;
+  }
+
   $scope.showErreurConnexion = function() {
     var alertPopup = $ionicPopup.alert({
       title: 'Echec de la connexion',
