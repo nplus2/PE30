@@ -1,5 +1,14 @@
 angular.module('starter.services', [])
 
+.factory('identification',function(){
+  var identifiant = '',
+  role = '';
+  return {
+    identifiant: identifiant,
+    role: role
+  };
+})
+
 .factory('requeteHttp',function($http){
 
   var requeteFdA = function(callback, idGroupe){

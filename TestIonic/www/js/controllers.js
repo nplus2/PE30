@@ -1,13 +1,27 @@
 angular.module('starter.controllers', [])
 
- .controller('ParamCtrl',function($scope, $ionicModal) {
-  $scope.role = 'guide'
+ .controller('ParamCtrl',function($scope, $ionicModal,requeteHttp,identification) {
+  $scope.role = 'visiteur'
   $ionicModal.fromTemplateUrl('templates/parametres.html', {
      scope: $scope,
      animation: 'slide-in-right'
   }).then(function(modal) {
       $scope.loginModal = modal;
   });
+
+  $scope.loginData = {
+    username : '',
+    password : ''
+  };
+
+  var callback = function(response){
+    identification.role = response.data.role;
+    identification.identifiant = response.data.id;
+  };
+
+  $scope.login = function(){
+    requeteHttp.requeteLogin(callback,$scope.loginData.username,$scope.loginData.password);
+  };
 
   $scope.coche = {chercheur : false, guide : false, organisateur : false, visiteur : true};
   $scope.statut='visiteur';
