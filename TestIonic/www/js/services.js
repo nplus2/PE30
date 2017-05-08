@@ -123,69 +123,7 @@ angular.module('starter.services', [])
 // })
 
 .factory('Annuaire',function(){
-/*  var annuaire = [{
-    id: 0,
-    prenom: 'Bobby',
-    nom:    'Bernard',
-    role: 'guide',
-    numero: '02 43 54 12 93'
-  },{
-    id:1,
-    prenom: 'Teddy',
-    nom:     'Baco',
-    role: 'organisateur',
-    numero: '07 23 54 94 36'
-  },{
-    id:2,
-    prenom: 'Renaud',
-    nom:     'Jester',
-    role: 'VP crumble',
-    numero: '01 32 98 56 83'
-  },{
-    id:3,
-    prenom: 'Christine',
-    nom: 'Louboutin',
-    role: 'guide',
-    numero: '06 73 54 91 23'
-  },{
-    id:4,
-    prenom: 'Jean-Pierre',
-    nom: 'Bridou',
-    role: 'sponsor saucisson',
-    numero: '06 06 06 06 07'
-  },{
-    id:5,
-    prenom: 'Pascal',
-    nom: 'Bernard',
-    role: 'chercheur',
-    numero: '06 99 21 96 38'
-  },{
-    id:6,
-    prenom: 'Sylvain',
-    nom: 'Dupond',
-    role:'VP chapeaux',
-    numero: '06 79 22 11 88'
-  },{
-    id:7,
-    prenom: 'Jean',
-    nom:'Dupont',
-    role:'VP cannes',
-    numero: '06 86 52 12 48'
-  },{
-    id:8,
-    prenom: 'Simon',
-    nom:'Gomez',
-    role:'organisateur',
-    numero: '01 25 68 55 42'
-  },
-  {
-    id:9,
-    prenom: 'Paul',
-    nom:'Cerisier',
-    role:'VP mécanique',
-    numero: '06 22 73 26 82'
-  }
-  ];*/
+
 
   return {
     all: function(annuaire) {
