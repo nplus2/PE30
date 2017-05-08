@@ -71,7 +71,11 @@ angular.module('starter.services', [])
   var nomStand = function(callback,idStand){
     $http.get('https://pe30.eclair.ec-lyon.fr/nom_stand.php?id='+idStand)
      .then(callback);
-  }
+  };
+  var envoiCheckpoint = function(etat,id,heure){
+    $http.get('https://pe30.eclair.ec-lyon.fr/checkpoint.php?id=1&heure='+heure+'&etat='+etat+'&id='+id)
+     .then(function(response){return 0;});
+  };
   return {
     etatVisite : etatVisite,
     requeteFdA : requeteFdA,
@@ -83,7 +87,8 @@ angular.module('starter.services', [])
     requeteAnnuaire : requeteAnnuaire,
     requeteVisite : requeteVisite,
     lastCheckpoint : lastCheckpoint,
-    nomStand : nomStand
+    nomStand : nomStand,
+    envoiCheckpoint : envoiCheckpoint
   };
 
 })
