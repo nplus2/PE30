@@ -21,6 +21,7 @@ angular.module('starter.controllers', [])
       $scope.showConnexionOk();
       $rootScope.$emit("ChangeStatutMethod",{});
       $scope.role = identification.role;
+      $scope.loginModal.hide();
     }
     else {$scope.showErreurConnexion();}
   };
