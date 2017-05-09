@@ -234,7 +234,7 @@ $scope.scanBarcode = function() {
     $scope.coche.orange = (couleur == 'orange');
     $scope.couleur = couleur;
   };
-
+ $scope.couleur = 'bleu';
   $scope.coche={Organisateurs : false,
                 Guides : false,
                 Chercheurs : false,
