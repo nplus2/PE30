@@ -112,18 +112,18 @@ Violet    #6C2457    #884C75    #B78CA9
         color: #fff; }
         
   .button.button-bordeaux {
-    border-color: transparent;
+    border-color: #96172E;
     background-color: #96172E;
-    opacity: 0.75;
+    opacity: 1;
     color: #fff; }
     .button.button-bordeaux:hover {
       color: #fff;
       text-decoration: none; }
     .button.button-bordeaux.active, .button.button-bordeaux.activated {
-      border-color: #96172E;
-      opacity: 1;
+      border-color: transparent;
+      opacity: 0.75;
       background-color: #96172E;
-      opacity: 1 }
+      opacity: 0.75}
     .button.button-bordeaux.button-clear {
       border-color: transparent;
       background: none;
