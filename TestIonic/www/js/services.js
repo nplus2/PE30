@@ -177,7 +177,6 @@ angular.module('starter.services', [])
         role = annuaire[i].role.toUpperCase();
         listeRole = role.split(" ");
         numero = annuaire[i].numero.replace(" ","").replace(" ","").replace(" ","").replace(" ","");
-
         for (var j = 0; j<listeClef.length; j++) {
           clef = listeClef[j].toUpperCase();
           if (nom.indexOf(clef)!= 0 && prenom.indexOf(clef)!= 0 && numero.indexOf(clef)!=0) {
@@ -186,8 +185,8 @@ angular.module('starter.services', [])
             else {ok = ok && listeRole[0].indexOf(clef)==0}
           }
         }
-        if (ok && id.indexOf(annuaire[i].id) == -1 ){
-           id.push(annuaire[i].id)
+        if (ok && id.indexOf(i) == -1 ){
+           id.push(i)
            resultat.push(annuaire[i])
         }
       }

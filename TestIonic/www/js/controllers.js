@@ -77,30 +77,23 @@ angular.module('starter.controllers', [])
 
 
 .controller('AnnuaireCtrl',function($scope,requeteHttp,Annuaire){   // RETRAVAILLER
-  var data = [];
+  $scope.data = [];
   $scope.listeDeContacts = [];
 
   var callback = function(response){
-    data = response.data;
-    $scope.listeDeContacts = data;    // nouvelle variable annuaire
+    $scope.data = (response.data);
+    $scope.listeDeContacts = $scope.data;    // nouvelle variable annuaire
   };
 
   requeteHttp.requeteAnnuaire(callback);
 
-/*  $http.get('//missecl.eclair.ec-lyon.fr/PE/Annuaire')
-      .success(function(response){
-        //$scope.texte = response.query.results.rate[0].Rate;
-        //$scope.rate = response.query.results.rate[0]
-       $scope.message = response[0]
-        
-      });*/
 
   $scope.actualiser = function(motCle){
-    $scope.listeDeContacts = Annuaire.recherche(data,motCle);  //annuaire à rajouter
+    $scope.listeDeContacts = Annuaire.recherche($scope.data,motCle);  //annuaire à rajouter
 
-    if (motCle.length == 0) {
-      $scope.listeDeContacts = data;
-    }
+    // if (motCle.length == 0) {
+    //   $scope.listeDeContacts = data;
+    // }
    
     if($scope.listeDeContacts.length == 0){
       $scope.listeErreur = ["Aucun Resultat trouvé"];
