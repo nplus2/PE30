@@ -77,9 +77,12 @@ angular.module('starter.controllers', [])
 
 
 .controller('AnnuaireCtrl',function($scope,requeteHttp,Annuaire){   // RETRAVAILLER
+  var data = [];
+  $scope.listeDeContacts = [];
 
   var callback = function(response){
-    $scope.listeDeContacts = response.data;    // nouvelle variable annuaire
+    data = response.data;
+    $scope.listeDeContacts = data;    // nouvelle variable annuaire
   };
 
   requeteHttp.requeteAnnuaire(callback);
@@ -92,18 +95,20 @@ angular.module('starter.controllers', [])
         
       });*/
 
-  $scope.actualiser = function(annuaire, motCle){
-    $scope.listeDeContacts = Annuaire.recherche(motCle);  //annuaire à rajouter
+  $scope.actualiser = function(motCle){
+    $scope.listeDeContacts = Annuaire.recherche(data,motCle);  //annuaire à rajouter
 
+    if (motCle.length == 0) {
+      $scope.listeDeContacts = data;
+    }
+   
     if($scope.listeDeContacts.length == 0){
       $scope.listeErreur = ["Aucun Resultat trouvé"];
     }else{
       $scope.listeErreur = [];
     }
 
-  }
-
-  //$scope.listeDeContacts = $scope.annuaire;
+  };
 })
 
 
