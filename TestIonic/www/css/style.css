@@ -80,16 +80,16 @@ Violet    #6C2457    #884C75    #B78CA9
   .button.button-bleu {
     border-color: transparent;
     background-color: #397FC5;
-    opacity: 0.75;
+    opacity: 1;
     color: #fff; }
     .button.button-bleu:hover {
       color: #fff;
       text-decoration: none; }
     .button.button-bleu.active, .button.button-bleu.activated {
       border-color: #397FC5;
-      opacity: 1;
+      opacity: 0.75;
       background-color: #397FC5;
-      opacity: 1 }
+      opacity: 0.75 }
     .button.button-bleu.button-clear {
       border-color: transparent;
       background: none;
