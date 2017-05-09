@@ -11,8 +11,8 @@ angular.module('starter.services', [])
 })
 
 .factory('identification',function(){
-  var identifiant = '4',
-  role = 'guide';
+  var identifiant = '',
+  role = 'visiteur';
   return {
     identifiant: identifiant,
     role: role
