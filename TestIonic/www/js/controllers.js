@@ -401,7 +401,7 @@ $scope.scanBarcode = function() {
   $scope.actualiser = function(){
     requeteHttp.etatVisite(callback);
   };
-  //$scope.actualiser();
+  $scope.actualiser();
   $scope.testStandPasse= function(numeroStand,etat){
          if(numeroStand<=etat) {return "active";}
          else {return "non";} 
