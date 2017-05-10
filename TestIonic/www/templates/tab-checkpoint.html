@@ -1,7 +1,7 @@
 <ion-view view-title="Checkpoints">
   <ion-content class="padding">
   
-  <div class="list">
+  <div ng-if = "visite != Null" class="list">
     
     <div class="item item-bleu item-divider">
     Visite {{visite.id}} :
@@ -29,7 +29,7 @@
     </ul>
   </div>
 
-  <div class ="card">
+  <div ng-if = "visite != Null" class ="card">
     <div class="item item-bleu item-divider">
       Les stands de votre visite sont :
     </div>
@@ -46,5 +46,16 @@
       Stand 4 : {{visite.nom_stand4}}
     </div>
   </div>
+
+
+  <div ng-if = "visite == Null" class="card">
+        <div class="item item-fond-bleu item-divider">
+        Vous avez un message de F. Debouck
+        </div>
+        <div class="item item-text-wrap">
+        Tu n'as plus de visite pour l'instant gros barbot!
+        Prends une pause café :)
+        </div>
+      </div>
   </ion-content>
 </ion-view>

@@ -76,6 +76,10 @@ angular.module('starter.services', [])
     $http.get('https://pe30.eclair.ec-lyon.fr/checkpoint.php?id=1&heure='+heure+'&etat='+etat+'&id='+id)
      .then(callback);
   };
+  var nextVisite = function(callback,id){
+    $http.get('https://pe30.eclair.ec-lyon.fr/next_visite.php?chercheur='+id)
+     .then(callback);
+  }
   return {
     etatVisite : etatVisite,
     requeteFdA : requeteFdA,
@@ -88,8 +92,10 @@ angular.module('starter.services', [])
     requeteVisite : requeteVisite,
     lastCheckpoint : lastCheckpoint,
     nomStand : nomStand,
-    envoiCheckpoint : envoiCheckpoint
+    envoiCheckpoint : envoiCheckpoint,
+    nextVisite : nextVisite
   };
+
 
 })
 
@@ -148,69 +154,7 @@ angular.module('starter.services', [])
 // })
 
 .factory('Annuaire',function(){
-/*  var annuaire = [{
-    id: 0,
-    prenom: 'Bobby',
-    nom:    'Bernard',
-    role: 'guide',
-    numero: '02 43 54 12 93'
-  },{
-    id:1,
-    prenom: 'Teddy',
-    nom:     'Baco',
-    role: 'organisateur',
-    numero: '07 23 54 94 36'
-  },{
-    id:2,
-    prenom: 'Renaud',
-    nom:     'Jester',
-    role: 'VP crumble',
-    numero: '01 32 98 56 83'
-  },{
-    id:3,
-    prenom: 'Christine',
-    nom: 'Louboutin',
-    role: 'guide',
-    numero: '06 73 54 91 23'
-  },{
-    id:4,
-    prenom: 'Jean-Pierre',
-    nom: 'Bridou',
-    role: 'sponsor saucisson',
-    numero: '06 06 06 06 07'
-  },{
-    id:5,
-    prenom: 'Pascal',
-    nom: 'Bernard',
-    role: 'chercheur',
-    numero: '06 99 21 96 38'
-  },{
-    id:6,
-    prenom: 'Sylvain',
-    nom: 'Dupond',
-    role:'VP chapeaux',
-    numero: '06 79 22 11 88'
-  },{
-    id:7,
-    prenom: 'Jean',
-    nom:'Dupont',
-    role:'VP cannes',
-    numero: '06 86 52 12 48'
-  },{
-    id:8,
-    prenom: 'Simon',
-    nom:'Gomez',
-    role:'organisateur',
-    numero: '01 25 68 55 42'
-  },
-  {
-    id:9,
-    prenom: 'Paul',
-    nom:'Cerisier',
-    role:'VP mécanique',
-    numero: '06 22 73 26 82'
-  }
-  ];*/
+
 
   return {
     all: function(annuaire) {
@@ -233,7 +177,6 @@ angular.module('starter.services', [])
         role = annuaire[i].role.toUpperCase();
         listeRole = role.split(" ");
         numero = annuaire[i].numero.replace(" ","").replace(" ","").replace(" ","").replace(" ","");
-
         for (var j = 0; j<listeClef.length; j++) {
           clef = listeClef[j].toUpperCase();
           if (nom.indexOf(clef)!= 0 && prenom.indexOf(clef)!= 0 && numero.indexOf(clef)!=0) {
@@ -242,8 +185,8 @@ angular.module('starter.services', [])
             else {ok = ok && listeRole[0].indexOf(clef)==0}
           }
         }
-        if (ok && id.indexOf(annuaire[i].id) == -1 ){
-           id.push(annuaire[i].id)
+        if (ok && id.indexOf(i) == -1 ){
+           id.push(i)
            resultat.push(annuaire[i])
         }
       }
