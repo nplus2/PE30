@@ -127,7 +127,7 @@ $scope.goToLink = function(url){
   }
 $scope.scanBarcode = function() {
     $cordovaBarcodeScanner.scan().then(function(imageData) {
-        if (imageData.text != 'index.html'){
+        if (imageData.text != 'index.html' && imageData.text != ''){
           $scope.goToLink(imageData.text);
         }
         $scope.goToLink(imageData.text);
