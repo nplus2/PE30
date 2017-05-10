@@ -91,7 +91,7 @@ angular.module('starter.controllers', [])
         
       });*/
 
-  $scope.actualiser = function(annuaire, motCle){
+  $scope.actualiser = function(motCle){
     $scope.listeDeContacts = Annuaire.recherche(motCle);  //annuaire à rajouter
 
     if($scope.listeDeContacts.length == 0){
@@ -101,6 +101,8 @@ angular.module('starter.controllers', [])
     }
 
   }
+
+
 
   //$scope.listeDeContacts = $scope.annuaire;
 })
@@ -377,6 +379,8 @@ $scope.scanBarcode = function() {
          if(numeroStand<=etat) {return "active";}
          else {return "non";} 
        };
+
+       
   
 })
 

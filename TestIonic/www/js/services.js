@@ -151,9 +151,6 @@ angular.module('starter.services', [])
 
 
   return {
-    all: function(annuaire) {
-      return annuaire;
-    },
     //fonction qui recherche dans annuaire les elements correspondants au mot cle
     // cherche en priorite une concordance avec :
     //      - le nom
