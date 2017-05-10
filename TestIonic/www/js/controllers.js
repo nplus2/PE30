@@ -131,9 +131,6 @@ $scope.scanBarcode = function() {
 
           $scope.goToLink(imageData.text);
         }
-        $scope.goToLink(imageData.text);
-        console.log("Barcode Format -> " + imageData.format);
-        console.log("Cancelled -> " + imageData.cancelled);
     }, function(error) {
         console.log("An error happened -> " + error);
     });
