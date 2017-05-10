@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ionicframework.appliJPO20170509" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.ionicframework.appliJPO20170509" version="1.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>ECL_JPO</name>
     <description>
-        An Ionic Framework and Cordova project.
+        L'application accompagnant de la Journée Portes Ouvertes de l'Ecole Centrale de Lyon
     </description>
-    <author email="you@example.com" href="http://example.com.com/">
-      Your Name Here
+    <author email="projetetude.ecl@gmail.com" href="http://example.com.com/">
+      PE30
     </author>
     <content src="index.html" />
     <access origin="*" />
