@@ -194,4 +194,4 @@ angular.module('starter.services', [])
       return resultat;
     }
   }
-});
+});// last version
