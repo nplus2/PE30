@@ -110,7 +110,7 @@ angular.module('starter.controllers', [])
 
 .controller('InformationsCtrl', function($scope,$cordovaInAppBrowser) {
   $scope.goToLink = function(url){
-    $cordovaInAppBrowser.open(url,'_system');
+    window.open(url,'_system');
   }
 })
 
