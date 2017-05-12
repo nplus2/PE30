@@ -129,10 +129,9 @@ $scope.goToLink = function(url){
   }
 $scope.scanBarcode = function() {
     $cordovaBarcodeScanner.scan().then(function(imageData) {
-        if (imageData.text != 'index.html'){
+        if (imageData.text != 'index.html' && imageData.text != ''){
           $scope.goToLink(imageData.text);
         }
-        $scope.goToLink(imageData.text);
         console.log("Barcode Format -> " + imageData.format);
         console.log("Cancelled -> " + imageData.cancelled);
     }, function(error) {
@@ -364,7 +363,7 @@ $scope.scanBarcode = function() {
 .controller('EtatVisitesCtrl', function($scope,requeteHttp) {
   
   $scope.listeVisite = [];
-  
+
   var callback = function(response){
 
     $scope.listeVisite = response.data;
@@ -373,7 +372,7 @@ $scope.scanBarcode = function() {
   $scope.actualiser = function(){
     requeteHttp.etatVisite(callback);
   };
-  //$scope.actualiser();
+  $scope.actualiser();
   $scope.testStandPasse= function(numeroStand,etat){
          if(numeroStand<=etat) {return "active";}
          else {return "non";} 
