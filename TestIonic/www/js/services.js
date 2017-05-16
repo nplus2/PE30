@@ -76,6 +76,10 @@ angular.module('starter.services', [])
     $http.get('https://pe30.eclair.ec-lyon.fr/checkpoint.php?id=1&heure='+heure+'&etat='+etat+'&id='+id)
      .then(callback);
   };
+  var nextVisite = function(callback,id){
+    $http.get('https://pe30.eclair.ec-lyon.fr/next_visite.php?chercheur='+id)
+     .then(callback);
+  }
   return {
     etatVisite : etatVisite,
     requeteFdA : requeteFdA,
@@ -88,8 +92,10 @@ angular.module('starter.services', [])
     requeteVisite : requeteVisite,
     lastCheckpoint : lastCheckpoint,
     nomStand : nomStand,
-    envoiCheckpoint : envoiCheckpoint
+    envoiCheckpoint : envoiCheckpoint,
+    nextVisite : nextVisite
   };
+
 
 })
 
@@ -171,7 +177,6 @@ angular.module('starter.services', [])
         role = annuaire[i].role.toUpperCase();
         listeRole = role.split(" ");
         numero = annuaire[i].numero.replace(" ","").replace(" ","").replace(" ","").replace(" ","");
-
         for (var j = 0; j<listeClef.length; j++) {
           clef = listeClef[j].toUpperCase();
           if (nom.indexOf(clef)!= 0 && prenom.indexOf(clef)!= 0 && numero.indexOf(clef)!=0) {
@@ -180,8 +185,8 @@ angular.module('starter.services', [])
             else {ok = ok && listeRole[0].indexOf(clef)==0}
           }
         }
-        if (ok && id.indexOf(annuaire[i].id) == -1 ){
-           id.push(annuaire[i].id)
+        if (ok && id.indexOf(i) == -1 ){
+           id.push(i)
            resultat.push(annuaire[i])
         }
       }
@@ -189,4 +194,4 @@ angular.module('starter.services', [])
       return resultat;
     }
   }
-});
+});// last version

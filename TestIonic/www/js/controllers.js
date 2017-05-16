@@ -77,33 +77,31 @@ angular.module('starter.controllers', [])
 
 
 .controller('AnnuaireCtrl',function($scope,requeteHttp,Annuaire){   // RETRAVAILLER
+  $scope.data = [];
+  $scope.listeDeContacts = [];
 
   var callback = function(response){
-    $scope.listeDeContacts = response.data;    // nouvelle variable annuaire
+    $scope.data = (response.data);
+    $scope.listeDeContacts = $scope.data;    // nouvelle variable annuaire
   };
 
   requeteHttp.requeteAnnuaire(callback);
 
-/*  $http.get('//missecl.eclair.ec-lyon.fr/PE/Annuaire')
-      .success(function(response){
-        //$scope.texte = response.query.results.rate[0].Rate;
-        //$scope.rate = response.query.results.rate[0]
-       $scope.message = response[0]
-        
-      });*/
 
-  $scope.actualiser = function(annuaire, motCle){
-    $scope.listeDeContacts = Annuaire.recherche(motCle);  //annuaire à rajouter
+  $scope.actualiser = function(motCle){
+    $scope.listeDeContacts = Annuaire.recherche($scope.data,motCle);  //annuaire à rajouter
 
+    // if (motCle.length == 0) {
+    //   $scope.listeDeContacts = data;
+    // }
+   
     if($scope.listeDeContacts.length == 0){
       $scope.listeErreur = ["Aucun Resultat trouvé"];
     }else{
       $scope.listeErreur = [];
     }
 
-  }
-
-  //$scope.listeDeContacts = $scope.annuaire;
+  };
 })
 
 
@@ -129,11 +127,10 @@ $scope.goToLink = function(url){
   }
 $scope.scanBarcode = function() {
     $cordovaBarcodeScanner.scan().then(function(imageData) {
-        if (imageData.text != 'index.html' && imageData.text != ''){
+        if (imageData.text != 'index.html' && imageData.text !=''){
+
           $scope.goToLink(imageData.text);
         }
-        console.log("Barcode Format -> " + imageData.format);
-        console.log("Cancelled -> " + imageData.cancelled);
     }, function(error) {
         console.log("An error happened -> " + error);
     });
@@ -164,33 +161,56 @@ $scope.scanBarcode = function() {
 
 
 
-.controller('ProchaineCtrl', function($scope) {
+.controller('ProchaineCtrl', function($scope,requeteHttp,identification) {
+  var ladate = new Date();
+  var h = ladate.getHours();
+  if (h<10) {
+  h = "0" + h;
+  }
+  var m=ladate.getMinutes();
+  if (m<10) {
+   m = "0" + m;
+  }
+  var heureActuelle= parseInt(String(h)+String(m));
 
-  heureActuelle = 1403;
+  
+  minutes = function(heure){
+    h = parseInt(heure1/100);
+    alert(h);
+    m = heure1%100;
+    return 60*h +m; 
+  };
+  
+
   data = '[{"id_visite" : "3", "id_stand1" : "5", "id_stand2" : "7", "id_stand3" : "4", "id_stand4" : "1", "numero_stand_chercheur" : "3", "heure": "1400", "etat" : "2"},{"id_visite" : "5", "duree_stand1" : "5", "duree_stand2" : "7", "duree_stand3" : "4", "duree_stand4" : "1", "numero_stand_chercheur" : "4", "heure": "1400", "etat" : "1"},{"id_visite" : "23", "duree_stand1" : "5", "duree_stand2" : "7", "duree_stand3" : "4", "duree_stand4" : "1", "numero_stand_chercheur" : "2", "heure": "1400", "etat" : "0"}]'
   data2 = JSON.parse(data);
   $scope.listeVisites = [];
-  for (i = 0 ; i < data2.length ; i++) {
-    var visite = data2[i];
-    // j'ai pas trouvé mieux
-    visite.id_visite = parseInt(visite.id_visite);
-    visite.duree_stand1 = 5; // ICI \\
-    visite.duree_stand2 = 6; // ICI \\
-    visite.duree_stand3 = 7; // ICI \\
-    visite.duree_stand4 = 8; // ICI \\
-    visite.numero_stand_chercheur = parseInt(visite.numero_stand_chercheur);
-    visite.heure = parseInt(visite.heure);
-    visite.etat = parseInt(visite.etat);
-    //
-    var maVisite = {id : visite.id_visite, heure : visite.heure-heureActuelle};
-    if (visite.etat <= 3 && visite.numero_stand_chercheur ==4) {maVisite.heure += (visite.duree_stand3);}
-    if (visite.etat <= 2 && visite.numero_stand_chercheur >=3) {maVisite.heure += (visite.duree_stand2);}
-    if (visite.etat <= 1 && visite.numero_stand_chercheur >=2) {maVisite.heure += (visite.duree_stand1);}
+
+  callback = function(response){
+    $scope.listeVisites = [];
+    visites = response.data;
+    for(i=0; i<visites.length;i++){
+      visite = visites[i];
+      //alert(JSON.stringify(visite));
+      var maVisite = {id : visite.id_visite, heure : (Number(visite.heure) - heureActuelle)};
+    if (visite.etat <= 3 && visite.numero_stand_chercheur ==4) {maVisite.heure += (visite.duree_stand3 | 0);}
+    if (visite.etat <= 2 && visite.numero_stand_chercheur >=3) {maVisite.heure += (visite.duree_stand2 | 0);}
+    if (visite.etat <= 1 && visite.numero_stand_chercheur >=2) {maVisite.heure += (visite.duree_stand1 | 0);}
     if (visite.etat == 0) {maVisite.heure += 5;}
     if (maVisite.heure <= 2) {maVisite.heure = 'moins de 2';}
+
     $scope.listeVisites.push(maVisite);
   }
   $scope.listeVisites.sort(function(a,b){return a.heure-b.heure;})
+  };
+
+  
+  $scope.listeVisites.sort(function(a,b){return a.heure-b.heure;})
+  $scope.actualiser = function(){
+    requeteHttp.nextVisite(callback,identification.identifiant);
+  }
+  requeteHttp.nextVisite(callback,identification.identifiant);
+
 
 })
 
@@ -205,7 +225,7 @@ $scope.scanBarcode = function() {
     $scope.coche.orange = (couleur == 'orange');
     $scope.couleur = couleur;
   };
-
+ $scope.couleur = 'bleu';
   $scope.coche={Organisateurs : false,
                 Guides : false,
                 Chercheurs : false,
@@ -363,7 +383,7 @@ $scope.scanBarcode = function() {
 .controller('EtatVisitesCtrl', function($scope,requeteHttp) {
   
   $scope.listeVisite = [];
-
+  
   var callback = function(response){
 
     $scope.listeVisite = response.data;
@@ -419,10 +439,6 @@ $scope.scanBarcode = function() {
     }
   };
   
-
-
-  data = '{"id" : "125", "nom_stand1" : "Labo mécaflu", "nom_stand2" : "FabLab <3", "nom_stand3" : "Labo H10", "nom_stand4" : "Chambre Acoustique", "etat" : "2"}';
-  $scope.visite = JSON.parse(data);
 
   $scope.visite = {
     id : 0,
