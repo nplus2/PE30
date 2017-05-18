@@ -108,7 +108,7 @@ angular.module('starter.controllers', [])
 
 
 
-.controller('InformationsCtrl', function($scope) {
+.controller('InformationsCtrl', function($scope,$cordovaInAppBrowser) {
   $scope.goToLink = function(url){
     window.open(url,'_system');
   }
@@ -128,7 +128,6 @@ $scope.goToLink = function(url){
 $scope.scanBarcode = function() {
     $cordovaBarcodeScanner.scan().then(function(imageData) {
         if (imageData.text != 'index.html' && imageData.text !=''){
-
           $scope.goToLink(imageData.text);
         }
     }, function(error) {
